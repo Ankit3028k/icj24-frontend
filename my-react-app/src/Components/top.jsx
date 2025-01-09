@@ -4,7 +4,7 @@ import { BiLogoGmail } from "react-icons/bi";
 import { SlCalender } from "react-icons/sl";
 import { FaFacebookF } from "react-icons/fa";
 import { RiTwitterXFill } from "react-icons/ri";
-import { SiYoutubeshorts } from "react-icons/si";y
+import { SiYoutubeshorts } from "react-icons/si";
 
 function Top() {
   // Get the current date
@@ -42,8 +42,9 @@ function Top() {
         <span className="text-sm flex items-center">
           <SlCalender className="mr-2" />
           {currentDate}
-        </span>
+        </span> 
       </div>
+      
     </div>
   );
 }
