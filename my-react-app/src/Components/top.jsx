@@ -18,7 +18,7 @@ function Top() {
           <MdOutlinePhoneIphone className="mr-2" /> 123-456-7890
         </span>
         <span className="text-sm flex items-center">
-          <BiLogoGmail className="mr-2" /> mail@domain.com
+          <BiLogoGmail className="mr-2" /> aashu.sri@gmail.com
         </span>
       </div>
 
