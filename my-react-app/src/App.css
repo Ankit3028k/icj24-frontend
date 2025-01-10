@@ -130,3 +130,19 @@
 .dropdown-content a:hover {background-color: #ddd;}
 
 .dropdown:hover .dropdown-content {display: block;}
+@media screen and (max-width: 768px) {
+  .mobile-hidden {
+    display: none;
+  }
+  
+}
+@media screen and (min-width: 768px) {
+  .mobile-view {
+    display: none;
+  }
+  
+}
+.active {
+  background-color: #04AA6D;
+  color: white;
+}

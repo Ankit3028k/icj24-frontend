@@ -50,7 +50,7 @@ function NavBar() {
           
           <span className="col-span-1"></span>
           {/* for mobile view span */}
-          <span className="col-span-6"></span>
+          <span className="mobile-view col-span-6"></span>
           <button onClick={toggleSearchInput} className="text-white focus:outline-none" aria-label="Toggle search input">
             <FaSearch className="w-6 h-6" />
           </button>
@@ -65,7 +65,7 @@ function NavBar() {
 
         {/* Search Input */}
         {isSearchVisible && (
-          <div className="absolute right-2 top-16 flex items-center border rounded bg-white text-black px-2">
+          <div className="absolute right-2 top-48 flex items-center border rounded bg-white text-black px-2">
             <input
               type="text"
               placeholder="Search news"
