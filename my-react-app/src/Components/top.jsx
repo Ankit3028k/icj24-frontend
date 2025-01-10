@@ -11,19 +11,19 @@ function Top() {
   const currentDate = new Date().toLocaleDateString();
 
   return (
-    <div className="bg-gray-800 text-white p-4 flex items-center justify-between">
+    <div className="bg-gray-800 text-white p-4 flex items-center justify-between flex-wrap">
       {/* Contact information */}
-      <div className="flex space-x-8">
+      <div className="flex space-x-8 mb-4 sm:mb-0">
         <span className="text-sm flex items-center">
           <MdOutlinePhoneIphone className="mr-2" /> 123-456-7890
         </span>
         <span className="text-sm flex items-center">
-          <BiLogoGmail className="mr-2" /> aashu.sri@gmail.com
+          <BiLogoGmail className="mr-2" /> mail@domain.com
         </span>
       </div>
 
       {/* Social icons and current date */}
-      <div className="flex space-x-6 items-center">
+      <div className="flex space-x-6 items-center flex-wrap justify-center sm:justify-end">
         <span className="text-sm flex items-center">
           <a href="https://www.facebook.com/icjtv24" className="text-white hover:text-blue-500 transition">
             <FaFacebookF />
@@ -36,15 +36,14 @@ function Top() {
         </span>
         <span className="text-sm flex items-center">
           <a href="https://www.youtube.com/@icj24/shorts" className="text-white hover:text-blue-400 transition">
-          <SiYoutubeshorts />
+            <SiYoutubeshorts />
           </a>
         </span>
         <span className="text-sm flex items-center">
           <SlCalender className="mr-2" />
           {currentDate}
-        </span> 
+        </span>
       </div>
-      
     </div>
   );
 }
