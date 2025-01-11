@@ -146,3 +146,34 @@
   background-color: #04AA6D;
   color: white;
 }
+/* //breaking news */
+.breaking-news {
+  background-color: #ff0000;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+}
+
+.breaking-news span {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.news-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: slide 10s linear infinite;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
