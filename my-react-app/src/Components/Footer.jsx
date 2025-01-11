@@ -18,7 +18,7 @@ function Footer() {
               alt="icj24 logo"
               className="h-12 mb-4"
             />
-            <p className="text-sm text-gray-400">Your trusted news source</p>
+
           </div>
 
           <section className="flex flex-col items-center sm:items-start">
