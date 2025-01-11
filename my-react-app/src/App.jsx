@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from './Pages/Home.jsx';
+import Home from './pages/Home.jsx';
 import './App.css';
 import Preloader from './Components/Preloader.jsx';
 function App() {
