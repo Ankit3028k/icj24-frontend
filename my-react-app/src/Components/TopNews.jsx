@@ -98,7 +98,7 @@ const Slideshow = () => {
   }, []); // Empty dependency array to only run on mount and unmount
 
   return (
-    <div className="grid grid-cols-3 gap-4 p-4 max-w-6xl mx-auto">
+    <div className="grid grid-cols-3 gap-4 p-4 max-w-7xl mx-auto">
       {/* World News */}
       <div className="relative">
         <img
