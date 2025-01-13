@@ -5,6 +5,7 @@ import UpperNav from '../Components/UpperNav'
 import Footer from '../Components/Footer'
 import BreakingNews from '../Components/BreakingNews'
 
+
 function Home() {
   return (
     <div>
