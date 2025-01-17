@@ -1,77 +1,78 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const WeatherForecasting = () => {
-  const [location, setLocation] = useState({ lat: null, lon: null });
-  const [weatherData, setWeatherData] = useState(null);
-  const [error, setError] = useState(null);
+    const [query, setQuery] = useState('');
+    const [weather, setWeather] = useState({});
 
-  // Function to get user's location
-  const fetchLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLocation({
-            lat: position.coords.latitude,
-            lon: position.coords.longitude,
-          });
-        },
-        (error) => {
-          setError('Unable to fetch location. Please allow location access.');
+    const api = {
+        api: "899db90d99e205468b2f79d23f0a4d1e",
+        base: "https://api.openweathermap.org/data/2.5/",
+    };
+
+    const search = (evt) => {
+        if (evt.key === 'Enter') {
+            fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.api}`)
+                .then((response) => response.json())
+                .then((result) => {
+                    setWeather(result);
+                    setQuery('');
+                    console.log(result);
+                });
         }
-      );
-    } else {
-      setError('Geolocation is not supported by this browser.');
-    }
-  };
+    };
 
-  // Function to fetch weather data from API
-  const fetchWeatherData = async () => {
-    const apiKey = 'YOUR_API_KEY'; // Replace with your weather API key
-    if (location.lat && location.lon) {
-      const apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&units=metric&appid=${apiKey}`;
-      try {
-        const response = await fetch(apiURL);
-        const data = await response.json();
-        setWeatherData(data);
-      } catch (err) {
-        setError('Error fetching weather data.');
-      }
-    }
-  };
+    const dateBuilder = (d) => {
+        let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        let day = days[d.getDay()];
+        let month = months[d.getMonth()];
+        let date = d.getDate();
+        let year = d.getFullYear();
 
-  // UseEffect to fetch location and then weather data
-  useEffect(() => {
-    fetchLocation();
-  }, []);
+        return `${day}, ${date} ${month} ${year}`;
+    };
 
-  useEffect(() => {
-    if (location.lat && location.lon) {
-      fetchWeatherData();
-    }
-  }, [location]);
+    return (
+        <div>
+            <main>
+                <h1>  Weather App </h1>
+                <div className="search-box">
+                    <input
+                        className="search-bar"
+                        type="text"
+                        value={query}
+                        placeholder="Enter a city name"
+                        onChange={(e) => setQuery(e.target.value)}
+                        onKeyDown={search} // Corrected event handler
+                    />
+                    <button>Search</button>
+                </div>
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+                {typeof weather.main !== 'undefined' ? (
+                    <>
+                        {weather.name && weather.sys && (
+                            <div className="location-box">
+                                <div className="location">
+                                    {weather.name}, {weather.sys.country}
+                                    <div className="date">{dateBuilder(new Date())}</div>
+                                </div>
+                            </div>
+                        )}
 
-  if (!weatherData) {
-    return <div>Loading weather data...</div>;
-  }
-
-  return (
-    <div className="weather-container">
-      <h2>Weather in {weatherData.name}</h2>
-      <div className="weather-info">
-        <p>Temperature: {weatherData.main.temp} °C</p>
-        <p>Humidity: {weatherData.main.humidity}%</p>
-        <p>Wind Speed: {weatherData.wind.speed} KMPH</p>
-        <p>{weatherData.weather[0].description}</p>
-      </div>
-      <div className="weather-forecast">
-        {/* You can add a forecast feature using another API endpoint */}
-      </div>
-    </div>
-  );
+                        <div className="weather-box">
+                            <div className="temp">
+                                {Math.round(weather.main.temp)}℃
+                            </div>
+                            <div className="weather">
+                                {weather.weather[0].main}
+                            </div>
+                        </div>
+                    </>
+                ) : ('')}
+              
+            </main>
+        </div>
+    );
 };
 
 export default WeatherForecasting;
