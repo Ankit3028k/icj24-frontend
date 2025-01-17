@@ -16,7 +16,7 @@ function TrendingNews() {
   return (
     <div className="trending-news m-2 px-6 py-8 border border-gray-300">
       <h2 className="text-2xl font-bold mb-6">Trending News</h2>
-      <div className={`grid gap-4 ${isEven ? 'grid-cols-2' : 'grid-cols-2 md:grid-cols-3'} m:grid-cols-1`}>
+      <div className={`grid gap-4 ${isEven ? 'grid-cols-2' : 'grid-cols-2 md:grid-cols-3'} max-md:grid-cols-1`}>
         {news.map((newsItem, index) => (
           <div
             className={`news-item bg-white p-4 shadow-lg  border border-gray-300 ${!isEven && index === 0 ? 'col-span-2' : ''}`}
