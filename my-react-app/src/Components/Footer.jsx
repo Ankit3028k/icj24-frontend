@@ -54,16 +54,16 @@ function Footer() {
           
           {/* Social media icons */}
           <div className="flex space-x-6 pr-5">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <a href="https://www.facebook.com/icjtv24" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <FaFacebook className="text-white hover:text-blue-500 transition duration-300 text-2xl" />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <a href="https://twitter.com/icjtv24" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
               <FaTwitter className="text-white hover:text-blue-400 transition duration-300 text-2xl" />
             </a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <FaInstagram className="text-white hover:text-pink-500 transition duration-300 text-2xl" />
             </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <a href="https://www.youtube.com/@icj24" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
               <FaYoutube className="text-white hover:text-red-500 transition duration-300 text-2xl" />
             </a>
             <a href="mailto:example@mail.com" aria-label="Email">

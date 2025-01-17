@@ -8,7 +8,12 @@ import { SiYoutubeshorts } from "react-icons/si";
 
 function Top() {
   // Get the current date
-  const currentDate = new Date().toLocaleDateString();
+  const currentDate = new Date().toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
 
   return (
     <div className="bg-gray-800 text-white p-4 flex items-center justify-between flex-wrap">
