@@ -14,12 +14,12 @@ function TrendingNews() {
   const isEven = news.length % 2 === 0;
 
   return (
-    <div className="trending-news m-2 px-6 py-8 border border-gray-800">
+    <div className="trending-news px-6 py-8">
       <h2 className="text-2xl font-bold mb-6">Trending News</h2>
-      <div className={`grid gap-4 ${isEven ? 'grid-cols-2' : 'grid-cols-2 md:grid-cols-3'}`}>
+      <div className={`grid gap-4 ${isEven ? 'grid-cols-2' : 'grid-cols-2 md:grid-cols-3'} m:grid-cols-1`}>
         {news.map((newsItem, index) => (
           <div
-            className={`news-item bg-white p-4 shadow-lg   border border-gray-400 ${!isEven && index === 0 ? 'col-span-2' : ''}`}
+            className={`news-item bg-white p-4 shadow-lg rounded-lg ${!isEven && index === 0 ? 'col-span-2' : ''}`}
             key={index}
           >
             <img
