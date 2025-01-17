@@ -110,9 +110,9 @@ const Slideshow = () => {
           <span className="bg-red-600 text-xs px-2 py-1 rounded">
             {slidesWorld[currentIndexWorld].category}
           </span>
-          <p className="mt-2 text-lg font-semibold">
+          <a href="#"><p className="mt-2 text-lg font-semibold">
             {slidesWorld[currentIndexWorld].caption}
-          </p>
+          </p></a>
         </div>
       </div>
       {/* Sports News */}
@@ -126,9 +126,9 @@ const Slideshow = () => {
           <span className="bg-red-600 text-xs px-2 py-1 rounded">
             {slidesSports[currentIndexSports].category}
           </span>
-          <p className="mt-2 text-lg font-semibold">
+          <a href="#"><p className="mt-2 text-lg font-semibold">
             {slidesSports[currentIndexSports].caption}
-          </p>
+          </p></a>
         </div>
       </div>
 
@@ -144,9 +144,9 @@ const Slideshow = () => {
             <span className="bg-blue-600 text-xs px-2 py-1 rounded">
               {slidesTech[currentIndexTech].category}
             </span>
-            <p className="mt-2 text-sm font-semibold">
+            <a href="#"><p className="mt-2 text-sm font-semibold">
               {slidesTech[currentIndexTech].caption}
-            </p>
+            </p></a>
           </div>
         </div>
 
@@ -160,9 +160,9 @@ const Slideshow = () => {
             <span className="bg-red-600 text-xs px-2 py-1 rounded">
               {slidesEntertainment[currentIndexEntertainment].category}
             </span>
-            <p className="mt-2 text-sm font-semibold">
+            <a href="#"><p className="mt-2 text-sm font-semibold">
               {slidesEntertainment[currentIndexEntertainment].caption}
-            </p>
+            </p></a>
           </div>
         </div>
       </div>
