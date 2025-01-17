@@ -5,6 +5,7 @@ import UpperNav from '../Components/UpperNav'
 import Slideshow from '../Components/TopNews'
 import BreakingNews from '../Components/BreakingNews'
 import Footer from '../Components/Footer'
+import TrendingNews from '../Components/TrendingNews'
 
 function Home() {
   return (
@@ -15,6 +16,7 @@ function Home() {
       <NavBar/>
       <Slideshow/>
       <BreakingNews/>
+      <TrendingNews/>
       <Footer/>
     </div>
   )
