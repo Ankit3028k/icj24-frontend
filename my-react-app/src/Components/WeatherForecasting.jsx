@@ -1,90 +1,77 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
-function WeatherForecasting() {
-  const [weather, setWeather] = useState(null);
-  const [location, setLocation] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // To track errors
+const WeatherForecasting = () => {
+  const [location, setLocation] = useState({ lat: null, lon: null });
+  const [weatherData, setWeatherData] = useState(null);
+  const [error, setError] = useState(null);
 
-  // Your OpenWeatherMap API key
-  const apiKey = 'your-openweathermap-api-key';
-
-  // Function to get weather data
-  const fetchWeatherData = (lat, lon) => {
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-    
-    axios
-      .get(url)
-      .then((response) => {
-        setWeather(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching weather data: ", error);
-        setError("Unable to fetch weather data.");
-        setLoading(false);
-      });
-  };
-
-  // Get the user's location
-  const getLocation = () => {
-    if (!navigator.geolocation) {
-      setError("Geolocation is not supported by this browser.");
-      setLoading(false);
-      return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        setLocation({ latitude, longitude });
-        fetchWeatherData(latitude, longitude);
-      },
-      (error) => {
-        console.error("Geolocation error:", error);
-        if (error.code === error.PERMISSION_DENIED) {
-          setError("Permission denied. Please enable location access.");
-        } else if (error.code === error.POSITION_UNAVAILABLE) {
-          setError("Position unavailable. Unable to retrieve location.");
-        } else if (error.code === error.TIMEOUT) {
-          setError("Request timed out. Please try again.");
-        } else {
-          setError("An unknown error occurred.");
+  // Function to get user's location
+  const fetchLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLocation({
+            lat: position.coords.latitude,
+            lon: position.coords.longitude,
+          });
+        },
+        (error) => {
+          setError('Unable to fetch location. Please allow location access.');
         }
-        setLoading(false);
-      }
-    );
+      );
+    } else {
+      setError('Geolocation is not supported by this browser.');
+    }
   };
 
+  // Function to fetch weather data from API
+  const fetchWeatherData = async () => {
+    const apiKey = 'YOUR_API_KEY'; // Replace with your weather API key
+    if (location.lat && location.lon) {
+      const apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&units=metric&appid=${apiKey}`;
+      try {
+        const response = await fetch(apiURL);
+        const data = await response.json();
+        setWeatherData(data);
+      } catch (err) {
+        setError('Error fetching weather data.');
+      }
+    }
+  };
+
+  // UseEffect to fetch location and then weather data
   useEffect(() => {
-    getLocation();
+    fetchLocation();
   }, []);
 
+  useEffect(() => {
+    if (location.lat && location.lon) {
+      fetchWeatherData();
+    }
+  }, [location]);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!weatherData) {
+    return <div>Loading weather data...</div>;
+  }
+
   return (
-    <div className="sidebar p-4 space-y-6">
-      <div className="weather-widget bg-gray-100 p-4 rounded-lg shadow-lg">
-        {loading && !error ? (
-          <p>Loading weather...</p>
-        ) : error ? (
-          <p>{error}</p>
-        ) : weather ? (
-          <div className="flex justify-between items-center">
-            <div>
-              <h3 className="text-2xl font-semibold">{weather.name}</h3>
-              <p>{weather.weather[0].description}</p>
-            </div>
-            <div className="text-4xl">{Math.round(weather.main.temp)}°C</div>
-          </div>
-        ) : (
-          <p>Unable to fetch weather data.</p>
-        )}
-        <p className="text-gray-600">
-          {weather ? `${new Date(weather.dt * 1000).toLocaleTimeString()} EST` : ''}
-        </p>
+    <div className="weather-container">
+      <h2>Weather in {weatherData.name}</h2>
+      <div className="weather-info">
+        <p>Temperature: {weatherData.main.temp} °C</p>
+        <p>Humidity: {weatherData.main.humidity}%</p>
+        <p>Wind Speed: {weatherData.wind.speed} KMPH</p>
+        <p>{weatherData.weather[0].description}</p>
+      </div>
+      <div className="weather-forecast">
+        {/* You can add a forecast feature using another API endpoint */}
       </div>
     </div>
   );
-}
+};
 
 export default WeatherForecasting;

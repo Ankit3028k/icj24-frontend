@@ -9,6 +9,7 @@ import TrendingNews from '../Components/TrendingNews'
 import GoogleAds from '../Components/BoxAds'
 import WeatherForecasting from '../Components/WeatherForecasting'
 
+
 function Home() {
   return (
     <div>

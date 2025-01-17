@@ -177,29 +177,3 @@
     transform: translateX(-100%);
   }
 }
-
-.trending-news {
-  padding: 20px;
-}
-
-.news-grid {
-  display: grid;
-  gap: 16px;
-  transition: all 0.3s ease;
-}
-
-.news-grid.even {
-  grid-template-columns: repeat(2, 1fr); /* 2 columns for even number of items */
-}
-
-.news-grid.odd {
-  grid-template-columns: repeat(3, 1fr); /* 3 columns for odd number of items */
-}
-
-.news-item {
-  background-color: #f4f4f4;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}

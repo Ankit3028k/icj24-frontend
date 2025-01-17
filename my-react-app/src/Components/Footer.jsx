@@ -34,7 +34,7 @@ function Footer() {
           </section>
 
           <section className="flex flex-col items-center sm:items-start pr-10">
-            <h2 className="text-xl font-bold mb-4">Most Viewed</h2>
+            <h2 className="text-2xl font-bold mb-4">Most Viewed</h2>
             <div className="grid grid-cols-2 gap-4">
               {["मध्यप्रदेश", "राजनीति", "क्राइम", "अध्यात्म", "Jara Hatke", "टेक्नोलॉजी"].map((buttonText, index) => (
                 <button
