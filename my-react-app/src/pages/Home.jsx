@@ -25,7 +25,7 @@ function Home() {
         </div>
         <div className="w-1/4 pl-6"> {/* Sidebar takes 1/4th width */}
           <GoogleAds />
-          <WeatherForecasting />
+          {/* <WeatherForecasting /> */}
         </div>
       </div>
       <Footer/>
