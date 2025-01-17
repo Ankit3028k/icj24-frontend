@@ -146,6 +146,10 @@
   background-color: #04AA6D;
   color: white;
 }
+/*  */
+.Z-Index-1{
+  z-index: -1;
+}
 /* //breaking news */
 .breaking-news {
   background-color: #ff0000;

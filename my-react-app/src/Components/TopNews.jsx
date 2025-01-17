@@ -100,7 +100,7 @@ const Slideshow = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 max-w-7xl mx-auto">
       {/* World News */}
-      <div className="relative">
+      <div className="relative Z-Index-1">
         <img
           src={slidesWorld[currentIndexWorld].imgSrc}
           alt={slidesWorld[currentIndexWorld].caption}
@@ -116,7 +116,7 @@ const Slideshow = () => {
         </div>
       </div>
       {/* Sports News */}
-      <div className="relative">
+      <div className="relative Z-Index-1">
         <img
           src={slidesSports[currentIndexSports].imgSrc}
           alt={slidesSports[currentIndexSports].caption}
@@ -134,7 +134,7 @@ const Slideshow = () => {
 
       {/* Tech News */}
       <div className="grid grid-rows-2 gap-4">
-        <div className="relative">
+        <div className="relative Z-Index-1">
           <img
             src={slidesTech[currentIndexTech].imgSrc}
             alt={slidesTech[currentIndexTech].caption}
@@ -150,7 +150,7 @@ const Slideshow = () => {
           </div>
         </div>
 
-        <div className="relative">
+        <div className="relative Z-Index-1">
           <img
             src={slidesEntertainment[currentIndexEntertainment].imgSrc}
             alt={slidesEntertainment[currentIndexEntertainment].caption}

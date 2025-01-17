@@ -30,7 +30,7 @@ function NavBar() {
           <span className="col-span-1"><Link to="/">होम</Link></span>
           
           <div className="dropdown col-span-1 hidden sm:block">
-            <span className="dropbtn">
+            <span className="dropbtn hidden sm:block">
               <Link to="#">मध्यप्रदेश</Link>
             </span>
             <div className="dropdown-content bg-white text-black">
@@ -47,7 +47,7 @@ function NavBar() {
           <span className="col-span-1 hidden sm:block"><Link to="#">Jara Hatke</Link></span>
           <span className="col-span-1 hidden sm:block"><Link to="#">टेक्नोलॉजी</Link></span>
           
-          <span className="col-span-1"></span>
+          <span className="col-span-1 hidden sm:block"></span>
           
           {/* Mobile View */}
           <span className="sm:hidden col-span-6"></span>
@@ -89,19 +89,30 @@ function NavBar() {
       >
         <div className={`fixed pt-12 top-14 right-0 shadow-lg transform transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="p-4 bg-white text-black">
+          <div className="dropdown  ">
+            <span className="dropbtn ">
             <Link to="/" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
               मध्यप्रदेश
             </Link>
-            <Link to="/categories" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
+            </span>
+            <div className="dropdown-content bg-white text-black ">
+              <Link to="#">इंदौर</Link>
+              <Link to="#">भोपाल</Link>
+              <Link to="#">उज्जैन</Link>
+              <Link to="#">जबलपुर</Link>
+            </div>
+          </div>
+            
+            <Link to="#" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
               राजनीति
             </Link>
-            <Link to="/products" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
+            <Link to="#" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
               अध्यात्म
             </Link>
-            <Link to="/cart" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
+            <Link to="#" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
               Jara Hatke
             </Link>
-            <Link to="/cart" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
+            <Link to="#" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
               टेक्नोलॉजी
             </Link>
           </div>
