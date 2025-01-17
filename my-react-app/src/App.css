@@ -177,3 +177,8 @@
     transform: translateX(-100%);
   }
 }
+.adsbygoogle {
+  display: block;
+  /* width: 300px; Example width */
+  /* height: 250px; Example height */
+}

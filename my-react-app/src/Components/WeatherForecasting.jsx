@@ -1,78 +1,90 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const WeatherForecasting = () => {
-    const [query, setQuery] = useState('');
-    const [weather, setWeather] = useState({});
+function WeatherForecasting() {
+  const [weather, setWeather] = useState(null);
+  const [location, setLocation] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); // To track errors
 
-    const api = {
-        api: "899db90d99e205468b2f79d23f0a4d1e",
-        base: "https://api.openweathermap.org/data/2.5/",
-    };
+  // Your OpenWeatherMap API key
+  const apiKey = 'e96ffcb87b129c07ac07439dea29ab4b';
 
-    const search = (evt) => {
-        if (evt.key === 'Enter') {
-            fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.api}`)
-                .then((response) => response.json())
-                .then((result) => {
-                    setWeather(result);
-                    setQuery('');
-                    console.log(result);
-                });
+  // Function to get weather data
+  const fetchWeatherData = (lat, lon) => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+    
+    axios
+      .get(url)
+      .then((response) => {
+        setWeather(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching weather data: ", error);
+        setError("Unable to fetch weather data.");
+        setLoading(false);
+      });
+  };
+
+  // Get the user's location
+  const getLocation = () => {
+    if (!navigator.geolocation) {
+      setError("Geolocation is not supported by this browser.");
+      setLoading(false);
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setLocation({ latitude, longitude });
+        fetchWeatherData(latitude, longitude);
+      },
+      (error) => {
+        console.error("Geolocation error:", error);
+        if (error.code === error.PERMISSION_DENIED) {
+          setError("Permission denied. Please enable location access.");
+        } else if (error.code === error.POSITION_UNAVAILABLE) {
+          setError("Position unavailable. Unable to retrieve location.");
+        } else if (error.code === error.TIMEOUT) {
+          setError("Request timed out. Please try again.");
+        } else {
+          setError("An unknown error occurred.");
         }
-    };
-
-    const dateBuilder = (d) => {
-        let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        let day = days[d.getDay()];
-        let month = months[d.getMonth()];
-        let date = d.getDate();
-        let year = d.getFullYear();
-
-        return `${day}, ${date} ${month} ${year}`;
-    };
-
-    return (
-        <div>
-            <main>
-                <h1>  Weather App </h1>
-                <div className="search-box">
-                    <input
-                        className="search-bar"
-                        type="text"
-                        value={query}
-                        placeholder="Enter a city name"
-                        onChange={(e) => setQuery(e.target.value)}
-                        onKeyDown={search} // Corrected event handler
-                    />
-                    <button>Search</button>
-                </div>
-
-                {typeof weather.main !== 'undefined' ? (
-                    <>
-                        {weather.name && weather.sys && (
-                            <div className="location-box">
-                                <div className="location">
-                                    {weather.name}, {weather.sys.country}
-                                    <div className="date">{dateBuilder(new Date())}</div>
-                                </div>
-                            </div>
-                        )}
-
-                        <div className="weather-box">
-                            <div className="temp">
-                                {Math.round(weather.main.temp)}℃
-                            </div>
-                            <div className="weather">
-                                {weather.weather[0].main}
-                            </div>
-                        </div>
-                    </>
-                ) : ('')}
-              
-            </main>
-        </div>
+        setLoading(false);
+      }
     );
-};
+  };
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
+  return (
+    <div className="sidebar p-4 space-y-6 border border-gray-600">
+      <div className="weather-widget bg-gray-100 p-4 rounded-lg shadow-lg">
+        {loading && !error ? (
+          <p>Loading weather...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : weather ? (
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className="text-2xl font-semibold">{weather.name}</h3>
+              <p>{weather.weather[0].description}</p>
+            </div>
+            <div className="text-4xl">{Math.round(weather.main.temp)}°C</div>
+          </div>
+        ) : (
+          <p>Unable to fetch weather data.</p>
+        )}
+        <p className="text-gray-600">
+          {weather ? `${new Date(weather.dt * 1000).toLocaleTimeString()} EST` : ''}
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export default WeatherForecasting;

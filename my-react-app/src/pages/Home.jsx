@@ -23,9 +23,9 @@ function Home() {
         <div className="flex-1">
           <TrendingNews />
         </div>
-        <div className="w-1/4 pl-6"> {/* Sidebar takes 1/4th width */}
+        <div className="w-1/4 pl-6 "> {/* Sidebar takes 1/4th width */}
           <GoogleAds />
-          {/* <WeatherForecasting /> */}
+          <WeatherForecasting />
         </div>
       </div>
       <Footer/>
