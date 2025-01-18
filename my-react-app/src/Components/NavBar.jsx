@@ -71,7 +71,7 @@ function NavBar() {
               type="text"
               placeholder="Search news"
               value={searchTerm}
-              onChange={handleSearchChange}
+              onChange={handleSearchChange} 
               className="flex-grow border-none outline-none p-2 text-black"
               autoFocus
             />

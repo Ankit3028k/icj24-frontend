@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from 'react';
 
-function TrendingNews() {
-  const [news, setNews] = useState([
+function MpNews() {
+  const news = [
     {
       title: "News 1",
       imageUrl:
-        "https://icj24.com/wp-content/uploads/2025/01/c670f414-e347-44cd-bf96-d8016cffeb4b.jpg",
+        "https://icj24.com/wp-content/uploads/2024/10/423c067f-45f3-4d76-add7-a52f236675a8-551x349.jpeg",
       heading: "The future of possible innovation for business company.",
       date: "November 16, 2017",
     },
@@ -30,32 +30,22 @@ function TrendingNews() {
       heading: "The future of possible innovation for google.",
       date: "November 16, 2017",
     },
-    // { title: 'News 5', imageUrl: 'path/to/image5.jpg' },
-    // { title: 'News 6', imageUrl: 'path/to/image6.jpg' }
-  ]);
+    // Add more news items as needed
+  ];
 
   // Check if the number of news items is even or odd
   const isEven = news.length % 2 === 0;
 
   return (
-    <div className=" m-2 px-6 py-8 border border-gray-300">
-      <h2 className="text-2xl font-bold mb-6">ट्रेंडिंग न्यूज़</h2>
-      <div
-        className={`grid gap-4 ${
-          isEven ? "grid-cols-2" : "grid-cols-2 md:grid-cols-3"
-        } max-md:grid-cols-1`}
-      >
+    <div className="m-2 px-6 py-8 border border-gray-300">
+      <h2 className="text-2xl font-bold mb-6">मध्यप्रदेश न्यूज़</h2>
+      <div className={`grid gap-4 ${isEven ? 'grid-cols-2' : 'grid-cols-2 md:grid-cols-3'} max-md:grid-cols-1`}>
         {news.map((newsItem, index) => (
-          <div
-            className={`news-item bg-white p-4 shadow-lg  border border-gray-300 ${
-              !isEven && index === 0 ? "col-span-2" : ""
-            }`}
-            key={index}
-          >
+          <div className={`news-item bg-white p-4 shadow-lg border border-gray-300 ${!isEven && index === 0 ? 'col-span-2' : ''}`} key={index}>
             <img
-              src={`${newsItem.imageUrl}`}
+              src={newsItem.imageUrl}
               alt={`News ${index + 1}`}
-              className="h-40 w-full object-cover "
+              className="h-40 w-full object-cover"
             />
             <a href="#">
               <h3 className="text-xl font-semibold mt-4">{newsItem.heading}</h3>
@@ -68,4 +58,4 @@ function TrendingNews() {
   );
 }
 
-export default TrendingNews;
+export default MpNews;

@@ -9,6 +9,8 @@ import TrendingNews from '../Components/TrendingNews';
 import GoogleAds from '../Components/BoxAds';
 import WeatherForecasting from '../Components/WeatherForecasting';
 import SideNews from '../Components/SideNews';
+import MpNews from '../Components/MpNews';
+ 
 
 function Home() {
   return (
@@ -24,6 +26,8 @@ function Home() {
         {/* Main content takes full width on mobile, half on medium screens */}
         <div className="flex-1 w-full md:w-3/4">
           <TrendingNews />
+          <MpNews />
+          
         </div>
 
         {/* Sidebar */}
