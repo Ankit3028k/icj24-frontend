@@ -172,6 +172,11 @@
   text-overflow: ellipsis;
   animation: slide 10s linear infinite;
 }
+@media (max-width: 768px) {
+  .responsive-mx3{
+    margin-left: 27px;
+  }
+}
 
 @keyframes slide {
   0% {

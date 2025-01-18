@@ -19,7 +19,7 @@ const BreakingNews = () => {
   }, [newsItems.length]);
 
   return (
-    <div className="flex justify-center my-2 px-6">
+    <div className="flex justify-center my-2 px-6 responsive-mx3">
       <div className="p-0 bg-red-600 inline-flex py-3 px-4 text-white">
         <span className="font-bold text-lg ">BREAKING NEWS</span>
       </div>
