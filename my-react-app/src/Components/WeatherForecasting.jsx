@@ -62,7 +62,7 @@ function WeatherForecasting() {
   }, []);
 
   return (
-    <div className="sidebar p-4 space-y-6 border border-gray-600">
+    <div className="sidebar p-4 space-y-6 ">
       <div className="weather-widget bg-gray-100 p-4 rounded-lg shadow-lg">
         {loading && !error ? (
           <p>Loading weather...</p>

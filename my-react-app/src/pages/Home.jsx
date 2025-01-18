@@ -8,6 +8,7 @@ import Footer from '../Components/Footer';
 import TrendingNews from '../Components/TrendingNews';
 import GoogleAds from '../Components/BoxAds';
 import WeatherForecasting from '../Components/WeatherForecasting';
+import SideNews from '../Components/SideNews';
 
 function Home() {
   return (
@@ -31,9 +32,10 @@ function Home() {
             <GoogleAds />
           </div>
           <WeatherForecasting />
+          <SideNews/>
         </div>
       </div>
-
+      
       <Footer />
     </div>
   );
