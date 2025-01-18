@@ -31,7 +31,7 @@ function SideNews() {
   ];
 
   return (
-    <div className="side-news m-4 w-full md:1/4 border border-gray-300 p-4 rounded-md">
+    <div className="side-news w-full md:1/4 border border-gray-300 p-4 ">
       {/* Tab Buttons */}
       <div className="flex justify-between border-b-2 border-gray-200 mb-4">
         {["Recent", "Popular", "Comments"].map((tab) => (

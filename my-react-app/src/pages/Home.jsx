@@ -22,7 +22,7 @@ function Home() {
       <BreakingNews />
 
       {/* Main content */}
-      <div className="flex flex-wrap px-6 py-8">
+      <div className="flex flex-wrap px-2 py-4">
         {/* Main content takes full width on mobile, half on medium screens */}
         <div className="flex-1 w-full md:w-3/4">
           <TrendingNews />
@@ -32,7 +32,7 @@ function Home() {
         </div>
 
         {/* Sidebar */}
-        <div className="w-full md:w-1/4 pl-6 mt-6 md:mt-0">
+        <div className="w-full md:w-1/4 pl-3 mt-6 md:mt-0">
           <div className="border border-gray-600">
             <GoogleAds />
           </div>
