@@ -84,10 +84,10 @@ function NavBar() {
 
       {/* Mobile Menu */}
       <div 
-        className={`fixed inset-0 transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} 
+        className={` inset-0 transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} 
         onClick={toggleMobileMenu}
       >
-        <div className={`fixed pt-12 top-14 right-0 shadow-lg transform transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className={`absolute pt-12 top-44 right-0 shadow-lg transform transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="p-4 bg-white text-black">
           <div className="dropdown  ">
             <span className="dropbtn ">
