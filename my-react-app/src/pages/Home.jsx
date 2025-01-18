@@ -26,8 +26,9 @@ function Home() {
         {/* Main content takes full width on mobile, half on medium screens */}
         <div className="flex-1 w-full md:w-3/4">
           <TrendingNews />
+          <div className='mt-6'>
           <MpNews />
-          
+          </div>
         </div>
 
         {/* Sidebar */}
