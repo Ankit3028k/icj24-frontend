@@ -31,7 +31,7 @@ function NavBar() {
           
           <div className="dropdown col-span-1 hidden sm:block">
             <span className="dropbtn hidden sm:block">
-              <Link to="#">मध्यप्रदेश</Link>
+              <Link to="/mp-news">मध्यप्रदेश</Link>
             </span>
             <div className="dropdown-content bg-white text-black">
               <Link to="#">इंदौर</Link>

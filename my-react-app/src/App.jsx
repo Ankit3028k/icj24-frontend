@@ -21,7 +21,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Mpnews" element={<Rajniti />} />
+        <Route path="/mp-news" element={<Rajniti />} />
       </Routes>
     </BrowserRouter>
   );
