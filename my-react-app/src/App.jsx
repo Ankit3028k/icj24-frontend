@@ -4,6 +4,8 @@ import Home from './pages/Home.jsx';
 import './App.css';
 import Preloader from './Components/Preloader.jsx';
 import Rajniti from './pages/RajnitiPage.jsx';
+import Admin from './pages/Admin.jsx';
+
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -22,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mp-news" element={<Rajniti />} />
+      <Route path='/admin' element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );
