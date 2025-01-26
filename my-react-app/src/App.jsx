@@ -22,7 +22,7 @@ function App() {
       {loading && <Preloader />}
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Admin />} />
         <Route path="/mp-news" element={<Rajniti />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
