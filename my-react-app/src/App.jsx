@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from './pages/Home.jsx';
-import './App.css';
-import Preloader from './Components/Preloader.jsx';
-import Rajniti from './pages/RajnitiPage.jsx';
-import Admin from './pages/Admin.jsx';
+import Home from "./pages/Home.jsx";
+import "./App.css";
+import Preloader from "./Components/Preloader.jsx";
+import Rajniti from "./pages/RajnitiPage.jsx";
+import Admin from "./pages/Admin.jsx";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -19,12 +19,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      {loading && (<Preloader/>)}
+      {loading && <Preloader />}
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mp-news" element={<Rajniti />} />
-      <Route path='/admin' element={<Admin />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );

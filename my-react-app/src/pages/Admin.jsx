@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import AdminNewsForm from '../Components/Admin/NewsPost.jsx'
 import AdminCategoryForm from '../Components/Admin/AdminCategoryForm.jsx'
 import AdminCategoryList from '../Components/Admin/CategoriesList.jsx'
