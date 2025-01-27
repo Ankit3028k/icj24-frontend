@@ -1,31 +1,44 @@
-import React, { useEffect } from 'react';
+import { useEffect } from "react";
 
 const GoogleAds = () => {
   useEffect(() => {
-    // Dynamically load the Google Ads script
-    const script = document.createElement('script');
-    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4309202317816641';
-    script.async = true;
-    script.crossOrigin = 'anonymous';
-    document.body.appendChild(script);
+    const scriptSrc =
+      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4309202317816641";
+    let script = document.querySelector(`script[src="${scriptSrc}"]`);
 
-    // Cleanup script on component unmount
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
-  useEffect(() => {
-    // Push ad to the adsbygoogle array once the script has loaded
-    if (window.adsbygoogle) {
-      window.adsbygoogle.push({});
+    if (!script) {
+      // Load the script if it doesn't exist
+      script = document.createElement("script");
+      script.src = scriptSrc;
+      script.async = true;
+      script.crossOrigin = "anonymous";
+      document.body.appendChild(script);
     }
+
+    const handleAds = () => {
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (e) {
+        console.error("Adsbygoogle push failed:", e);
+      }
+    };
+
+    // Add event listener to ensure the ads are pushed once the script is loaded
+    if (window.adsbygoogle) {
+      handleAds();
+    } else {
+      script.onload = handleAds;
+    }
+
+    return () => {
+      // Optional: Don't remove the script unless absolutely necessary
+    };
   }, []);
 
   return (
     <ins
       className="adsbygoogle"
-      style={{ display: 'block' }}
+      style={{ display: "block" }}
       data-ad-client="ca-pub-4309202317816641"
       data-ad-slot="3317014236"
       data-ad-format="auto"
