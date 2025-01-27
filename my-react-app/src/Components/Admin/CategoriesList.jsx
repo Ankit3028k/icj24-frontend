@@ -1,53 +1,48 @@
-// src/components/AdminCategoryList.js
-import React from 'react';
-import axiosInstance from './axiosConfig.js';
+import React, { useEffect, useState } from 'react';
 
-const AdminCategoryList = ({ categories, fetchCategories, setEditCategory }) => {
-    const handleDelete = async (categoryId) => {
-        try {
-            await axiosInstance.delete(`/api/categories/${categoryId}`);
-            fetchCategories();
-        } catch (error) {
-            console.error('Error deleting category:', error);
-        }
+const CategoriesList = () => {
+    const [categories, setCategories] = useState([]);
+
+    // Fetch categories data from the API
+    useEffect(() => {
+        fetch('http://localhost:3000/api/categories')
+            .then(response => response.json())
+            .then(data => setCategories(data))
+            .catch(error => console.error('Error fetching categories:', error));
+    }, []);
+
+    // Function to handle category deletion
+    const deleteCategory = (id) => {
+        fetch(`http://localhost:3000/api/categories/${id}`, {
+            method: 'DELETE',
+        })
+        .then(response => response.json())
+        .then(() => {
+            setCategories(categories.filter(category => category.id !== id));
+        })
+        .catch(error => console.error('Error deleting category:', error));
+    };
+
+    // Function to handle category editing (just a placeholder here)
+    const editCategory = (id) => {
+        // You would typically show a form to edit the category
+        console.log(`Edit category with ID: ${id}`);
     };
 
     return (
-        <div className="overflow-x-auto">
-            <h2 className="text-2xl font-bold mb-4">Category List</h2>
-            <table className="min-w-full bg-white border border-gray-300">
-                <thead className="bg-gray-100">
-                    <tr>
-                        <th className="p-2">Category ID</th>
-                        <th className="p-2">Name</th>
-                        <th className="p-2">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {categories.map((category) => (
-                        <tr key={category.id} className="border-t">
-                            <td className="p-2">{category.id}</td>
-                            <td className="p-2">{category.name}</td>
-                            <td className="p-2 space-x-2">
-                                <button
-                                    className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-400"
-                                    onClick={() => setEditCategory(category.id)}
-                                >
-                                    Edit
-                                </button>
-                                <button
-                                    className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-500"
-                                    onClick={() => handleDelete(category.id)}
-                                >
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+        <div>
+            <h2>Categories List</h2>
+            <ul>
+                {categories.map(category => (
+                    <li key={category.id}>
+                        {category.name}
+                        <button onClick={() => editCategory(category.id)}>Edit</button>
+                        <button onClick={() => deleteCategory(category.id)}>Delete</button>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };
 
-export default AdminCategoryList;
+export default CategoriesList;
