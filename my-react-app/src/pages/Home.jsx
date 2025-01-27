@@ -10,7 +10,11 @@ import GoogleAds from '../Components/BoxAds';
 import WeatherForecasting from '../Components/WeatherForecasting';
 import SideNews from '../Components/SideNews';
 import MpNews from '../Components/MpNews';
- 
+import FeaturedVideos from '../Components/FeaturedVideos';
+import CategoriesList from '../Components/sideCategory';
+import SideIcj24 from '../Components/SideIcj24';
+import BannerAd from '../Components/BannerAd'; // Import the BannerAd component
+import SportsNews from '../Components/SportNews';
 
 function Home() {
   return (
@@ -21,14 +25,26 @@ function Home() {
       <Slideshow />
       <BreakingNews />
 
+      {/* Banner Ad Section */}
+      
+
       {/* Main content */}
       <div className="flex flex-wrap px-2 py-4">
         {/* Main content takes full width on mobile, half on medium screens */}
         <div className="flex-1 w-full md:w-3/4">
           <TrendingNews />
-          <div className='mt-6'>
-          <MpNews />
+          <div className="mt-6">
+            <MpNews />
           </div>
+          <div className="mt-6">
+            <FeaturedVideos />
+          </div>
+          <div className="my-4">
+        <BannerAd />
+      </div>
+      <div className= "mt-6">
+        <SportsNews/>
+      </div>
         </div>
 
         {/* Sidebar */}
@@ -37,10 +53,17 @@ function Home() {
             <GoogleAds />
           </div>
           <WeatherForecasting />
-          <SideNews/>
+          <SideNews />
+          <div className="mt-6">
+            <CategoriesList />
+          </div>
+          <div className="mt-6">
+            <SideIcj24 />
+          </div>
+         
         </div>
       </div>
-      
+
       <Footer />
     </div>
   );

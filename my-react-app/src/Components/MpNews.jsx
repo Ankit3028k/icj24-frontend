@@ -30,6 +30,13 @@ function MpNews() {
       heading: "The future of possible innovation for google.",
       date: "November 16, 2017",
     },
+    // {
+    //   title: "News 4",
+    //   imageUrl:
+    //     "https://icj24.com/wp-content/uploads/2025/01/d72f55ce-7eb4-4b02-ba90-8f147cdf23a2.jpg",
+    //   heading: "The future of possible innovation for google.",
+    //   date: "November 16, 2017",
+    // },
     // Add more news items as needed
   ];
 
