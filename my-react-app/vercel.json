@@ -1,25 +1,26 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "index.html",
-        "use": "@vercel/static"
+  "builds": [
+    {
+      "src": "my-react-app/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "my-react-app/dist"
       }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/"
-      }
-    ],
-    "redirects": [
-      {
-        "source": "/(.*)",
-        "destination": "/",
-        "permanent": true
-      }
-    ],
-    "cleanUrls": true,
-    "trailingSlash": false
-  }
-  
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}
