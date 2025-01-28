@@ -30,13 +30,13 @@ function MpNews() {
       heading: "The future of possible innovation for google.",
       date: "November 16, 2017",
     },
-    // {
-    //   title: "News 4",
-    //   imageUrl:
-    //     "https://icj24.com/wp-content/uploads/2025/01/d72f55ce-7eb4-4b02-ba90-8f147cdf23a2.jpg",
-    //   heading: "The future of possible innovation for google.",
-    //   date: "November 16, 2017",
-    // },
+    {
+      title: "News 4",
+      imageUrl:
+        "https://icj24.com/wp-content/uploads/2025/01/d72f55ce-7eb4-4b02-ba90-8f147cdf23a2.jpg",
+      heading: "The future of possible innovation for google.",
+      date: "November 16, 2017",
+    },
     // Add more news items as needed
   ];
 
@@ -55,7 +55,7 @@ function MpNews() {
               className="h-40 w-full object-cover"
             />
             <a href="#">
-              <h3 className="text-xl font-semibold mt-4">{newsItem.heading}</h3>
+              <h3 className="text-xl flex font-semibold mt-4">{newsItem.heading}</h3>
             </a>
             <p className="text-gray-600 mt-2">{newsItem.date}</p>
           </div>

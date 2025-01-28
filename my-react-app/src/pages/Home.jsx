@@ -1,26 +1,25 @@
-import React from 'react';
-import NavBar from '../Components/NavBar';
-import Top from '../Components/top';
-import UpperNav from '../Components/UpperNav';
-import Slideshow from '../Components/TopNews';
-import BreakingNews from '../Components/BreakingNews';
-import Footer from '../Components/Footer';
-import TrendingNews from '../Components/TrendingNews';
-import GoogleAds from '../Components/BoxAds';
-import WeatherForecasting from '../Components/WeatherForecasting';
-import SideNews from '../Components/SideNews';
-import MpNews from '../Components/MpNews';
-import FeaturedVideos from '../Components/FeaturedVideos';
-import CategoriesList from '../Components/sideCategory';
+import React from "react";
+import NavBar from "../Components/NavBar";
+import Top from "../Components/top";
+import UpperNav from "../Components/UpperNav";
+import Slideshow from "../Components/TopNews";
+import BreakingNews from "../Components/BreakingNews";
+import Footer from "../Components/Footer";
+import TrendingNews from "../Components/TrendingNews";
+import GoogleAds from "../Components/BoxAds";
+import WeatherForecasting from "../Components/WeatherForecasting";
+import SideNews from "../Components/SideNews";
+import MpNews from "../Components/MpNews";
+import FeaturedVideos from "../Components/FeaturedVideos";
+import CategoriesList from "../Components/sideCategory";
 
-import SportsNews from '../Components/SportNews';
-import AdsenseAd from '../Components/HorizontalAds';
-import SubscribeNews24 from '../Components/sideIcj24';
-
+import SportsNews from "../Components/SportNews";
+import AdsenseAd from "../Components/HorizontalAds";
+import SubscribeNews24 from "../Components/sideIcj24";
 
 function Home() {
   return (
-    <div className='overflow-y-hidden'>
+    <div className="overflow-y-hidden">
       <Top />
       <UpperNav />
       <NavBar />
@@ -28,7 +27,6 @@ function Home() {
       <BreakingNews />
 
       {/* Banner Ad Section */}
-      
 
       {/* Main content */}
       <div className="flex flex-wrap px-2 py-4">
@@ -42,11 +40,11 @@ function Home() {
             <FeaturedVideos />
           </div>
           <div className="my-4">
-        <AdsenseAd />
-      </div>
-      <div className= "mt-6">
-        <SportsNews/>
-      </div>
+            <AdsenseAd />
+          </div>
+          <div className="mt-6">
+            <SportsNews />
+          </div>
         </div>
 
         {/* Sidebar */}
@@ -62,7 +60,6 @@ function Home() {
           <div className="mt-6">
             <SubscribeNews24 />
           </div>
-         
         </div>
       </div>
 
