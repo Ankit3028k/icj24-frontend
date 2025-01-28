@@ -18,7 +18,7 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter >
       {loading && <Preloader />}
 
       <Routes>

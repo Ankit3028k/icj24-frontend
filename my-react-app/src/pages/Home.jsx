@@ -13,12 +13,13 @@ import MpNews from '../Components/MpNews';
 import FeaturedVideos from '../Components/FeaturedVideos';
 import CategoriesList from '../Components/sideCategory';
 import SideIcj24 from '../Components/SideIcj24';
-import BannerAd from '../Components/BannerAd'; // Import the BannerAd component
+// import BannerAd from '../Components/BannerAd'; // Import the BannerAd component
 import SportsNews from '../Components/SportNews';
+import AdsenseAd from '../Components/HorizontalAds';
 
 function Home() {
   return (
-    <div>
+    <div className='overflow-y-hidden'>
       <Top />
       <UpperNav />
       <NavBar />
@@ -40,7 +41,7 @@ function Home() {
             <FeaturedVideos />
           </div>
           <div className="my-4">
-        <BannerAd />
+        <AdsenseAd />
       </div>
       <div className= "mt-6">
         <SportsNews/>
