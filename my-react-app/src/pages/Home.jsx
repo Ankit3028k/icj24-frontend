@@ -12,11 +12,10 @@ import SideNews from '../Components/SideNews';
 import MpNews from '../Components/MpNews';
 import FeaturedVideos from '../Components/FeaturedVideos';
 import CategoriesList from '../Components/sideCategory';
-// import SideIcj24 from '../Components/SideIcj24';
-// import BannerAd from '../Components/BannerAd'; // Import the BannerAd component
+
 import SportsNews from '../Components/SportNews';
 import AdsenseAd from '../Components/HorizontalAds';
-// import SubscribeNews24 from '../Components/SideIcj24';
+
 
 function Home() {
   return (
@@ -60,7 +59,7 @@ function Home() {
             <CategoriesList />
           </div>
           <div className="mt-6">
-            {/* <SubscribeNews24 /> */}
+            <SideNews />
           </div>
          
         </div>
