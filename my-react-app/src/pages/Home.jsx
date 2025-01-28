@@ -15,6 +15,7 @@ import CategoriesList from '../Components/sideCategory';
 
 import SportsNews from '../Components/SportNews';
 import AdsenseAd from '../Components/HorizontalAds';
+import SubscribeNews24 from '../Components/sideIcj24';
 
 
 function Home() {
@@ -59,7 +60,7 @@ function Home() {
             <CategoriesList />
           </div>
           <div className="mt-6">
-            <SideNews />
+            <SubscribeNews24 />
           </div>
          
         </div>
