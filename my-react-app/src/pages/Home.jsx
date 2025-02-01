@@ -15,6 +15,7 @@ import CategoriesList from "../Components/sideCategory";
 import SportsNews from "../Components/SportNews";
 import AdsenseAd from "../Components/HorizontalAds";
 import SubscribeNews24 from "../Components/sideIcj24";
+import Rajniti from "../Components/RajnitiComponets/HeroSection";
 
 function Home() {
   return (
@@ -35,6 +36,11 @@ function Home() {
           <div className="mt-6">
             <MpNews />
           </div>
+          <div className="mt-6">
+            <Rajniti/>
+          </div>
+          
+
           <div className="mt-6">
             <FeaturedVideos />
           </div>

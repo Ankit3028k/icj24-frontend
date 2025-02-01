@@ -43,13 +43,14 @@ function Rajniti() {
 
   return (
     <div className="m-2 px-4 py-8 border border-gray-300">
-      <h2 className="text-2xl font-bold mb-6 text-center">राजनीति</h2>
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <h2 className="text-2xl font-bold mb-6 pl-3 "> राजनीति न्यूज़</h2>
+      <div className={`grid gap-4  ${isEven ? 'grid-cols-2' : 'grid-cols-2 md:grid-cols-12 '} max-md:grid-cols-1 `}>
         {news.map((newsItem, index) => (
           <div
-            className={`news-item bg-white p-4 shadow-lg border border-gray-300 ${!isEven && index === 0 ? 'col-span-1 md:col-span-2 row-span-2 h-[79%] mt-[9%]' : ''}`}
-            key={index}
-          >
+          className={`news-item bg-white p-4 shadow-lg border border-gray-300 ${!isEven && index === 0 ? 'col-span-1 md:col-span-12 row-span-3 md:pl-8 md:pr-8' : 'md:col-span-3 row-span-3'}`}
+          key={index}
+        >
+        
             <div className="relative flex justify-center items-center">
               <img
                 src={newsItem.imageUrl}
@@ -57,7 +58,7 @@ function Rajniti() {
                 className="w-full object-cover rounded-md"
               />
               <a href="#" className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-4">
-                <h3 className="text-lg sm:text-xl font-semibold text-center">{newsItem.heading}</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-center truncate">{newsItem.heading}</h3>
               </a>
             </div>
             <p className="text-gray-600 mt-2 text-center text-sm sm:text-base">{newsItem.date}</p>

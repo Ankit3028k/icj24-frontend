@@ -30,15 +30,20 @@ function TrendingNews() {
       heading: "The future of possible innovation for google.",
       date: "November 16, 2017",
     },
-    // { title: 'News 5', imageUrl: 'path/to/image5.jpg' },
-    // { title: 'News 6', imageUrl: 'path/to/image6.jpg' }
+    {
+      title: "News 4",
+      imageUrl:
+        "https://icj24.com/wp-content/uploads/2025/01/d72f55ce-7eb4-4b02-ba90-8f147cdf23a2.jpg",
+      heading: "The future of possible innovation for google.",
+      date: "November 16, 2017",
+    },
+    
   ]);
 
-  // Check if the number of news items is even or odd
   const isEven = news.length % 2 === 0;
 
   return (
-    <div className=" m-2 px-6 py-8 border border-gray-300">
+    <div className="m-2 px-6 py-8 border border-gray-300">
       <h2 className="text-2xl font-bold mb-6">ट्रेंडिंग न्यूज़</h2>
       <div
         className={`grid gap-4 ${
@@ -47,20 +52,27 @@ function TrendingNews() {
       >
         {news.map((newsItem, index) => (
           <div
-            className={`news-item bg-white p-4 shadow-lg  border border-gray-300 ${
+            className={`news-item bg-white p-4 shadow-lg border border-gray-300 ${
               !isEven && index === 0 ? "col-span-2" : ""
-            }`}
+            } relative`}
             key={index}
           >
+            {/* Image */}
             <img
-              src={`${newsItem.imageUrl}`}
+              src={newsItem.imageUrl}
               alt={`News ${index + 1}`}
-              className="h-40 w-full object-cover "
+              className="w-full h-48 object-cover rounded-md" // Ensure the image covers the space well
             />
-            <a href="#">
-              <h3 className="text-xl font-semibold mt-4">{newsItem.heading}</h3>
-            </a>
-            <p className="text-gray-600 mt-2">{newsItem.date}</p>
+            {/* Text Overlay */}
+            <div className="absolute inset-0 p-4 flex flex-col justify-end bg-gradient-to-t from-black via-transparent to-transparent">
+              <a href="#">
+                <h3 className="text-xl font-semibold text-white truncate">
+                  {newsItem.heading}
+                  <span className="text-white">.</span>
+                </h3>
+              </a>
+              <p className="text-gray-200 mt-2">{newsItem.date}</p>
+            </div>
           </div>
         ))}
       </div>
