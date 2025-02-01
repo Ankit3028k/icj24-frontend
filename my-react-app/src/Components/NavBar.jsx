@@ -41,7 +41,7 @@ function NavBar() {
             </div>
           </div>
           
-          <span className="col-span-1 hidden sm:block"><Link to="#">राजनीति</Link></span>
+          <span className="col-span-1 hidden sm:block"><Link to="/rajniti">राजनीति</Link></span>
           <span className="col-span-1 hidden sm:block"><Link to="#">क्राइम</Link></span>
           <span className="col-span-1 hidden sm:block"><Link to="#">अध्यात्म</Link></span>
           <span className="col-span-1 hidden sm:block"><Link to="#">Jara Hatke</Link></span>
@@ -91,7 +91,7 @@ function NavBar() {
           <div className="p-4 bg-white text-black">
           <div className="dropdown  ">
             <span className="dropbtn ">
-            <Link to="/" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
+            <Link to="/mp-news" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
               मध्यप्रदेश
             </Link>
             </span>
@@ -103,7 +103,7 @@ function NavBar() {
             </div>
           </div>
             
-            <Link to="#" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
+            <Link to="/rajniti" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
               राजनीति
             </Link>
             <Link to="#" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>

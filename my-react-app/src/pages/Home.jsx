@@ -12,7 +12,6 @@ import SideNews from "../Components/SideNews";
 import MpNews from "../Components/MpNews";
 import FeaturedVideos from "../Components/FeaturedVideos";
 import CategoriesList from "../Components/sideCategory";
-
 import SportsNews from "../Components/SportNews";
 import AdsenseAd from "../Components/HorizontalAds";
 import SubscribeNews24 from "../Components/sideIcj24";
