@@ -34,7 +34,7 @@ function SideNews() {
     <div className="side-news w-full md:1/4 border border-gray-300 p-4 ">
       {/* Tab Buttons */}
       <div className="flex justify-between border-b-2 border-gray-200 mb-4">
-        {["Recent", "Popular", "Comments"].map((tab) => (
+        {/* {["Recent", "Popular", "Comments"].map((tab) => (
           <button
             key={tab}
             className={`py-2 px-4 text-sm font-medium ${
@@ -46,7 +46,7 @@ function SideNews() {
           >
             {tab}
           </button>
-        ))}
+        ))} */}
       </div>
 
       {/* News Content */}

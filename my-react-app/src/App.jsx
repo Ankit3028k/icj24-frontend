@@ -5,6 +5,8 @@ import "./App.css";
 import Preloader from "./Components/Preloader.jsx";
 import Rajniti from "./pages/RajnitiPage.jsx";
 import Admin from "./pages/Admin.jsx";
+import News from "./pages/News.jsx";
+import RajnitiPage from "./pages/RajnitiPage.jsx";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -23,7 +25,8 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/mp-news" element={<Rajniti />} />
+        <Route path="/mp-news" element={<News />} />
+        <Route path="rajniti"element={<RajnitiPage/>}/>
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>

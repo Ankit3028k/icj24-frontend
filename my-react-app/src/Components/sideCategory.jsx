@@ -2,13 +2,14 @@ import React from "react";
 
 const NewsCategory = () => {
   const categories = [
-    "World",
-    "Travel",
-    "Foods",
-    "Creative",
-    "Sports",
-    "Racing",
-    "Technology",
+    "मध्यप्रदेश",
+    "राजनीति",
+    "क्राइम",
+    "अध्यात्म",
+    "टेक्नोलॉजी",
+    "खेल",
+    "Jara Hatke",
+    
   ];
 
   return (
