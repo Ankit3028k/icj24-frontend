@@ -18,7 +18,7 @@ const AdminNewsForm = ({ editNews, fetchNews }) => {
         if (editNews) {
             const fetchNewsDetails = async () => {
                 try {
-                    const { data } = await axiosInstance.get(`/api/news/${editNews}`);
+                    const { data } = await axiosInstance.get(`/news/${editNews}`);
                     setFormNews({
                         title: data.title,
                         content: data.content,
@@ -37,7 +37,7 @@ const AdminNewsForm = ({ editNews, fetchNews }) => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const { data } = await axiosInstance.get('/api/categories');
+                const { data } = await axiosInstance.get('/categories');
                 setCategories(data);
             } catch (error) {
                 console.error('Error fetching categories:', error);
@@ -73,9 +73,9 @@ const AdminNewsForm = ({ editNews, fetchNews }) => {
             if (imageFile) formData.append('image', imageFile);
 
             if (editNews) {
-                await axiosInstance.put(`/api/news/${editNews}`, formData);
+                await axiosInstance.put(`/news/${editNews}`, formData);
             } else {
-                await axiosInstance.post('/api/news/', formData);
+                await axiosInstance.post('/news/', formData);
             }
 
             fetchNews();

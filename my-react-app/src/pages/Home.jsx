@@ -20,7 +20,7 @@ import SubscribeNews24 from '../Components/sideIcj24';
 
 function Home() {
   return (
-    <div className='overflow-y-hidden'>
+    <div className='overflow-y-hidden '>
       <Top />
       <UpperNav />
       <NavBar />

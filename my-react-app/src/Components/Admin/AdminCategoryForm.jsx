@@ -9,7 +9,7 @@ const AdminCategoryForm = ({ editCategory, fetchCategories }) => {
         if (editCategory) {
             const fetchCategoryDetails = async () => {
                 try {
-                    const { data } = await axiosInstance.get(`/api/categories/${editCategory}`);
+                    const { data } = await axiosInstance.get(`/categories/${editCategory}`);
                     setFormCategory({ name: data.name });
                 } catch (error) {
                     console.error('Error fetching category details:', error);
@@ -29,13 +29,13 @@ const AdminCategoryForm = ({ editCategory, fetchCategories }) => {
         
         try {
             if (editCategory) {
-                await axiosInstance.put(`/api/categories/${editCategory}`, formCategory);
+                await axiosInstance.put(`/categories/${editCategory}`, formCategory);
             } else {
-                await axiosInstance.post('/api/categories', formCategory);
+                await axiosInstance.post('/categories', formCategory);
             }
     
             // Manually fetch the categories
-            const { data } = await axiosInstance.get('/api/categories');
+            const { data } = await axiosInstance.get('/categories');
             console.log(data); // Process the fetched categories or update your state accordingly
     
             setFormCategory({ name: '' }); // Reset form
