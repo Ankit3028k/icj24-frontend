@@ -16,6 +16,8 @@ import SportsNews from "../Components/SportNews";
 import AdsenseAd from "../Components/HorizontalAds";
 import SubscribeNews24 from "../Components/sideIcj24";
 import Rajniti from "../Components/RajnitiComponets/HeroSection";
+import NewsGrid from "../Components/SpritualComponents/SpritualNews";
+
 
 function Home() {
   return (
@@ -40,6 +42,7 @@ function Home() {
             <Rajniti/>
           </div>
           
+          
 
           <div className="mt-6">
             <FeaturedVideos />
@@ -51,7 +54,7 @@ function Home() {
             <SportsNews />
           </div>
         </div>
-
+    
         {/* Sidebar */}
         <div className="w-full md:w-1/4 pl-3 mt-6 md:mt-0">
           <div className="border border-gray-600">
@@ -67,7 +70,9 @@ function Home() {
           </div>
         </div>
       </div>
-
+      <div className="mt-6">
+           <NewsGrid/>
+          </div>
       <Footer />
     </div>
   );

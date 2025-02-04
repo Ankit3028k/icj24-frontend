@@ -9,24 +9,28 @@ function SideNews() {
       image: "https://icj24.com/wp-content/uploads/2025/01/3a645d0d-d841-4afc-9bf7-0a861d3779bf.jpg", // Replace with actual image URL
       title: "William Braynt went to visit the grabl",
       date: "National October 2017",
+       url: "#",
     },
     {
       id: 2,
       image: "https://icj24.com/wp-content/uploads/2025/01/b7d2d78e-9b70-4a7e-989d-58195bdfc2a2-200x200.jpg",
       title: "William Braynt went to visit the grabl",
       date: "National October 2017",
+       url: "#",
     },
     {
       id: 3,
       image: "https://icj24.com/wp-content/uploads/2025/01/1f2fd9a7-eed7-49a7-840f-896f9b5d9145-200x200.jpg",
       title: "William Braynt went to visit the grabl",
       date: "National October 2017",
+       url: "#",
     },
     {
       id: 4,
       image: "https://icj24.com/wp-content/uploads/2025/01/94c37645-1bc7-4c5e-91e2-01a8cd5995c9-200x200.jpg",
       title: "William Braynt went to visit the grabl",
       date: "National October 2017",
+       url: "#",
     },
   ];
 
