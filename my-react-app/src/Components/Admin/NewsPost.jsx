@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import axiosInstance from './axiosConfig.js';
+import axiosInstance from './axiosConfig';
 
-const AdminNewsForm = ({ editNews, fetchNews }) => {
+const AdminNewsForm = ({ editNews, fetchNewses }) => {
     const [formNews, setFormNews] = useState({
-        title: '',
-        content: '',
-        richDescription: '',
-        image: null,
+        name: '',
+        description: '',
+        // price: 0,
+        // discounted_price: 0,
         category: '',
+        // brand: '',
+        // countInStock: 0,
+        // quantity_threshold: 0,
+        image: null,
+        // isFeatured: false,
     });
 
     const [categories, setCategories] = useState([]);
@@ -18,13 +23,15 @@ const AdminNewsForm = ({ editNews, fetchNews }) => {
         if (editNews) {
             const fetchNewsDetails = async () => {
                 try {
-                    const { data } = await axiosInstance.get(`/news/${editNews}`);
+                    const { data } = await axiosInstance.get(`/newses/${editNews}`);
                     setFormNews({
-                        title: data.title,
-                        content: data.content,
-                        richDescription: data.richDescription,
-                        image: data.image,
+                        name: data.name,
+                        description: data.description,
+                     
                         category: data.category,
+                      
+                        image: data.image,
+                      
                     });
                 } catch (error) {
                     console.error('Error fetching News details:', error);
@@ -50,10 +57,9 @@ const AdminNewsForm = ({ editNews, fetchNews }) => {
         const { name, value } = e.target;
         setFormNews((prev) => ({
             ...prev,
-            [name]: value,
+            [name]: [''].includes(name) ? parseFloat(value) : value,
         }));
     };
-    
 
     const handleFileChange = (e) => {
         setImageFile(e.target.files[0]);
@@ -73,26 +79,27 @@ const AdminNewsForm = ({ editNews, fetchNews }) => {
             if (imageFile) formData.append('image', imageFile);
 
             if (editNews) {
-                await axiosInstance.put(`/news/${editNews}`, formData);
+                await axiosInstance.put(`/newses/${editNews}`, formData);
             } else {
-                await axiosInstance.post('/news/', formData);
+                await axiosInstance.post('/newses', formData);
             }
 
-            fetchNews();
+            fetchNewses();
             resetForm();
-        }  catch (error) {
-            console.error('Error saving News:', error.response ? error.response.data : error.message);
+        } catch (error) {
+            console.error('Error saving Newse:', error);
         }
-        
     };
 
     const resetForm = () => {
         setFormNews({
-            title: '',
-            content: '',
-            richDescription: '',
+            name: '',
+            description: '',
+          
             category: '',
+            
             image: null,
+            isFeatured: false,
         });
         setImageFile(null);
     };
@@ -105,16 +112,19 @@ const AdminNewsForm = ({ editNews, fetchNews }) => {
     return (
         <form className="space-y-4 p-4 border border-gray-300 rounded shadow-lg" onSubmit={handleSubmit}>
             <h2 className="text-2xl font-semibold">{isEditing ? 'Edit News' : 'Add News'}</h2>
-            <input type="text" name="title" placeholder="News Title" value={formNews.title} onChange={handleInputChange} className="w-full p-2 border border-gray-300 rounded" required />
-            <textarea name="content" placeholder="Content" value={formNews.content} onChange={handleInputChange} className="w-full p-2 border border-gray-300 rounded" />
-            <textarea name="richDescription" placeholder="Rich Description" value={formNews.richDescription} onChange={handleInputChange} className="w-full p-2 border border-gray-300 rounded" />
+            <input type="text" name="name" placeholder="News heading" value={formNews.name} onChange={handleInputChange} className="w-full p-2 border border-gray-300 rounded" required />
+            <textarea name="description" placeholder="Description" value={formNews.description} onChange={handleInputChange} className="w-full p-2 border border-gray-300 rounded" />
+           
             <select name="category" value={formNews.category} onChange={handleInputChange} className="w-full p-2 border border-gray-300 rounded" required>
                 <option value="">Select Category</option>
                 {categories.map((cat) => (
                     <option key={cat._id} value={cat._id}>{cat.name}</option>
                 ))}
             </select>
+
             <input type="file" name="image" onChange={handleFileChange} className="w-full p-2 border border-gray-300 rounded" required={!isEditing} />
+
+            
 
             <div className="flex space-x-4">
                 <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-500">

@@ -1,8 +1,8 @@
-// src/components/CategoriesList.js
+// src/components/AdminCategoryList.js
 import React from 'react';
-import axiosInstance from './axiosConfig.js';
+import axiosInstance from './axiosConfig';
 
-const CategoriesList = ({ categories, fetchCategories, setEditCategory }) => {
+const AdminCategoryList = ({ categories, fetchCategories, setEditCategory }) => {
     const handleDelete = async (categoryId) => {
         try {
             await axiosInstance.delete(`/categories/${categoryId}`);
@@ -38,7 +38,7 @@ const CategoriesList = ({ categories, fetchCategories, setEditCategory }) => {
                                 <button
                                     className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-500"
                                     onClick={() => handleDelete(category.id)}
-                                > 
+                                >
                                     Delete
                                 </button>
                             </td>
@@ -50,4 +50,4 @@ const CategoriesList = ({ categories, fetchCategories, setEditCategory }) => {
     );
 };
 
-export default CategoriesList;
+export default AdminCategoryList;
