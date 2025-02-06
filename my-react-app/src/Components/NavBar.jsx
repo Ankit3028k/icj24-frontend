@@ -43,7 +43,7 @@ function NavBar() {
           
           <span className="col-span-1 hidden sm:block"><Link to="/rajniti">राजनीति</Link></span>
           <span className="col-span-1 hidden sm:block"><Link to="#">क्राइम</Link></span>
-          <span className="col-span-1 hidden sm:block"><Link to="#">अध्यात्म</Link></span>
+          <span className="col-span-1 hidden sm:block"><Link to="/spritual">अध्यात्म</Link></span>
           <span className="col-span-1 hidden sm:block"><Link to="#">Jara Hatke</Link></span>
           <span className="col-span-1 hidden sm:block"><Link to="#">टेक्नोलॉजी</Link></span>
           
@@ -106,7 +106,7 @@ function NavBar() {
             <Link to="/rajniti" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
               राजनीति
             </Link>
-            <Link to="#" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
+            <Link to="/spritual" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
               अध्यात्म
             </Link>
             <Link to="#" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>

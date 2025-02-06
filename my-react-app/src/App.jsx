@@ -5,8 +5,9 @@ import "./App.css";
 import Preloader from "./Components/Preloader.jsx";
 import Rajniti from "./pages/RajnitiPage.jsx";
 import Admin from "./pages/Admin.jsx";
-import News from "./pages/News.jsx";
+import MpNewsPage from "./pages/MpNewsPage.jsx";
 import RajnitiPage from "./pages/RajnitiPage.jsx";
+import SpritualPages from "./pages/Spritual.jsx";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -25,8 +26,9 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/mp-news" element={<News />} />
+        <Route path="/mp-news" element={<MpNewsPage />} />
         <Route path="rajniti"element={<RajnitiPage/>}/>
+        <Route path="/spritual"element={<SpritualPages/>}/>
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>

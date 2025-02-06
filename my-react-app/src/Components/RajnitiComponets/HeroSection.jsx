@@ -8,6 +8,7 @@ function Rajniti() {
         "https://icj24.com/wp-content/uploads/2024/10/423c067f-45f3-4d76-add7-a52f236675a8-551x349.jpeg",
       heading: "The future of possible innovation for business company.",
       date: "November 16, 2017",
+       url: "#"
     },
     {
       title: "News 2",
@@ -15,6 +16,7 @@ function Rajniti() {
         "https://icj24.com/wp-content/uploads/2025/01/08e1e5c2-e35f-47b9-b176-d8ad01285dc9.jpg",
       heading: "The future of possible innovation for it company.",
       date: "November 16, 2017",
+       url: "#"
     },
     {
       title: "News 3",
@@ -22,6 +24,7 @@ function Rajniti() {
         "https://icj24.com/wp-content/uploads/2025/01/e2ab42c2-09dc-4d59-ab06-f57a65c70bf5.jpg",
       heading: "The future of possible innovation for webdevelopment.",
       date: "November 16, 2017",
+       url: "#"
     },
     {
       title: "News 4",
@@ -29,6 +32,7 @@ function Rajniti() {
         "https://icj24.com/wp-content/uploads/2025/01/d72f55ce-7eb4-4b02-ba90-8f147cdf23a2.jpg",
       heading: "The future of possible innovation for google.",
       date: "November 16, 2017",
+       url: "#"
     },
     {
       title: "News 5",
@@ -36,6 +40,7 @@ function Rajniti() {
         "https://icj24.com/wp-content/uploads/2025/01/d72f55ce-7eb4-4b02-ba90-8f147cdf23a2.jpg",
       heading: "The future of possible innovation for google.",
       date: "November 16, 2017",
+       url: "#"
     },
   ];
 
