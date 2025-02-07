@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { FaSearch, FaBars, FaTimes, FaHome, FaThList, FaShoppingCart } from 'react-icons/fa'; 
-import { Link } from 'react-router-dom'; 
-import { GiShoppingBag } from 'react-icons/gi';
+import { FaSearch, FaBars, FaTimes } from 'react-icons/fa'; 
+import { Link } from 'react-router-dom';
 
 function NavBar() {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(prev => !prev);
@@ -22,6 +21,10 @@ function NavBar() {
     setSearchTerm(e.target.value);
   };
 
+  const handleDropdownToggle = () => {
+    setIsDropdownVisible(prev => !prev);
+  };
+
   return (
     <div className="m-0">
       <nav className="bg-red-500 py-5">
@@ -29,29 +32,35 @@ function NavBar() {
           <span className="col-span-1"></span>
           <span className="col-span-1"><Link to="/">होम</Link></span>
           
-          <div className="dropdown col-span-1 hidden sm:block">
-            <span className="dropbtn hidden sm:block">
+          {/* मध्यप्रदेश Dropdown */}
+          <div className="col-span-1 hidden sm:block relative">
+            <span
+              className="dropbtn cursor-pointer"
+              onClick={handleDropdownToggle}
+            >
               <Link to="/mp-news">मध्यप्रदेश</Link>
             </span>
-            <div className="dropdown-content bg-white text-black">
-              <Link to="/indore">इंदौर</Link>
-              <Link to="/bhopal">भोपाल</Link>
-              <Link to="/ujjain">उज्जैन</Link>
-              <Link to="/jabalpur">जबलपुर</Link>
-            </div>
+            {isDropdownVisible && (
+              <div className="absolute bg-white text-black shadow-lg mt-2 p-2 rounded-md">
+                <Link to="/indore" className="block p-2 text-gray-700 hover:text-blue-600">इंदौर</Link>
+                <Link to="/bhopal" className="block p-2 text-gray-700 hover:text-blue-600">भोपाल</Link>
+                <Link to="/ujjain" className="block p-2 text-gray-700 hover:text-blue-600">उज्जैन</Link>
+                <Link to="/jabalpur" className="block p-2 text-gray-700 hover:text-blue-600">जबलपुर</Link>
+              </div>
+            )}
           </div>
-          
+
+          {/* Other Links */}
           <span className="col-span-1 hidden sm:block"><Link to="/rajniti">राजनीति</Link></span>
           <span className="col-span-1 hidden sm:block"><Link to="/crime">क्राइम</Link></span>
           <span className="col-span-1 hidden sm:block"><Link to="/spritual">अध्यात्म</Link></span>
           <span className="col-span-1 hidden sm:block"><Link to="/jaraHatke">Jara Hatke</Link></span>
           <span className="col-span-1 hidden sm:block"><Link to="/technology">टेक्नोलॉजी</Link></span>
           
-          <span className="col-span-1 hidden sm:block"></span>
-          
           {/* Mobile View */}
           <span className="sm:hidden col-span-6"></span>
-          
+
+          {/* Search Button */}
           <button onClick={toggleSearchInput} className="text-white focus:outline-none" aria-label="Toggle search input">
             <FaSearch className="w-6 h-6" />
           </button>
@@ -84,30 +93,35 @@ function NavBar() {
 
       {/* Mobile Menu */}
       <div 
-        className={` inset-0 transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} 
+        className={`relative inset-0 z-20 transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} 
         onClick={toggleMobileMenu}
       >
-        <div className={`absolute pt-12 top-44 right-0 shadow-lg transform transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className={`absolute pt-0 top-0 right-0 shadow-lg transform transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="p-4 bg-white text-black">
-          <div className="dropdown  ">
-            <span className="dropbtn ">
-            <Link to="/mp-news" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
-              मध्यप्रदेश
-            </Link>
-            </span>
-            <div className="dropdown-content bg-white text-black ">
-              <Link to="/indore">इंदौर</Link>
-              <Link to="/bhopal">भोपाल</Link>
-              <Link to="/ujjain">उज्जैन</Link>
-              <Link to="/jabalpur">जबलपुर</Link>
+            {/* Mobile "मध्यप्रदेश" Dropdown */}
+            <div className="relative">
+              <span
+                className="block p-2 text-gray-700 hover:text-blue-600 cursor-pointer"
+                onClick={handleDropdownToggle}
+              >
+                मध्यप्रदेश
+              </span>
+              {isDropdownVisible && (
+                <div className="absolute left-0 top-0 bg-white text-black shadow-lg mt-2 p-2 rounded-md">
+                  <Link to="/indore" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>इंदौर</Link>
+                  <Link to="/bhopal" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>भोपाल</Link>
+                  <Link to="/ujjain" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>उज्जैन</Link>
+                  <Link to="/jabalpur" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>जबलपुर</Link>
+                </div>
+              )}
             </div>
-          </div>
-            
+
+            {/* Other Mobile Links */}
             <Link to="/rajniti" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
               राजनीति
             </Link>
             <Link to="/crime" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
-            क्राइम
+              क्राइम
             </Link>
             <Link to="/spritual" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
               अध्यात्म
