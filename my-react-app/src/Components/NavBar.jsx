@@ -31,7 +31,7 @@ function NavBar() {
           <span className="col-span-1 hidden sm:block"><Link to="/crime">क्राइम</Link></span>
           <span className="col-span-1 hidden sm:block"><Link to="/spritual">अध्यात्म</Link></span>
           <span className="col-span-1 hidden sm:block"><Link to="/jaraHatke">Jara Hatke</Link></span>
-          <span className="col-span-1 hidden sm:block"><Link to="#">टेक्नोलॉजी</Link></span>
+          <span className="col-span-1 hidden sm:block"><Link to="/technology">टेक्नोलॉजी</Link></span>
           
           <span className="col-span-1  sm:block"></span>
           <span className="col-span-6 mobile-view  sm:block"></span>
@@ -71,8 +71,8 @@ function NavBar() {
           <Link to="/rajniti" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>राजनीति</Link>
           <Link to="/crime" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>क्राइम</Link>
           <Link to="/spritual" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>अध्यात्म</Link>
-          <Link to="#" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>Jara Hatke</Link>
-          <Link to="#" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>टेक्नोलॉजी</Link>
+          <Link to="/Jara Hatke" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>Jara Hatke</Link>
+          <Link to="/technology" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>टेक्नोलॉजी</Link>
         </div>
       </div>
     </div>
