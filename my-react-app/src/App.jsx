@@ -12,6 +12,7 @@ import CrimePage from "./pages/CrimePage.jsx";
 import JaraHatkePage from "./pages/JaraHatkePage.jsx";
 import TechnologyPage from "./pages/TechnologyPage.jsx";
 
+
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -35,6 +36,7 @@ function App() {
         <Route path="/spritual"element={<SpritualPages/>}/>
         <Route path = "/jaraHatke"element={<JaraHatkePage/>}/>
         <Route path ="/technology"element={<TechnologyPage/>}/>
+       
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
