@@ -14,7 +14,7 @@ import Footer from '../Components/Footer'
 
 function News() {
   return (
-    <div>
+    <div className=' jara-hatke-page-container'>
       <Top />
       <UpperNav />
       <NavBar />

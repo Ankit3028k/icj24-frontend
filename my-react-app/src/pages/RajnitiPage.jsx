@@ -7,7 +7,7 @@ import UpperNav from "../Components/UpperNav";
 import AdsenseAd from '../Components/HorizontalAds';
 function RajnitiPage(){
     return(
-        <div>
+        <div  className=' jara-hatke-page-container'>
             <Top />
             <UpperNav />
             <NavBar />

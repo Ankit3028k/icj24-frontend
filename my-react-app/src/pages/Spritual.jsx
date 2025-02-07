@@ -9,7 +9,7 @@ import AdsenseAd from '../Components/HorizontalAds';
 
 function SpritualPages() {
   return (
-    <div>
+    <div  className=' jara-hatke-page-container'>
       <Top/>
       <UpperNav/>
       <NavBar/>

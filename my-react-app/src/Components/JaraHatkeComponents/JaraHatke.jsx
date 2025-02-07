@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import JaraHatkePage from "../../pages/JaraHatkePage";
 
-function TrendingNews() {
+function JaraHatke() {
   const [news, setNews] = useState([
     {
       title: "News 1",
@@ -8,7 +9,7 @@ function TrendingNews() {
         "https://icj24.com/wp-content/uploads/2025/01/c670f414-e347-44cd-bf96-d8016cffeb4b.jpg",
       heading: "The future of possible innovation for business company.",
       date: "November 16, 2017",
-      url: "#"
+      url: "#",
     },
     {
       title: "News 2",
@@ -16,7 +17,7 @@ function TrendingNews() {
         "https://icj24.com/wp-content/uploads/2025/01/08e1e5c2-e35f-47b9-b176-d8ad01285dc9.jpg",
       heading: "The future of possible innovation for IT company.",
       date: "November 16, 2017",
-      url: "#"
+      url: "#",
     },
     {
       title: "News 3",
@@ -24,7 +25,7 @@ function TrendingNews() {
         "https://icj24.com/wp-content/uploads/2025/01/e2ab42c2-09dc-4d59-ab06-f57a65c70bf5.jpg",
       heading: "The future of possible innovation for web development.",
       date: "November 16, 2017",
-      url: "#"
+      url: "#",
     },
     {
       title: "News 4",
@@ -32,7 +33,7 @@ function TrendingNews() {
         "https://icj24.com/wp-content/uploads/2025/01/d72f55ce-7eb4-4b02-ba90-8f147cdf23a2.jpg",
       heading: "The future of possible innovation for Google.",
       date: "November 16, 2017",
-      url: "#"
+      url: "#",
     },
     {
       title: "News 5",
@@ -40,7 +41,7 @@ function TrendingNews() {
         "https://icj24.com/wp-content/uploads/2025/01/d72f55ce-7eb4-4b02-ba90-8f147cdf23a2.jpg",
       heading: "The future of possible innovation for AI.",
       date: "November 16, 2017",
-      url: "#"
+      url: "#",
     },
   ]);
 
@@ -50,22 +51,28 @@ function TrendingNews() {
     <div className="m-2 px-4 sm:px-6 py-8 border border-gray-300">
       <h2 className="text-2xl sm:text-3xl font-bold mb-6">ट्रेंडिंग न्यूज़</h2>
       <div
-        className={`grid gap-4 ${
-          isEven ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+        className={`grid gap-6 ${
+          isEven
+            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+            : "grid-cols-1 md:grid-cols-2 lg:grid-cols-6"
         }`}
       >
         {news.map((newsItem, index) => (
           <div
-            className={`news-item bg-white p-4 shadow-lg border border-gray-300 ${
-              !isEven && index === 0 ? "lg:col-span-2" : ""
-            } relative`}
             key={index}
+            className={`news-item bg-white p-4 shadow-lg border border-gray-300 ${
+              !isEven && index === 3
+                ? "lg:col-span-3"
+                : !isEven && index === 4
+                ? "lg:col-span-3"
+                : "lg:col-span-2"
+            } relative`}
           >
             {/* Image */}
             <div className="relative w-full h-[250px] sm:h-[350px]">
               <img
                 src={newsItem.imageUrl}
-                alt={`News ${index + 1}`}
+                alt={`Image for news: ${newsItem.heading}`}
                 className="absolute inset-0 w-full h-full object-cover rounded-md"
               />
             </div>
@@ -86,4 +93,4 @@ function TrendingNews() {
   );
 }
 
-export default TrendingNews;
+export default JaraHatke;

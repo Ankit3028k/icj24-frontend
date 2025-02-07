@@ -11,7 +11,7 @@ const articles = [
   },
   {
     title: "McIlroy six off Pebble Beach pace after erratic 70",
-    image: "https://icj24.com/wp-content/uploads/2025/01/08e1e5c2-e35f-47b9-b176-d8ad01285dc9.jpg",
+    image: "",
     category: "Golf",
     time: "15h",
     url: "#",
