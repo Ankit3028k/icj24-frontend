@@ -4,6 +4,7 @@ import UpperNav from '../Components/UpperNav'
 import NavBar from '../Components/NavBar'
 import AdsenseAd from '../Components/HorizontalAds'
 import Footer from '../Components/Footer'
+import Indore from '../Components/indore'
 
 function IndorePage() {
   return (
@@ -11,6 +12,7 @@ function IndorePage() {
       <Top/>
       <UpperNav/>
       <NavBar/> 
+      <Indore/>
       <AdsenseAd/>
       <Footer/>
 
