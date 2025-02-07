@@ -1,4 +1,3 @@
-// src/components/Technology.js
 import React from "react";
 
 const Technology = () => {
@@ -37,7 +36,7 @@ const Technology = () => {
 
   return (
     <section className="bg-gray-100 py-16">
-      <div className="container mx-auto  mb-12">
+      <div className="container mx-auto mb-12">
         <h2 className="text-2xl font-bold mb-6 text-gray-900 pb-4 pl-4">
           टेक्नोलॉजी न्यूज़
         </h2>
@@ -51,9 +50,9 @@ const Technology = () => {
           return (
             <div
               key={index}
-              className={`${
-                isOdd ? "flex-row-reverse" : "flex-row"
-              } flex items-center justify-between gap-8 px-4`}
+              className={`flex flex-col md:flex-row items-center justify-between gap-8 px-4 ${
+                isOdd ? "md:flex-row-reverse" : "md:flex-row"
+              }`}
             >
               <div className="flex-1">
                 <img
