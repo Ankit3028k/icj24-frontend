@@ -21,11 +21,11 @@ import NewsGrid from "../Components/SpritualComponents/SpritualNews";
 
 function Home() {
   return (
-<<<<<<< HEAD
+
     <div className='overflow-y-hidden'>
-=======
+
     <div className="jara-hatke-page-container">
->>>>>>> f8e0d8fe0d060ea5fecceccc077b48689845e95c
+
       <Top />
       <UpperNav />
       <NavBar />
@@ -78,6 +78,7 @@ function Home() {
            <NewsGrid/>
           </div>
       <Footer />
+    </div>
     </div>
   );
 }
