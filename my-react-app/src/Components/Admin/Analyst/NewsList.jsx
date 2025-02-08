@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axiosInstance from './axiosConfig';
+import axiosInstance from '../axiosConfig';
 
-const AdminNewsList = ({ newses, fetchNewses, setEditNews }) => {
+const NewsList = ({ newses, fetchNewses }) => {
     const [loading, setLoading] = useState(false);
     const [modifiedNewses, setModifiedNewses] = useState({});
 
@@ -13,7 +13,7 @@ const AdminNewsList = ({ newses, fetchNewses, setEditNews }) => {
                     'Content-Type': 'application/json',
                 },
             });
-            fetchNewses();
+           
         } catch (error) {
             console.error('Error deleting Newse:', error);
         } finally {
@@ -37,21 +37,7 @@ const AdminNewsList = ({ newses, fetchNewses, setEditNews }) => {
                                 <p className="text-sm text-gray-400">{news.category?.name || 'No Category'}</p>
                             </div>
                         </div>
-                        <div className="space-x-4">
-                            <button
-                                className="bg-blue-600 text-white px-5 py-2 rounded-md shadow hover:bg-blue-700 transition duration-300"
-                                onClick={() => setEditNews(news._id)}
-                            >
-                                Edit
-                            </button>
-                            <button
-                                className="bg-red-600 text-white px-5 py-2 rounded-md shadow hover:bg-red-700 transition duration-300"
-                                onClick={() => handleDelete(news._id)}
-                            >
-                                Delete
-                            </button>
-                            
-                        </div>
+                        
                     </div>
                 ))}
             </div>
@@ -59,4 +45,4 @@ const AdminNewsList = ({ newses, fetchNewses, setEditNews }) => {
     );
 };
 
-export default AdminNewsList;
+export default NewsList;

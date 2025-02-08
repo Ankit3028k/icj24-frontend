@@ -6,7 +6,7 @@ import AdminNewsList from '../Components/Admin/NewsList';
 import UserList from '../Components/Admin/UserList';
 import AdminCategoryForm from '../Components/Admin/AdminCategoryForm';
 import AdminCategoryList from '../Components/Admin/CategoriesList';
-import Register from '../Components/Ragister'; // Corrected import
+import Register from '../Components/Auth/Register'; // Corrected import
 
 const AdminPage = () => {
   const [users, setUsers] = useState([]);
@@ -24,7 +24,7 @@ const AdminPage = () => {
   const fetchNewses = async () => {
     setLoading(true);
     try {
-      const response = await axiosInstance.get('/newses');
+      const response = await axiosInstance.get('/news');
       setNewses(response.data);
       setError(null);
     } catch (error) {
@@ -38,7 +38,7 @@ const AdminPage = () => {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const response = await axiosInstance.get('/users');
+      const response = await axiosInstance.get('/auth/users');
       setUsers(response.data);
       setError(null);
     } catch (error) {
@@ -59,6 +59,17 @@ const AdminPage = () => {
       setError('Error fetching categories');
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Logout Function
+  const handleLogout = async () => {
+    try {
+      await axiosInstance.post('/auth/logout');
+      // Redirect or update UI after logout
+      window.location.href = '/login'; // Redirect to login page after logout
+    } catch (error) {
+      console.error('Logout failed', error);
     }
   };
 
@@ -91,7 +102,8 @@ const AdminPage = () => {
         {/* Sidebar */}
         <div className={`sidebar ${isSidebarOpen ? 'block' : 'hidden'} md:block col-span-3 border-r border-gray-300 bg-white shadow-lg`}>
           <div className="p-4">
-            <h5 className="text-lg font-bold mb-4 text-center">Company Name</h5>
+            {/* <h5 className="text-lg font-bold mb-4 text-center">Company Name</h5> */}
+            <img src="https://icj24.com/wp-content/uploads/2024/08/ICJ-LOGO-24-96x96.jpeg" alt="Logo" className="h-12 w-auto mx-auto" />
             <ul className="flex flex-col space-y-1">
               <li>
                 <button
@@ -151,6 +163,16 @@ const AdminPage = () => {
             </>
           )}
         </div>
+      </div>
+
+      {/* Logout Button */}
+      <div className="flex justify-end mt-6">
+        <button
+          onClick={handleLogout}
+          className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+        >
+          Logout
+        </button>
       </div>
     </div>
   );

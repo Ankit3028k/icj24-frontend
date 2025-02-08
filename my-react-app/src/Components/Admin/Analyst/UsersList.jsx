@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axiosInstance from './axiosConfig.js';
+import axiosInstance from '../axiosConfig.js';
 
-const UserList = ({ users, fetchUsers, setEditUser }) => {
+const AnalystUserList = ({ users, fetchUsers, setEditUser }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState(null);
@@ -35,7 +35,7 @@ const UserList = ({ users, fetchUsers, setEditUser }) => {
                         <th className="p-2">Name</th>
                         <th className="p-2">Role</th>
                         <th className="p-2">E-mail</th>
-                        <th className="p-2">Actions</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -45,15 +45,7 @@ const UserList = ({ users, fetchUsers, setEditUser }) => {
                             <td className="p-2">{user.name}</td>
                             <td className="p-2">{user.role}</td>
                             <td className="p-2">{user.email}</td>
-                            <td className="p-2">
-                                <button
-                                    className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-500"
-                                    onClick={() => handleDelete(user._id)}
-                                    disabled={loading}
-                                >
-                                    {loading ? 'Deleting...' : 'Delete'}
-                                </button>
-                            </td>
+                            
                         </tr>
                     ))}
                 </tbody>
@@ -62,4 +54,4 @@ const UserList = ({ users, fetchUsers, setEditUser }) => {
     );
 };
 
-export default UserList;
+export default AnalystUserList;

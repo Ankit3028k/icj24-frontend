@@ -8,6 +8,10 @@ import Admin from "./pages/Admin.jsx";
 import MpNewsPage from "./pages/MpNewsPage.jsx";
 import RajnitiPage from "./pages/RajnitiPage.jsx";
 import SpritualPages from "./pages/Spritual.jsx";
+import Login from "./Components/Auth/Login.jsx";
+import ProtectedRoute from "./Components/ProtectedRoute.jsx";
+import Editor from "./pages/Editor.jsx";
+import Analyst from "./pages/Analyst.jsx";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -29,7 +33,19 @@ function App() {
         <Route path="/mp-news" element={<MpNewsPage />} />
         <Route path="rajniti"element={<RajnitiPage/>}/>
         <Route path="/spritual"element={<SpritualPages/>}/>
-        <Route path="/admin" element={<Admin />} />
+        <Route element={<ProtectedRoute requiredRole="Admin"/>}>
+          <Route path="/admin" element={<Admin />} />
+          </Route>
+          <Route element={<ProtectedRoute requiredRole="Editor"/>}>
+          <Route path="/editor" element={<Editor />} />
+          </Route>
+          <Route element={<ProtectedRoute requiredRole="Analyst"/>}>
+          <Route path="/analyst" element={<Analyst />} />
+          {/* Add protected routes for other pages */}
+        </Route>
+       
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<h1>Not Found</h1>} />/
       </Routes>
     </BrowserRouter>
   );
