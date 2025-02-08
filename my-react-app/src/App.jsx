@@ -3,15 +3,24 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import "./App.css";
 import Preloader from "./Components/Preloader.jsx";
-import Rajniti from "./pages/RajnitiPage.jsx";
+import RajnitiPage from "./pages/RajnitiPage.jsx";
 import Admin from "./pages/Admin.jsx";
 import MpNewsPage from "./pages/MpNewsPage.jsx";
-import RajnitiPage from "./pages/RajnitiPage.jsx";
+import IndorePage from "./pages/IndorePage.jsx";
+import BhopalPage from "./pages/BhopalPage.jsx";
+import UjjainPage from "./pages/UjjainPage.jsx";
+import JabalpurPage from "./pages/JabalpurPage.jsx";
 import SpritualPages from "./pages/Spritual.jsx";
+
 import Login from "./Components/Auth/Login.jsx";
 import ProtectedRoute from "./Components/ProtectedRoute.jsx";
 import Editor from "./pages/Editor.jsx";
 import Analyst from "./pages/Analyst.jsx";
+
+import CrimePage from "./pages/CrimePage.jsx";
+import JaraHatkePage from "./pages/JaraHatkePage.jsx";
+import TechnologyPage from "./pages/TechnologyPage.jsx";
+
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -25,12 +34,13 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter >
+    <BrowserRouter>
       {loading && <Preloader />}
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mp-news" element={<MpNewsPage />} />
+
         <Route path="rajniti"element={<RajnitiPage/>}/>
         <Route path="/spritual"element={<SpritualPages/>}/>
         <Route element={<ProtectedRoute requiredRole="Admin"/>}>
@@ -46,6 +56,18 @@ function App() {
        
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<h1>Not Found</h1>} />/
+
+        <Route path="rajniti" element={<RajnitiPage />} />
+        <Route path="/crime" element={<CrimePage />} />
+        <Route path="/spritual" element={<SpritualPages />} />
+        <Route path="/jaraHatke" element={<JaraHatkePage />} />
+        <Route path="/technology" element={<TechnologyPage />} />
+        <Route path="/indore" element={<IndorePage />} />
+        <Route path="/bhopal" element={<BhopalPage />} />
+        <Route path="/ujjain" element={<UjjainPage />} />
+        <Route path="/jabalpur" element={<JabalpurPage />} />
+        <Route path="/admin" element={<Admin />} />
+
       </Routes>
     </BrowserRouter>
   );
