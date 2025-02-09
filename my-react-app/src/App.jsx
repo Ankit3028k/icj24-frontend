@@ -11,9 +11,16 @@ import BhopalPage from "./pages/BhopalPage.jsx";
 import UjjainPage from "./pages/UjjainPage.jsx";
 import JabalpurPage from "./pages/JabalpurPage.jsx";
 import SpritualPages from "./pages/Spritual.jsx";
+
+import Login from "./Components/Auth/Login.jsx";
+import ProtectedRoute from "./Components/ProtectedRoute.jsx";
+import Editor from "./pages/Editor.jsx";
+import Analyst from "./pages/Analyst.jsx";
+
 import CrimePage from "./pages/CrimePage.jsx";
 import JaraHatkePage from "./pages/JaraHatkePage.jsx";
 import TechnologyPage from "./pages/TechnologyPage.jsx";
+
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -33,6 +40,23 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mp-news" element={<MpNewsPage />} />
+
+        <Route path="rajniti"element={<RajnitiPage/>}/>
+        <Route path="/spritual"element={<SpritualPages/>}/>
+        <Route element={<ProtectedRoute requiredRole="Admin"/>}>
+          <Route path="/admin" element={<Admin />} />
+          </Route>
+          <Route element={<ProtectedRoute requiredRole="Editor"/>}>
+          <Route path="/editor" element={<Editor />} />
+          </Route>
+          <Route element={<ProtectedRoute requiredRole="Analyst"/>}>
+          <Route path="/analyst" element={<Analyst />} />
+          {/* Add protected routes for other pages */}
+        </Route>
+       
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<h1>Not Found</h1>} />/
+
         <Route path="rajniti" element={<RajnitiPage />} />
         <Route path="/crime" element={<CrimePage />} />
         <Route path="/spritual" element={<SpritualPages />} />
@@ -43,6 +67,7 @@ function App() {
         <Route path="/ujjain" element={<UjjainPage />} />
         <Route path="/jabalpur" element={<JabalpurPage />} />
         <Route path="/admin" element={<Admin />} />
+
       </Routes>
     </BrowserRouter>
   );

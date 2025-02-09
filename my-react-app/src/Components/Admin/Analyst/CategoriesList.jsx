@@ -1,8 +1,8 @@
 // src/components/AdminCategoryList.js
 import React from 'react';
-import axiosInstance from './axiosConfig';
+import axiosInstance from '../axiosConfig';
 
-const AdminCategoryList = ({ categories, fetchCategories, setEditCategory }) => {
+const CategoryList = ({ categories, fetchCategories  }) => {
     const handleDelete = async (categoryId) => {
         try {
             await axiosInstance.delete(`/categories/${categoryId}`);
@@ -20,7 +20,7 @@ const AdminCategoryList = ({ categories, fetchCategories, setEditCategory }) => 
                     <tr>
                         <th className="p-2">Category ID</th>
                         <th className="p-2">Name</th>
-                        <th className="p-2">Actions</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -28,20 +28,7 @@ const AdminCategoryList = ({ categories, fetchCategories, setEditCategory }) => 
                         <tr key={category.id} className="border-t">
                             <td className="p-2">{category.id}</td>
                             <td className="p-2">{category.name}</td>
-                            <td className="p-2 space-x-2">
-                                <button
-                                    className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-400"
-                                    onClick={() => setEditCategory(category.id)}
-                                >
-                                    Edit
-                                </button>
-                                <button
-                                    className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-500"
-                                    onClick={() => handleDelete(category.id)}
-                                >
-                                    Delete
-                                </button>
-                            </td>
+                            
                         </tr>
                     ))}
                 </tbody>
@@ -50,4 +37,4 @@ const AdminCategoryList = ({ categories, fetchCategories, setEditCategory }) => 
     );
 };
 
-export default AdminCategoryList;
+export default CategoryList;
