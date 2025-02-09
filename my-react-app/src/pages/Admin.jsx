@@ -7,6 +7,8 @@ import UserList from '../Components/Admin/UserList';
 import AdminCategoryForm from '../Components/Admin/AdminCategoryForm';
 import AdminCategoryList from '../Components/Admin/CategoriesList';
 import Register from '../Components/Auth/Register'; // Corrected import
+import VideoNews from '../Components/Admin/VideoAdminPost'; // Import VideoNews Component
+import VideoNewsList from '../Components/Admin/VideoNewsList';
 
 const AdminPage = () => {
   const [users, setUsers] = useState([]);
@@ -102,7 +104,6 @@ const AdminPage = () => {
         {/* Sidebar */}
         <div className={`sidebar ${isSidebarOpen ? 'block' : 'hidden'} md:block col-span-3 border-r border-gray-300 bg-white shadow-lg`}>
           <div className="p-4">
-            {/* <h5 className="text-lg font-bold mb-4 text-center">Company Name</h5> */}
             <img src="https://icj24.com/wp-content/uploads/2024/08/ICJ-LOGO-24-96x96.jpeg" alt="Logo" className="h-12 w-auto mx-auto" />
             <ul className="flex flex-col space-y-1">
               <li>
@@ -137,6 +138,14 @@ const AdminPage = () => {
                   Categories
                 </button>
               </li>
+              <li>
+                <button
+                  className={`nav-link block px-4 py-2 rounded-md text-gray-700 ${activeSection === 'videoNews' ? 'bg-gray-300 font-semibold' : 'hover:bg-gray-200'}`}
+                  onClick={() => { setActiveSection('videoNews'); setIsSidebarOpen(false); }}
+                >
+                  Video News
+                </button>
+              </li>
             </ul>
           </div>
         </div>
@@ -160,6 +169,12 @@ const AdminPage = () => {
             <>
               <AdminCategoryForm editCategory={editCategory} fetchCategories={fetchCategories} />
               <AdminCategoryList categories={categories} fetchCategories={fetchCategories} setEditCategory={setEditCategory} />
+            </>
+          )}
+          {activeSection === 'videoNews' && (
+            <>
+            <VideoNews />
+            <VideoNewsList/>
             </>
           )}
         </div>

@@ -31,7 +31,7 @@ function NewsSection() {
   return (
     <div className="m-4 px-4 py-8 bg-gray-100 rounded-2xl shadow-lg">
       <h2 className="text-2xl font-bold mb-6 text-gray-900 border-b-2 border-gray-300 pb-4">
-        मध्यप्रदेश न्यूज़
+      {news.length > 0 && news[0].category.name}
       </h2>
       <div className="grid gap-6 grid-cols-1 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-4">

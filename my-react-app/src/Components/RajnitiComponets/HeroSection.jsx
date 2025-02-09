@@ -42,7 +42,7 @@ function Rajniti() {
 
   return (
     <div className="m-2 px-4 py-8 border border-gray-300">
-      <h2 className="text-2xl font-bold mb-6 pl-3">राजनीति न्यूज़</h2>
+      <h2 className="text-2xl font-bold mb-6 pl-3">  {news.length > 0 && news[0].category.name}</h2>
       <div className={`grid gap-4 ${isEven ? 'grid-cols-4' : 'grid-cols-12'} max-md:grid-cols-1`}>
         {news.map((newsItem, index) => (
           <div
