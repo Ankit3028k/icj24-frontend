@@ -43,4 +43,4 @@ function IndorePage() {
   )
 }
 
-export default IndorePage
+export default IndorePage;
