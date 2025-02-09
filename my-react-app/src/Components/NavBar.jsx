@@ -1,71 +1,94 @@
-import React, { useState } from 'react';
-import { FaSearch, FaBars, FaTimes } from 'react-icons/fa'; 
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
+
+import {
+  FaSearch,
+  FaBars,
+  FaTimes,
+  FaHome,
+  FaThList,
+  FaShoppingCart,
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { GiShoppingBag } from "react-icons/gi";
 
 function NavBar() {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-
+  const [cartCount, setCartCount] = useState(0);
+  const navigate = useNavigate();
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(prev => !prev);
+    setIsMobileMenuOpen((prev) => !prev);
   };
 
   const toggleSearchInput = () => {
-    setIsSearchVisible(prev => !prev);
-    if (isSearchVisible) setSearchTerm(''); // Clear search term when hiding
+    setIsSearchVisible((prev) => !prev);
+    if (isSearchVisible) setSearchTerm(""); // Clear search term when hiding
   };
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
-
-  const handleDropdownToggle = () => {
-    setIsDropdownVisible(prev => !prev);
+  const handleLocationChange = (e) => {
+    const value = e.target.value;
+    if (value) {
+      navigate(value); // Navigate using react-router
+    }
+    toggleMobileMenu(); // Close mobile menu after selection
   };
-
   return (
     <div className="m-0">
       <nav className="bg-red-500 py-5">
         <div className="grid grid-cols-12 gap-7 mx-0 text-white">
           <span className="col-span-1"></span>
-          <span className="col-span-1"><Link to="/">होम</Link></span>
-          
-          {/* मध्यप्रदेश Dropdown */}
-          <div className="col-span-1 hidden sm:block relative">
-            <span
-              className="dropbtn cursor-pointer"
-              onClick={handleDropdownToggle}
-            >
+          <span className="col-span-1">
+            <Link to="/">होम</Link>
+          </span>
+
+          <div className="dropdown col-span-1 hidden sm:block">
+            <span className="dropbtn hidden sm:block">
               <Link to="/mp-news">मध्यप्रदेश</Link>
             </span>
-            {isDropdownVisible && (
-              <div className="absolute bg-white text-black shadow-lg mt-2 p-2 rounded-md">
-                <Link to="/indore" className="block p-2 text-gray-700 hover:text-blue-600">इंदौर</Link>
-                <Link to="/bhopal" className="block p-2 text-gray-700 hover:text-blue-600">भोपाल</Link>
-                <Link to="/ujjain" className="block p-2 text-gray-700 hover:text-blue-600">उज्जैन</Link>
-                <Link to="/jabalpur" className="block p-2 text-gray-700 hover:text-blue-600">जबलपुर</Link>
-              </div>
-            )}
+            <div className="dropdown-content bg-white text-black">
+              <Link to="/indore">इंदौर</Link>
+              <Link to="/bhopal">भोपाल</Link>
+              <Link to="/ujjain">उज्जैन</Link>
+              <Link to="/jabalpur">जबलपुर</Link>
+            </div>
           </div>
 
-          {/* Other Links */}
-          <span className="col-span-1 hidden sm:block"><Link to="/rajniti">राजनीति</Link></span>
-          <span className="col-span-1 hidden sm:block"><Link to="/crime">क्राइम</Link></span>
-          <span className="col-span-1 hidden sm:block"><Link to="/spritual">अध्यात्म</Link></span>
-          <span className="col-span-1 hidden sm:block"><Link to="/jaraHatke">Jara Hatke</Link></span>
-          <span className="col-span-1 hidden sm:block"><Link to="/technology">टेक्नोलॉजी</Link></span>
-          
+          <span className="col-span-1 hidden sm:block">
+            <Link to="/rajniti">राजनीति</Link>
+          </span>
+          <span className="col-span-1 hidden sm:block">
+            <Link to="/crime">क्राइम</Link>
+          </span>
+          <span className="col-span-1 hidden sm:block">
+            <Link to="/spritual">अध्यात्म</Link>
+          </span>
+          <span className="col-span-1 hidden sm:block">
+            <Link to="/jara-hatke">Jara Hatke</Link>
+          </span>
+          <span className="col-span-1 hidden sm:block">
+            <Link to="/technology">टेक्नोलॉजी</Link>
+          </span>
+
+          <span className="col-span-1 hidden sm:block"></span>
+
           {/* Mobile View */}
           <span className="sm:hidden col-span-6"></span>
 
-          {/* Search Button */}
-          <button onClick={toggleSearchInput} className="text-white focus:outline-none" aria-label="Toggle search input">
+          <button
+            onClick={toggleSearchInput}
+            className="text-white focus:outline-none"
+            aria-label="Toggle search input"
+          >
             <FaSearch className="w-6 h-6" />
           </button>
-          <button 
-            className="md:hidden text-white focus:outline-none" 
+          <button
+            className="md:hidden text-white focus:outline-none"
             onClick={toggleMobileMenu}
             aria-label="Toggle mobile menu"
           >
@@ -80,7 +103,7 @@ function NavBar() {
               type="text"
               placeholder="Search news"
               value={searchTerm}
-              onChange={handleSearchChange} 
+              onChange={handleSearchChange}
               className="flex-grow border-none outline-none p-2 text-black"
               autoFocus
             />
@@ -92,46 +115,77 @@ function NavBar() {
       </nav>
 
       {/* Mobile Menu */}
-      <div 
-        className={`relative inset-0 z-20 transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} 
+      <div
+        className={`relative inset-0 z-20 transition-opacity duration-300 ${
+          isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
         onClick={toggleMobileMenu}
       >
-        <div className={`absolute pt-0 top-0 right-0 shadow-lg transform transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div
+          className={`absolute pt-1 text-center top-0 right-0 shadow-lg transform transition-transform duration-300 bg-white w-40 text-black ${
+            isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
           <div className="p-4 bg-white text-black">
-            {/* Mobile "मध्यप्रदेश" Dropdown */}
-            <div className="relative">
-              <span
-                className="block p-2 text-gray-700 hover:text-blue-600 cursor-pointer"
-                onClick={handleDropdownToggle}
-              >
-                मध्यप्रदेश
-              </span>
-              {isDropdownVisible && (
-                <div className="absolute left-0 top-0 bg-white text-black shadow-lg mt-2 p-2 rounded-md">
-                  <Link to="/indore" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>इंदौर</Link>
-                  <Link to="/bhopal" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>भोपाल</Link>
-                  <Link to="/ujjain" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>उज्जैन</Link>
-                  <Link to="/jabalpur" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>जबलपुर</Link>
-                </div>
-              )}
-            </div>
+            {/* <div className="dropdown  "> */}
+             <div className="inline-flex">                <Link
+                  to="/mp-news"
+                  className="block p-2 text-gray-700 hover:text-blue-600"
+                  
+                >
+                  मध्यप्रदेश  
+                </Link>
+             {/* Dropdown for selecting city */}
+            <select
+              name="locations"
+              id="locations"
+              onChange={handleLocationChange}
+              className="w-full p-2 bg-white text-black border border-gray-300 rounded-md mt-2"
+            >
+              <option value="" ></option>
+              <option value="/indore">इंदौर</option>
+              <option value="/bhopal">भोपाल</option>
+              <option value="/ujjain">उज्जैन</option>
+              <option value="/jabalpur">जबलपुर</option>
+            </select></div>
+              
+              {/* <div className="dropdown-content bg-white text-black right-15">
+                <Link to="#">इंदौर</Link>
+                <Link to="#">भोपाल</Link>
+                <Link to="#">उज्जैन</Link>
+                <Link to="#">जबलपुर</Link>
+              </div>
+            </div> */}
 
-            {/* Other Mobile Links */}
-            <Link to="/rajniti" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
+            <Link
+              to="/rajniti"
+              className="block p-2 text-gray-700 hover:text-blue-600"
+              onClick={toggleMobileMenu}
+            >
               राजनीति
             </Link>
-            <Link to="/crime" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
-              क्राइम
-            </Link>
-            <Link to="/spritual" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
+            <Link
+              to="/spritual"
+              className="block p-2 text-gray-700 hover:text-blue-600"
+              onClick={toggleMobileMenu}
+            >
               अध्यात्म
             </Link>
-            <Link to="/jaraHatke" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
+            <Link
+              to="/jara-hatke"
+              className="block p-2 text-gray-700 hover:text-blue-600"
+              onClick={toggleMobileMenu}
+            >
               Jara Hatke
             </Link>
-            <Link to="/technology" className="block p-2 text-gray-700 hover:text-blue-600" onClick={toggleMobileMenu}>
+            <Link
+              to="technology"
+              className="block p-2 text-gray-700 hover:text-blue-600"
+              onClick={toggleMobileMenu}
+            >
               टेक्नोलॉजी
             </Link>
+             
           </div>
         </div>
       </div>

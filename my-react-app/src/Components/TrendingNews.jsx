@@ -1,83 +1,96 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axiosInstance from "./Admin/axiosConfig"; // You can also use fetch if you prefer.
 
 function TrendingNews() {
-  const [news, setNews] = useState([
-    {
-      title: "News 1",
-      imageUrl:
-        "https://icj24.com/wp-content/uploads/2025/01/c670f414-e347-44cd-bf96-d8016cffeb4b.jpg",
-      heading: "The future of possible innovation for business company.",
-      date: "November 16, 2017",
-      url: "#"
-    },
-    {
-      title: "News 2",
-      imageUrl:
-        "https://icj24.com/wp-content/uploads/2025/01/08e1e5c2-e35f-47b9-b176-d8ad01285dc9.jpg",
-      heading: "The future of possible innovation for IT company.",
-      date: "November 16, 2017",
-      url: "#"
-    },
-    {
-      title: "News 3",
-      imageUrl:
-        "https://icj24.com/wp-content/uploads/2025/01/e2ab42c2-09dc-4d59-ab06-f57a65c70bf5.jpg",
-      heading: "The future of possible innovation for web development.",
-      date: "November 16, 2017",
-      url: "#"
-    },
-    {
-      title: "News 4",
-      imageUrl:
-        "https://icj24.com/wp-content/uploads/2025/01/d72f55ce-7eb4-4b02-ba90-8f147cdf23a2.jpg",
-      heading: "The future of possible innovation for Google.",
-      date: "November 16, 2017",
-      url: "#"
-    },
-    {
-      title: "News 5",
-      imageUrl:
-        "https://icj24.com/wp-content/uploads/2025/01/d72f55ce-7eb4-4b02-ba90-8f147cdf23a2.jpg",
-      heading: "The future of possible innovation for AI.",
-      date: "November 16, 2017",
-      url: "#"
-    },
-  ]);
+  const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const isEven = news.length % 2 === 0;
+  useEffect(() => {
+    axiosInstance
+      .get("/news")
+      .then((response) => {
+        const filteredNews = response.data.filter(
+          (item) => item.category.name === "ट्रेंडिंग न्यूज़"
+        );
+        setNews(filteredNews);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the news:", error);
+        setError("Failed to fetch news. Please try again later.");
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div>Loading Trending News...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (news.length === 0) {
+    return <div>No Trending News Available</div>;
+  }
 
   return (
     <div className="m-2 px-4 sm:px-6 py-8 border border-gray-300">
       <h2 className="text-2xl sm:text-3xl font-bold mb-6">ट्रेंडिंग न्यूज़</h2>
       <div
         className={`grid gap-4 ${
-          isEven ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          news.length === 1
+            ? "grid-cols-1"
+            : news.length === 2
+            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+            : news.length === 3
+            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+            : news.length === 4
+            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+            : news.length >= 5
+            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+            : ""
         }`}
       >
         {news.map((newsItem, index) => (
           <div
             className={`news-item bg-white p-4 shadow-lg border border-gray-300 ${
-              !isEven && index === 0 ? "lg:col-span-2" : ""
+              news.length === 1
+                ? "lg:col-span-3"
+                : news.length === 2
+                ? index === 0
+                  ? "lg:col-span-2"
+                  : "lg:col-span-1"
+                : news.length === 3
+                ? "lg:col-span-1"
+                : news.length === 4
+                ? "lg:col-span-2"
+                : news.length >= 5
+                ? index === 0
+                  ? "lg:col-span-2"
+                  : "lg:col-span-1"
+                : ""
             } relative`}
-            key={index}
+            key={newsItem._id}
           >
             {/* Image */}
             <div className="relative w-full h-[250px] sm:h-[350px]">
               <img
-                src={newsItem.imageUrl}
-                alt={`News ${index + 1}`}
+                src={newsItem.image}
+                alt={newsItem.title} // More descriptive alt text
                 className="absolute inset-0 w-full h-full object-cover rounded-md"
               />
             </div>
 
             {/* Text Overlay */}
             <div className="absolute inset-0 p-4 flex flex-col justify-end bg-gradient-to-t from-black via-transparent to-transparent">
-              <a href={newsItem.url} className="block">
+              <a href={`/news/${newsItem._id}`} className="block">
                 <h3 className="text-xl font-semibold text-white truncate">
-                  {newsItem.heading}
+                  {newsItem.title}
                 </h3>
               </a>
-              <p className="text-gray-200 mt-2">{newsItem.date}</p>
+              <p className="text-gray-200 mt-2">{newsItem.author}</p>
             </div>
           </div>
         ))}

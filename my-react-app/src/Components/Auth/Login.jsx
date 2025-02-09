@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import React Router's useNavigate
-
+import axiosInstance from '../Admin/axiosConfig';
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,7 +17,7 @@ function LoginPage() {
     setLoading(true); // Set loading state to true
   
     try {
-      const response = await fetch('https://icj24-backend.onrender.com/api/auth/login', {
+      const response = await axiosInstance.get('/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
