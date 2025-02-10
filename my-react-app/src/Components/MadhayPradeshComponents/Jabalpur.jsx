@@ -30,6 +30,9 @@ const Jabalpur = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto p-5">
+      {/* Added Heading in Hindi */}
+      <h1 className="text-2xl font-bold  mb-8">जबलपुर न्यूज़</h1>
+
       {articles.map((article, index) => (
         <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
           <div className="relative">

@@ -30,6 +30,7 @@ const Indore = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto p-5">
+      <h1 className="text-2xl font-bold  mb-8"> इंदौर न्यूज़</h1>
       {articles.map((article, index) => (
         <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
           <div className="relative">

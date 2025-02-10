@@ -69,7 +69,7 @@ function NavBar() {
             <Link to="/spritual">अध्यात्म</Link>
           </span>
           <span className="col-span-1 hidden sm:block">
-            <Link to="/jara-hatke">Jara Hatke</Link>
+            <Link to="/jarahatke">Jara Hatke</Link>
           </span>
           <span className="col-span-1 hidden sm:block">
             <Link to="/technology">टेक्नोलॉजी</Link>
@@ -165,6 +165,13 @@ function NavBar() {
               राजनीति
             </Link>
             <Link
+              to="/crime"
+              className="block p-2 text-gray-700 hover:text-blue-600"
+              onClick={toggleMobileMenu}
+            >
+              क्राइम
+            </Link>
+            <Link
               to="/spritual"
               className="block p-2 text-gray-700 hover:text-blue-600"
               onClick={toggleMobileMenu}
@@ -172,7 +179,7 @@ function NavBar() {
               अध्यात्म
             </Link>
             <Link
-              to="/jara-hatke"
+              to="/jarahatke"
               className="block p-2 text-gray-700 hover:text-blue-600"
               onClick={toggleMobileMenu}
             >

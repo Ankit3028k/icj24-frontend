@@ -31,24 +31,26 @@ function FeaturedVideos() {
     return <div>{error}</div>;
   }
 
-  // Determine the grid columns based on the number of videos
-  const gridColumns = newsVideos.length === 1 ? "grid-cols-1" : newsVideos.length === 2 ? "grid-cols-4" : "grid-cols-3";
+  // Adjust grid columns based on number of videos
+  const gridColumns = newsVideos.length === 1 ? "grid-cols-1" : newsVideos.length === 2 ? "grid-cols-2" : "grid-cols-3";
 
   return (
     <div className="m-4 px-6 py-8 border border-gray-300">
-      <h2 className="text-2xl font-bold mb-6">Featured Videos</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center">Featured Videos</h2>
       <div className={`grid ${gridColumns} gap-6`}>
         {/* Main featured video (first video) */}
-        <div className={`w-full bg-white p-4 shadow-lg border border-gray-300 ${newsVideos.length === 1 ? "col-span-1" : newsVideos.length === 2 ? "col-span-2" : "col-span-1"}`}>
+        <div
+          className={`w-full bg-white p-4 shadow-lg border border-gray-300 ${newsVideos.length === 1 ? "col-span-1" : newsVideos.length === 2 ? "col-span-2" : "col-span-1"}`}
+        >
           <iframe
-            width="560"
-            height="315"
+            width="100%"
+            height="auto"
             src={newsVideos[0].video}
             title={newsVideos[0].title}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
-            className="w-full h-64 object-cover"
+            className="aspect-video w-full object-cover"
             allowFullScreen
           ></iframe>
           <a href="#">
@@ -59,17 +61,20 @@ function FeaturedVideos() {
         {/* Grid for Other Videos */}
         {newsVideos.length > 1 && (
           newsVideos.slice(1).map((newsVideoItem, index) => (
-            <div className={`bg-white p-4 shadow-lg border border-gray-300 ${ newsVideos.length === 2 ? "col-span-2" : "col-span-1"}`} key={index}>
+            <div
+              className={`bg-white p-4 shadow-lg border border-gray-300 ${newsVideos.length === 2 ? "col-span-2" : "col-span-1"}`}
+              key={index}
+            >
               <iframe
-                width="560"
-                height="315"
+                width="100%"
+                height="auto"
                 src={newsVideoItem.video}
                 title={newsVideoItem.title}
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
-                className="w-full h-64 object-cover"
+                className="aspect-video w-full object-cover"
               ></iframe>
               <a href="#">
                 <h3 className="text-lg font-semibold mt-2">{newsVideoItem.title}</h3>

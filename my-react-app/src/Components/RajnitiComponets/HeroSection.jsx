@@ -3,10 +3,9 @@ import axiosInstance from '../Admin/axiosConfig';
 
 function Rajniti() {
   const [news, setNews] = useState([]);
-  const [loading, setLoading] = useState(true);  // Declare loading state
-  const [error, setError] = useState(null);  // Declare error state
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Fetch news from the backend (example URL)
   useEffect(() => {
     axiosInstance
       .get("/news")
@@ -15,56 +14,50 @@ function Rajniti() {
           (item) => item.category.name === "राजनीति न्यूज़"
         );
         setNews(filteredNews);
-        setLoading(false);  // Set loading to false after data is fetched
+        setLoading(false);
       })
       .catch((error) => {
         console.error("There was an error fetching the news:", error);
         setError("Failed to fetch news. Please try again later.");
-        setLoading(false);  // Set loading to false if there’s an error
+        setLoading(false);
       });
   }, []);
 
-  if (loading) {
-    return <div>Loading Trending News...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  if (news.length === 0) {
-    return <div>No Trending News Available</div>;
-  }
+  if (loading) return <div className="text-center py-6">Loading Trending News...</div>;
+  if (error) return <div className="text-center text-red-500 py-6">{error}</div>;
+  if (news.length === 0) return <div className="text-center py-6">No Trending News Available</div>;
 
   const isEven = news.length % 2 === 0;
-  let remainingNews = Math.floor( news.length-1);
+  let remainingNews = Math.floor(news.length - 1);
   const colSpanValue = isEven ? 3 : Math.floor(12 / remainingNews);
 
   return (
     <div className="m-2 px-4 py-8 border border-gray-300">
-      <h2 className="text-2xl font-bold mb-6 pl-3">  {news.length > 0 && news[0].category.name}</h2>
-      <div className={`grid gap-4 ${isEven ? 'grid-cols-4' : 'grid-cols-12'} max-md:grid-cols-1`}>
+      <h2 className="text-2xl font-bold mb-6 pl-3">
+        {news.length > 0 && news[0].category.name}
+      </h2>
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {news.map((newsItem, index) => (
           <div
-            className={`news-item bg-white p-4 shadow-lg border border-gray-300 ${
-              news.length % 2 !== 0 
-              ? index === 0 ? 'col-span-12' : `lg:col-span-${colSpanValue} row-span-3`
-              : `lg:col-span-2 `
-
-              }`}
+            className="bg-white p-4 shadow-lg border border-gray-300 rounded-lg"
             key={index}
           >
-            <div className="relative flex justify-center items-center">
+            <div className="relative w-full h-48 flex justify-center items-center">
               <img
                 src={newsItem.image}
                 alt={`News ${index + 1}`}
-                className="w-full object-cover rounded-md"
+                className="w-full h-full object-cover rounded-md"
               />
-              <a href={newsItem.url} className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-4">
-                <h3 className="text-lg sm:text-xl font-semibold text-center truncate">{newsItem.title}</h3>
+              <a
+                href={newsItem.url}
+                className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-4"
+              >
+                <h3 className="text-lg font-semibold text-center truncate">
+                  {newsItem.title}
+                </h3>
               </a>
             </div>
-            <p className="text-gray-600 mt-2 text-center text-sm sm:text-base">{newsItem.date}</p>
+            <p className="text-gray-600 mt-2 text-center text-sm">{newsItem.date}</p>
           </div>
         ))}
       </div>

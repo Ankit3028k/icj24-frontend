@@ -30,6 +30,7 @@ const Bhopal = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto p-5">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-6 ">भोपाल न्यूज़</h2>
       {articles.map((article, index) => (
         <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
           <div className="relative">

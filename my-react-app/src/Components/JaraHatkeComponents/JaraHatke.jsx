@@ -45,46 +45,29 @@ function JaraHatke() {
     },
   ]);
 
-  const isEven = news.length % 2 === 0;
-
   return (
     <div className="m-2 px-4 sm:px-6 py-8 border border-gray-300">
       <h2 className="text-2xl sm:text-3xl font-bold mb-6">Jara Hatke</h2>
-      <div
-        className={`grid gap-6 ${
-          isEven
-            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-            : "grid-cols-1 md:grid-cols-2 lg:grid-cols-6"
-        }`}
-      >
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {news.map((newsItem, index) => (
           <div
             key={index}
-            className={`news-item bg-white p-4 shadow-lg border border-gray-300 ${
-              !isEven && index === 3
-                ? "lg:col-span-3"
-                : !isEven && index === 4
-                ? "lg:col-span-3"
-                : "lg:col-span-2"
-            } relative`}
+            className="bg-white p-4 shadow-lg border border-gray-300 rounded-lg relative"
           >
-            {/* Image */}
-            <div className="relative w-full h-[250px] sm:h-[350px]">
+            <div className="relative w-full h-[200px] sm:h-[300px] md:h-[350px]">
               <img
                 src={newsItem.imageUrl}
                 alt={`Image for news: ${newsItem.heading}`}
                 className="absolute inset-0 w-full h-full object-cover rounded-md"
               />
             </div>
-
-            {/* Text Overlay */}
             <div className="absolute inset-0 p-4 flex flex-col justify-end bg-gradient-to-t from-black via-transparent to-transparent">
               <a href={newsItem.url} className="block">
-                <h3 className="text-xl font-semibold text-white truncate">
+                <h3 className="text-lg sm:text-xl font-semibold text-white truncate">
                   {newsItem.heading}
                 </h3>
               </a>
-              <p className="text-gray-200 mt-2">{newsItem.date}</p>
+              <p className="text-gray-200 mt-2 text-sm sm:text-base">{newsItem.date}</p>
             </div>
           </div>
         ))}
