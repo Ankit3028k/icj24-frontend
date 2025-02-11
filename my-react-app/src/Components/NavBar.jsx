@@ -49,7 +49,7 @@ function NavBar() {
 
           <div className="dropdown col-span-1 hidden sm:block">
             <span className="dropbtn hidden sm:block">
-              <Link to="/mp-news">मध्यप्रदेश</Link>
+              <Link to="/मध्यप्रदेश">मध्यप्रदेश</Link>
             </span>
             <div className="dropdown-content bg-white text-black">
               <Link to="/indore">इंदौर</Link>
@@ -60,19 +60,19 @@ function NavBar() {
           </div>
 
           <span className="col-span-1 hidden sm:block">
-            <Link to="/rajniti">राजनीति</Link>
+            <Link to="/राजनीति">राजनीति</Link>
           </span>
           <span className="col-span-1 hidden sm:block">
-            <Link to="/crime">क्राइम</Link>
+            <Link to="/क्राइम">क्राइम</Link>
           </span>
           <span className="col-span-1 hidden sm:block">
-            <Link to="/spritual">अध्यात्म</Link>
+            <Link to="/अध्यात्म">अध्यात्म</Link>
           </span>
           <span className="col-span-1 hidden sm:block">
             <Link to="/jarahatke">Jara Hatke</Link>
           </span>
           <span className="col-span-1 hidden sm:block">
-            <Link to="/technology">टेक्नोलॉजी</Link>
+            <Link to="/टेक्नोलॉजी">टेक्नोलॉजी</Link>
           </span>
 
           <span className="col-span-1 hidden sm:block"></span>
@@ -129,7 +129,7 @@ function NavBar() {
           <div className="p-4 bg-white text-black">
             {/* <div className="dropdown  "> */}
              <div className="inline-flex">                <Link
-                  to="/mp-news"
+                  to="/मध्यप्रदेश"
                   className="block p-2 text-gray-700 hover:text-blue-600"
                   
                 >
@@ -158,21 +158,21 @@ function NavBar() {
             </div> */}
 
             <Link
-              to="/rajniti"
+              to="/राजनीति"
               className="block p-2 text-gray-700 hover:text-blue-600"
               onClick={toggleMobileMenu}
             >
               राजनीति
             </Link>
             <Link
-              to="/crime"
+              to="/क्राइम"
               className="block p-2 text-gray-700 hover:text-blue-600"
               onClick={toggleMobileMenu}
             >
               क्राइम
             </Link>
             <Link
-              to="/spritual"
+              to="/अध्यात्म"
               className="block p-2 text-gray-700 hover:text-blue-600"
               onClick={toggleMobileMenu}
             >
@@ -186,7 +186,7 @@ function NavBar() {
               Jara Hatke
             </Link>
             <Link
-              to="technology"
+              to="टेक्नोलॉजी"
               className="block p-2 text-gray-700 hover:text-blue-600"
               onClick={toggleMobileMenu}
             >

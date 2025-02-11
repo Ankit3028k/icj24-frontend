@@ -39,9 +39,9 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/mp-news" element={<MpNewsPage />} />
+        <Route path="/मध्यप्रदेश" element={<MpNewsPage />} />
 
-        <Route path="rajniti"element={<RajnitiPage/>}/>
+        <Route path="/राजनीति"element={<RajnitiPage/>}/>
         <Route path="/spritual"element={<SpritualPages/>}/>
         <Route element={<ProtectedRoute requiredRole="Admin"/>}>
           <Route path="/admin" element={<Admin />} />
@@ -57,11 +57,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<h1>Not Found</h1>} />/
 
-        <Route path="rajniti" element={<RajnitiPage />} />
-        <Route path="/crime" element={<CrimePage />} />
-        <Route path="/spritual" element={<SpritualPages />} />
+        
+        <Route path="/क्राइम" element={<CrimePage />} />
+        <Route path="/अध्यात्म" element={<SpritualPages />} />
         <Route path="/jaraHatke" element={<JaraHatkePage />} />
-        <Route path="/technology" element={<TechnologyPage />} />
+        <Route path="/टेक्नोलॉजी" element={<TechnologyPage />} />
         <Route path="/indore" element={<IndorePage />} />
         <Route path="/bhopal" element={<BhopalPage />} />
         <Route path="/ujjain" element={<UjjainPage />} />
