@@ -31,26 +31,25 @@ const Indore = () => {
   return (
     <div className="max-w-screen-xl mx-auto p-5">
       <h2 className="text-2xl font-bold mb-6 text-gray-900 border-b-2 border-gray-300 pb-4">
-      Indore News
+        Indore News
       </h2>
       {articles.map((article, index) => (
-        <div key={index} className="bg-white flex  rounded-lg shadow-lg overflow-hidden mb-8">
-          
-          <div className="relative h-[500px] sm:h-[300px] md:h-[227px] w-full">
+        <div key={index} className="bg-white flex flex-col md:flex-row rounded-lg shadow-lg overflow-hidden mb-8">
+          <div className="relative w-full md:w-1/3">
             <img
               src={article.imageUrl}
               alt={article.title}
-              className="w-full h-[300px] sm:h-[400px] md:h-[100%] object-cover rounded-t-lg"
+              className="w-full h-48 sm:h-64 md:h-full object-cover"
             />
-            <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black opacity-60 py-3 px-4 text-white">
-              <h2 className="text-xl font-semibold">{article.title}</h2>
+            <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black opacity-60 py-2 px-4 text-white">
+              <h2 className="text-lg font-semibold">{article.title}</h2>
             </div>
           </div>
-          <div className="p-6">
-            <p className="text-gray-600 mb-6">{article.description}</p>
+          <div className="p-4 md:w-2/3">
+            <p className="text-gray-600 mb-4 text-sm sm:text-base">{article.description}</p>
             <a
               href={article.link}
-              className="inline-block text-blue-600 font-semibold border-2 border-blue-600 py-2 px-6 rounded-md transition-colors duration-300 hover:bg-blue-600 hover:text-white"
+              className="inline-block text-blue-600 font-semibold border-2 border-blue-600 py-2 px-4 sm:px-6 rounded-md transition-colors duration-300 hover:bg-blue-600 hover:text-white"
             >
               Read More
             </a>
