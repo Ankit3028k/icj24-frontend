@@ -30,13 +30,16 @@ const Bhopal = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto p-5">
+      <h2 className="text-2xl font-bold mb-6 text-gray-900 border-b-2 border-gray-300 pb-4">
+        Bhopal News
+      </h2>
       {articles.map((article, index) => (
-        <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
-          <div className="relative">
+        <div key={index} className="bg-white flex flex-col md:flex-row rounded-lg shadow-lg overflow-hidden mb-8">
+          <div className="relative w-full md:w-1/3">
             <img
               src={article.imageUrl}
               alt={article.title}
-              className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover rounded-t-lg"
+              className="w-full h-48 sm:h-64 md:h-full object-cover"
             />
             <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black opacity-60 py-2 px-4 text-white">
               <h2 className="text-lg font-semibold">{article.title}</h2>
