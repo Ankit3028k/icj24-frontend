@@ -10,6 +10,10 @@ import CategoriesList from '../Components/Admin/CategoriesList'
 import SubscribeNews24 from '../Components/sideIcj24'
 import AdsenseAd from '../Components/HorizontalAds'
 import Footer from '../Components/Footer'
+import Indore from '../Components/MadhayPradeshComponents/indore'
+import Bhopal from '../Components/MadhayPradeshComponents/Bhopal'
+import Jabalpur from '../Components/MadhayPradeshComponents/Jabalpur'
+import Ujjain from '../Components/MadhayPradeshComponents/Ujjain'
 
 
 function News() {
@@ -22,6 +26,18 @@ function News() {
       <div className="flex flex-wrap px-2 py-4">
         <div className="flex-1 w-full md:w-2/3">
         <MpNews />
+        <div className="flex-1 w-full ">
+        <Indore/>
+        </div>
+        <div className="flex-1 w-full ">
+          <Bhopal/>
+        </div>
+        <div className="flex-1 w-full ">
+          <Jabalpur/>
+        </div>
+        <div className="flex-1 w-full ">
+          <Ujjain/>
+        </div>
         </div>
          {/* Sidebar */}
          <div className="w-full md:w-1/5 pl-3 mt-6 md:mt-0">

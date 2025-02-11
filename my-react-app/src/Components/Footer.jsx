@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaEnvelope } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Footer() {
-  const trendingNews = [
-    { date: "January 11, 2025", headline: "Breaking News: Example Headline 1" },
-    { date: "January 10, 2025", headline: "Breaking News: Example Headline 2" },
-    // Add more trending news items
-  ];
+  const [trendingNews, setTrendingNews] = useState([]);
+
+  useEffect(() => {
+    // Fetch the news from the backend
+    fetch("https://icj24-backend.onrender.com/api/news")
+      .then(response => response.json())
+      .then(data => {
+        // Filter news by category name "ट्रेंडिंग न्यूज़"
+        const filteredNews = data.filter(news => news.category.name === "ट्रेंडिंग न्यूज़");
+        setTrendingNews(filteredNews);
+      })
+      .catch(error => console.error("Error fetching news:", error));
+  }, []);
 
   return (
     <div className="bg-gray-800 text-white py-8">
@@ -18,18 +27,21 @@ function Footer() {
               alt="icj24 logo"
               className="h-12 mb-4"
             />
-
           </div>
 
           <section className="flex flex-col items-center sm:items-start">
             <h2 className="text-xl font-bold mb-4">ट्रेंडिंग न्यूज़</h2>
             <div className="space-y-2">
-              {trendingNews.map((news, index) => (
-                <div key={index}>
-                  <h5 className="text-sm text-gray-400">{news.date}</h5>
-                  <p className="text-base">{news.headline}</p>
-                </div>
-              ))}
+              {trendingNews.length > 0 ? (
+                trendingNews.map((news, index) => (
+                  <div key={index}>
+                    <h5 className="text-sm text-gray-400">{news.date}</h5>
+                    <p className="text-base">{news.title}</p>
+                  </div>
+                ))
+              ) : (
+                <p className="text-gray-400">No trending news available.</p>
+              )}
             </div>
           </section>
 
@@ -37,12 +49,12 @@ function Footer() {
             <h2 className="text-2xl font-bold mb-4">Most Viewed</h2>
             <div className="grid grid-cols-2 gap-4">
               {["मध्यप्रदेश", "राजनीति", "क्राइम", "अध्यात्म", "Jara Hatke", "टेक्नोलॉजी"].map((buttonText, index) => (
-                <button
+             <Link to={`/${buttonText}`}>   <button
                   key={index}
                   className="bg-transparent border-2 border-gray-600 hover:bg-red-600 hover:text-white text-white-600 px-4 py-2 rounded-md transition duration-200"
                 >
                   {buttonText}
-                </button>
+                </button></Link>
               ))}
             </div>
           </section>
