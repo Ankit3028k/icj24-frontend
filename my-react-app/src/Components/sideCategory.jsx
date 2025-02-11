@@ -25,7 +25,7 @@ const NewsCategory = () => {
           <li key={index}>
             <Link
               to={category.link} // Use Link component to navigate
-              className="block text-lg font-medium text-gray-700 py-3 px-6 border border-gray-300 rounded-md hover:border-red-500 hover:text-white hover:bg-red-500 transition-all duration-300 ease-in-out transform hover:scale-105"
+              className="block text-lg font-medium text-gray-700 py-3 px-6 border border-gray-300 rounded-md hover:border-red-500 hover:bg-red-600 hover:text-white  transition-all duration-300 ease-in-out transform hover:scale-105"
             >
               {category.name} {/* Access category.name to display the name */}
             </Link>
