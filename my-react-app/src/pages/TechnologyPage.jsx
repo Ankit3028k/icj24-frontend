@@ -4,7 +4,7 @@ import UpperNav from '../Components/UpperNav'
 import NavBar from '../Components/NavBar'
 import AdsenseAd from '../Components/HorizontalAds'
 import Footer from '../Components/Footer'
-
+import Technology from '../Components/TechnologyComponents/Technology'
 
 function TechnologyPage() {
   return (

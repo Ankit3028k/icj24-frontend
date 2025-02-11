@@ -165,6 +165,13 @@ function NavBar() {
               राजनीति
             </Link>
             <Link
+              to="/crime"
+              className="block p-2 text-gray-700 hover:text-blue-600"
+              onClick={toggleMobileMenu}
+            >
+              क्राइम
+            </Link>
+            <Link
               to="/spritual"
               className="block p-2 text-gray-700 hover:text-blue-600"
               onClick={toggleMobileMenu}

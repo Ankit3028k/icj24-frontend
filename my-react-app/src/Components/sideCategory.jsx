@@ -1,34 +1,34 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 const NewsCategory = () => {
   const categories = [
-    "मध्यप्रदेश",
-    "राजनीति",
-    "क्राइम",
-    "अध्यात्म",
-    "टेक्नोलॉजी",
-    "खेल",
-    "Jara Hatke",
-    
+    { name: "मध्यप्रदेश", link: "/mp-news" },
+    { name: "राजनीति", link: "/rajniti" },
+    { name: "क्राइम", link: "/crime" },
+    { name: "अध्यात्म", link: "/spiritual" },
+    { name: "टेक्नोलॉजी", link: "/technology" },
+    { name: "Jara Hatke", link: "/jarahatke" },
   ];
 
   return (
-    <div className="p-6 border border-gray-300 shadow-lg bg-white w-80 h-auto rounded-lg">
+    <div className="p-8 border border-gray-200 shadow-xl bg-white rounded-lg max-w-xs mx-auto">
       {/* Heading */}
-      <h2 className="text-xl font-bold uppercase text-gray-800 mb-4">
-        News Category
+      <h2 className="text-2xl font-bold text-gray-900 mb-5 text-center">
+        News Categories
       </h2>
-      <div className="w-16 h-1 bg-red-500 mb-6"></div>
+      <div className="w-20 h-1 bg-gradient-to-r from-red-500 to-yellow-500 mb-6 mx-auto"></div>
 
-      {/* Categories as Buttons */}
-      <ul className="space-y-4">
+      {/* Categories as Links */}
+      <ul className="space-y-5">
         {categories.map((category, index) => (
           <li key={index}>
-            <button
-              className="w-full text-left text-gray-600 font-medium py-3 px-4 border border-gray-300 hover:border-red-500 hover:text-white hover:bg-red-500 transition-colors rounded-md"
+            <Link
+              to={category.link} // Use Link component to navigate
+              className="block text-lg font-medium text-gray-700 py-3 px-6 border border-gray-300 rounded-md hover:border-red-500 hover:bg-red-600 hover:text-white  transition-all duration-300 ease-in-out transform hover:scale-105"
             >
-              {category}
-            </button>
+              {category.name} {/* Access category.name to display the name */}
+            </Link>
           </li>
         ))}
       </ul>
