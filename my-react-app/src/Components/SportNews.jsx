@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axiosInstance from '../Components/Admin/axiosConfig'
+import { Link } from "react-router-dom";
 
 function SportsNews() {
   const [news, setNews] = useState([]);
@@ -56,8 +57,8 @@ function SportsNews() {
           />
         </div>
         <div className="w-full md:w-1/2 flex flex-col justify-between">
-          <h3 className="text-xl font-bold">{news[0].title}</h3>
-          <p className="text-gray-600 mt-2">{news[0].content}</p>
+        <Link to={`/`} ><h3 className="text-xl font-bold">{news[0].title}</h3></Link>
+         <p className="text-gray-600 mt-2">{news[0].content}</p>
           <p className="text-gray-500 text-sm flex items-center mt-4">
             <span className="mr-2">📅</span> 
 
@@ -71,7 +72,7 @@ function SportsNews() {
         {news.slice(1).map((item, index) => (
           <img
             key={index}
-            src={item.imageUrl} // Replace with the dynamic image URL
+            src={item.image} // Replace with the dynamic image URL
             alt={`Sub News ${index + 1}`}
             className="rounded-lg"
           />
