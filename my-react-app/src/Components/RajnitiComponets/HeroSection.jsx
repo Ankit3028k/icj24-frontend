@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../Admin/axiosConfig';
+import { Link } from 'react-router-dom';
 
 function Rajniti() {
   const [news, setNews] = useState([]);
@@ -65,14 +66,14 @@ function Rajniti() {
             alt={`News ${index + 1}`}
             className="w-full object-cover rounded-md"
           />
-          <a
+          <Link to={`/full-news/${newsItem.id}`}
             href={newsItem.url}
             className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-4"
           >
             <h3 className="text-lg sm:text-xl font-semibold text-center truncate">
               {newsItem.title}
             </h3>
-          </a>
+          </Link>
         </div>
         <p className="text-gray-600 mt-2 text-center text-sm sm:text-base">
           {newsItem.date}

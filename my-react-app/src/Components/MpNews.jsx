@@ -41,7 +41,7 @@ function NewsSection() {
               <img src={news[0].image} alt={news[0].title} className="w-full h-96 object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
               <div className="absolute bottom-0 p-4 text-white">
-                <a href={news[0]._id} className="text-2xl font-bold leading-tight hover:underline">{news[0].title}</a>
+                <a href={`/full-news/${news[0]._id}`} className="text-2xl font-bold leading-tight hover:underline">{news[0].title}</a>
                 <p className="text-sm mt-1">{news[0].author}</p>
               </div>
             </div>

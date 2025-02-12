@@ -11,7 +11,7 @@ function Footer() {
       .then(response => response.json())
       .then(data => {
         // Filter news by category name "ट्रेंडिंग न्यूज़"
-        const filteredNews = data.filter(news => news.category.name === "ट्रेंडिंग न्यूज़");
+        const filteredNews = data.filter(news => news.category.name === "ट्रेंडिंग");
         setTrendingNews(filteredNews);
       })
       .catch(error => console.error("Error fetching news:", error));

@@ -18,7 +18,8 @@ import Analyst from "./pages/Analyst.jsx";
 import CrimePage from "./pages/CrimePage.jsx";
 import JaraHatkePage from "./pages/JaraHatkePage.jsx";
 import TechnologyPage from "./pages/TechnologyPage.jsx";
-import FullNews from "./Components/FullNews.jsx";
+import FullNews from "./pages/FullNews.jsx";
+// import FullNewsPage from "./Components/FullNews.jsx";
 
 
 function App() {
@@ -57,11 +58,12 @@ function App() {
         <Route path="/अध्यात्म" element={<SpritualPages />} />
         <Route path="/जरा-हटके" element={<JaraHatkePage />} />
         <Route path="/टेक्नोलॉजी" element={<TechnologyPage />} />
-        <Route path="/indore" element={<IndorePage />} />
-        <Route path="/bhopal" element={<BhopalPage />} />
-        <Route path="/ujjain" element={<UjjainPage />} />
-        <Route path="/jabalpur" element={<JabalpurPage />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/इंदौर" element={<IndorePage />} />
+        <Route path="/भोपाल" element={<BhopalPage />} />
+        <Route path="/उज्जैन" element={<UjjainPage />} />
+        <Route path="/जबलपुर" element={<JabalpurPage />} />
+        
+        <Route path="/full-news/:id" element={<FullNews/>}/>
 
       </Routes>
     </BrowserRouter>
