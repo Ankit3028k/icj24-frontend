@@ -85,7 +85,7 @@ function TrendingNews() {
 
             {/* Text Overlay */}
             <div className="absolute inset-0 p-4 flex flex-col justify-end bg-gradient-to-t from-black via-transparent to-transparent">
-              <a href={`/news/${newsItem._id}`} className="block">
+              <a href={`/full-news/${newsItem._id}`} className="block">
                 <h3 className="text-xl font-semibold text-white truncate">
                   {newsItem.title}
                 </h3>

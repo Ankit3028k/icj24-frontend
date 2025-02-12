@@ -20,6 +20,7 @@ import Analyst from "./pages/Analyst.jsx";
 import CrimePage from "./pages/CrimePage.jsx";
 import JaraHatkePage from "./pages/JaraHatkePage.jsx";
 import TechnologyPage from "./pages/TechnologyPage.jsx";
+import FullNews from "./Components/FullNews.jsx";
 
 
 function App() {
@@ -67,6 +68,7 @@ function App() {
         <Route path="/ujjain" element={<UjjainPage />} />
         <Route path="/jabalpur" element={<JabalpurPage />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/full-news"element={<FullNews/>}/>
 
       </Routes>
     </BrowserRouter>

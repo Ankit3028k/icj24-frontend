@@ -10,6 +10,7 @@ import Register from '../Components/Auth/Register'; // Corrected import
 import VideoNews from '../Components/Admin/VideoAdminPost'; // Import VideoNews Component
 import VideoNewsList from '../Components/Admin/VideoNewsList';
 import DraftedNews from '../Components/Admin/DraftedNews';
+import IsFeaturedNews from '../Components/Admin/isFeaturedNews';
 
 const AdminPage = () => {
   const [users, setUsers] = useState([]);
@@ -155,6 +156,14 @@ const AdminPage = () => {
                   Drafted News
                 </button>
               </li>
+              <li>
+                <button
+                  className={`nav-link block px-4 py-2 rounded-md text-gray-700 ${activeSection === 'IsFeatured' ? 'bg-gray-300 font-semibold' : 'hover:bg-gray-200'}`}
+                  onClick={() => { setActiveSection('IsFeatured'); setIsSidebarOpen(false); }}
+                >
+                  Display News
+                </button>
+              </li>
             </ul>
           </div>
         </div>
@@ -190,6 +199,11 @@ const AdminPage = () => {
           {activeSection === 'draftedNews' && (
             <>
             <DraftedNews/>
+            </>
+          )}
+          {activeSection === 'IsFeatured' && (
+            <>
+            <IsFeaturedNews/>
             </>
           )}
         

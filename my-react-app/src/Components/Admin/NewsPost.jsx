@@ -206,7 +206,14 @@ const AdminNewsForm = ({ editNews, fetchNewses }) => {
                 onChange={handleInputChange}
                 className="w-full p-2 border border-gray-300 rounded"
             />
-           
+            <input
+                type="checkbox"
+                name="isDrafted"
+                checked={formNews.isDrafted}
+                disabled // This is disabled because it's now controlled by isFeatured
+                className="p-2 border border-gray-300 rounded"
+            />
+            <label className="ml-2">Is Drafted</label>
 
             <input
                 type="checkbox"
