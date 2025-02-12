@@ -1,38 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react"; // Importing the necessary hooks
+import axiosInstance from '../Admin/axiosConfig'; // Assuming you have axiosInstance imported
 
 const Technology = () => {
-  const articles = [
-    {
-      title: "AI Revolutionizing the Future of Work",
-      description: "Artificial Intelligence is changing the landscape of various industries, including healthcare, finance, and technology.",
-      imageUrl: "https://icj24.com/wp-content/uploads/2024/10/423c067f-45f3-4d76-add7-a52f236675a8-551x349.jpeg",
-      link: "/ai-revolution",
-    },
-    {
-      title: "The Rise of 5G Networks: What You Need to Know",
-      description: "With the introduction of 5G, mobile networks are experiencing a revolution that will transform connectivity.",
-      imageUrl: "https://icj24.com/wp-content/uploads/2025/01/08e1e5c2-e35f-47b9-b176-d8ad01285dc9.jpg",
-      link: "/5g-networks",
-    },
-    {
-      title: "Quantum Computing: A New Era of Processing Power",
-      description: "Explore the world of quantum computing and how it could be the key to solving complex problems beyond classical computing.",
-      imageUrl: "https://icj24.com/wp-content/uploads/2025/01/e2ab42c2-09dc-4d59-ab06-f57a65c70bf5.jpg",
-      link: "/quantum-computing",
-    },
-    {
-      title: "Blockchain: The Backbone of Digital Transactions",
-      description: "Blockchain technology is the foundation of digital currencies and promises to revolutionize online transactions and data storage.",
-      imageUrl: "https://icj24.com/wp-content/uploads/2025/01/d72f55ce-7eb4-4b02-ba90-8f147cdf23a2.jpg",
-      link: "/blockchain-tech",
-    },
-    {
-      title: "Blockchain: The Backbone of Digital Transactions",
-      description: "Blockchain technology is the foundation of digital currencies and promises to revolutionize online transactions and data storage.",
-      imageUrl: "https://icj24.com/wp-content/uploads/2025/01/d72f55ce-7eb4-4b02-ba90-8f147cdf23a2.jpg",
-      link: "/blockchain-tech",
-    },
-  ];
+  const [news, setNews] = useState([]); // State for news
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
+
+  // Fetch news from the backend
+  useEffect(() => {
+    axiosInstance
+      .get("/news")  // Assuming you're using axiosInstance for API calls
+      .then((response) => {
+        const filteredNews = response.data.filter(
+          (item) => item.category.name === "टेक्नोलॉजी" && item.isFeatured === true
+        );
+        setNews(filteredNews); // Set the filtered news data to state
+        setLoading(false); // Set loading to false after data is fetched
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the news:", error);
+        setError("Failed to fetch news. Please try again later.");
+        setLoading(false); // Set loading to false if there’s an error
+      });
+  }, []); // Empty dependency array to run this effect only once
+
+  // Conditional rendering based on the state
+  if (loading) {
+    return <div>Loading Technology News...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (news.length === 0) {
+    return <div>No Technology News Available</div>;
+  }
 
   return (
     <section className="bg-gray-100 py-16">
@@ -43,7 +46,7 @@ const Technology = () => {
       </div>
 
       <div className="space-y-12">
-        {articles.map((article, index) => {
+        {news.map((article, index) => {  // Use 'news.map' instead of 'articles.map'
           // Checking if the index is even or odd
           const isOdd = index % 2 !== 0;
 
@@ -56,7 +59,7 @@ const Technology = () => {
             >
               <div className="flex-1">
                 <img
-                  src={article.imageUrl}
+                  src={article.image}  // Ensure the field name matches your API response
                   alt={article.title}
                   className="w-full h-auto object-cover rounded-xl shadow-md"
                   style={{ maxHeight: "400px" }} // Added to control the image height
@@ -66,7 +69,7 @@ const Technology = () => {
                 <h3 className="text-2xl font-semibold text-gray-800 mb-3 hover:text-blue-600">
                   {article.title}
                 </h3>
-                <p className="text-gray-600 mb-4">{article.description}</p>
+                <p className="text-gray-600 mb-4">{article.content}</p>
                 <a
                   href={article.link}
                   className="text-blue-600 font-semibold hover:text-blue-800 transition duration-200"

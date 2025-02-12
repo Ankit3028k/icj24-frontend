@@ -1,49 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axiosInstance from '../Admin/axiosConfig'; // Assuming axiosInstance is imported
 
 function CrimeSection() {
-  const [news, setNews] = useState([
-    {
-      title: "News 1",
-      imageUrl:
-        "https://icj24.com/wp-content/uploads/2025/01/c670f414-e347-44cd-bf96-d8016cffeb4b.jpg",
-      heading: "The future of possible innovation for business company.",
-      date: "November 16, 2017",
-      url: "#",
-    },
-    {
-      title: "News 2",
-      imageUrl:
-        "https://icj24.com/wp-content/uploads/2025/01/08e1e5c2-e35f-47b9-b176-d8ad01285dc9.jpg",
-      heading: "The future of possible innovation for IT company.",
-      date: "November 16, 2017",
-      url: "#",
-    },
-    {
-      title: "News 3",
-      imageUrl:
-        "https://icj24.com/wp-content/uploads/2025/01/e2ab42c2-09dc-4d59-ab06-f57a65c70bf5.jpg",
-      heading: "The future of possible innovation for web development.",
-      date: "November 16, 2017",
-      url: "#",
-    },
-    {
-      title: "News 4",
-      imageUrl:
-        "https://icj24.com/wp-content/uploads/2025/01/d72f55ce-7eb4-4b02-ba90-8f147cdf23a2.jpg",
-      heading: "The future of possible innovation for Google.",
-      date: "November 16, 2017",
-      url: "#",
-    },
-    {
-      title: "News 5",
-      imageUrl:
-        "https://icj24.com/wp-content/uploads/2025/01/d72f55ce-7eb4-4b02-ba90-8f147cdf23a2.jpg",
-      heading: "The future of possible innovation for AI.",
-      date: "November 16, 2017",
-      url: "#"
-    },
-  ]);
+  const [news, setNews] = useState([]); // State for the news
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
 
+  // Fetch news from the backend
+  useEffect(() => {
+    axiosInstance
+      .get("/news")  // Assuming you're using axios for API calls
+      .then((response) => {
+        const filteredNews = response.data.filter(
+          (item) => item.category.name === "c" && item.isFeatured === true
+        );
+        setNews(filteredNews); // Set the filtered news data to state
+        setLoading(false); // Set loading to false after data is fetched
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the news:", error);
+        setError("Failed to fetch news. Please try again later.");
+        setLoading(false); // Set loading to false if there’s an error
+      });
+  }, []); // Empty dependency array to run this effect only once
+
+  if (loading) {
+    return <div>Loading Crime News...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (news.length === 0) {
+    return <div>No Crime News Available</div>;
+  }
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return date.toLocaleDateString('en-IN', options); // 'en-IN' ensures the correct format
+  };
+  // Define isEven based on the length of the news items
   const isEven = news.length % 2 === 0;
 
   return (
@@ -72,7 +69,7 @@ function CrimeSection() {
               } sm:h-[250px]`}
             >
               <img
-                src={newsItem.imageUrl}
+                src={newsItem.image || "fallback-image-url.jpg"} // Provide a fallback image URL in case imageUrl is missing
                 alt={`News ${index + 1}`}
                 className="absolute inset-0 w-full h-full object-cover rounded-md"
               />
@@ -82,10 +79,13 @@ function CrimeSection() {
             <div className="absolute inset-0 p-4 flex flex-col justify-end bg-gradient-to-t from-black via-transparent to-transparent">
               <a href={newsItem.url} className="block">
                 <h3 className="text-xl font-semibold text-white truncate">
-                  {newsItem.heading}
+                  {newsItem.title}
                 </h3>
               </a>
-              <p className="text-gray-200 mt-2">{newsItem.date}</p>
+              <p className="text-gray-200 mt-2">
+                {/* {newsItem.date} */}📅
+              {formatDate(news[0].datePosted)}
+              </p>
             </div>
           </div>
         ))}

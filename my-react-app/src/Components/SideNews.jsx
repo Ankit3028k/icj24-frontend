@@ -12,7 +12,7 @@ function SideNews() {
       .get("/news")  // Assuming you're using axiosInstance for API calls
       .then((response) => {
         const filteredNews = response.data.filter(
-          (item) => item.category.name === "Side News" && item.isFeatured===true
+          (item) => item.category.name === "साइड" && item.isFeatured===true
         );
         setNews(filteredNews);
         setLoading(false); // Set loading to false after data is fetched
