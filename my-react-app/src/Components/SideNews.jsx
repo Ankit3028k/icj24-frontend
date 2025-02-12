@@ -1,43 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axiosInstance from "./Admin/axiosConfig"; // Import your axiosInstance
 
 function SideNews() {
-  const [activeTab, setActiveTab] = useState("Comments");
+  const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const newsItems = [
-    {
-      id: 1,
-      image: "https://icj24.com/wp-content/uploads/2025/01/3a645d0d-d841-4afc-9bf7-0a861d3779bf.jpg", // Replace with actual image URL
-      title: "William Braynt went to visit the grabl",
-      date: "National October 2017",
-       url: "#",
-    },
-    {
-      id: 2,
-      image: "https://icj24.com/wp-content/uploads/2025/01/b7d2d78e-9b70-4a7e-989d-58195bdfc2a2-200x200.jpg",
-      title: "William Braynt went to visit the grabl",
-      date: "National October 2017",
-       url: "#",
-    },
-    {
-      id: 3,
-      image: "https://icj24.com/wp-content/uploads/2025/01/1f2fd9a7-eed7-49a7-840f-896f9b5d9145-200x200.jpg",
-      title: "William Braynt went to visit the grabl",
-      date: "National October 2017",
-       url: "#",
-    },
-    {
-      id: 4,
-      image: "https://icj24.com/wp-content/uploads/2025/01/94c37645-1bc7-4c5e-91e2-01a8cd5995c9-200x200.jpg",
-      title: "William Braynt went to visit the grabl",
-      date: "National October 2017",
-       url: "#",
-    },
-  ];
+  // Fetch news from the backend
+  useEffect(() => {
+    axiosInstance
+      .get("/news")  // Assuming you're using axiosInstance for API calls
+      .then((response) => {
+        const filteredNews = response.data.filter(
+          (item) => item.category.name === "Side News"
+        );
+        setNews(filteredNews);
+        setLoading(false); // Set loading to false after data is fetched
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the news:", error);
+        setError("Failed to fetch news. Please try again later.");
+        setLoading(false); // Set loading to false if there’s an error
+      });
+  }, []);
+
+  if (loading) {
+    return <div>Loading side News...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (news.length === 0) {
+    return <div>No side News Available</div>;
+  }
 
   return (
-    <div className="side-news w-full md:1/4 border border-gray-300 p-4 ">
+    <div className="side-news w-full md:1/4 border border-gray-300 p-4">
       {/* Tab Buttons */}
       <div className="flex justify-between border-b-2 border-gray-200 mb-4">
+        {/* Placeholder for tab buttons */}
         {/* {["Recent", "Popular", "Comments"].map((tab) => (
           <button
             key={tab}
@@ -55,20 +58,20 @@ function SideNews() {
 
       {/* News Content */}
       <div className="grid grid-cols-1 gap-4">
-        {newsItems.map((item) => (
+        {news.map((item) => (
           <div
             key={item.id}
             className="flex items-center bg-white shadow p-3 rounded-lg"
           >
-            <img
-              src={item.image}
-              alt={item.title}
-              className="w-16 h-16 rounded-md object-cover mr-4"
-            />
+            {item.image && (
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-16 h-16 rounded-md object-cover mr-4"
+              />
+            )}
             <div>
-              <h3 className="text-blue-600 font-medium text-sm">
-                {item.title}
-              </h3>
+              <h3 className="text-blue-600 font-medium text-sm">{item.title}</h3>
               <p className="text-gray-500 text-xs">{item.date}</p>
             </div>
           </div>

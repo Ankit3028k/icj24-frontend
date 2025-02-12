@@ -3,11 +3,11 @@ import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 const NewsCategory = () => {
   const categories = [
-    { name: "मध्यप्रदेश", link: "/mp-news" },
-    { name: "राजनीति", link: "/rajniti" },
-    { name: "क्राइम", link: "/crime" },
-    { name: "अध्यात्म", link: "/spiritual" },
-    { name: "टेक्नोलॉजी", link: "/technology" },
+    { name: "मध्यप्रदेश", link: "/मध्यप्रदेश  " },
+    { name: "राजनीति", link: "/राजनीति" },
+    { name: "क्राइम", link: "/क्राइम" },
+    { name: "अध्यात्म", link: "/अध्यात्म" },
+    { name: "टेक्नोलॉजी", link: "/टेक्नोलॉजी" },
     { name: "Jara Hatke", link: "/jarahatke" },
   ];
 
