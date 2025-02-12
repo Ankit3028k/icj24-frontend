@@ -52,10 +52,10 @@ function NavBar() {
               <Link to="/मध्यप्रदेश">मध्यप्रदेश</Link>
             </span>
             <div className="dropdown-content bg-white text-black">
-              <Link to="/indore">इंदौर</Link>
-              <Link to="/bhopal">भोपाल</Link>
-              <Link to="/ujjain">उज्जैन</Link>
-              <Link to="/jabalpur">जबलपुर</Link>
+              <Link to="/इंदौर">इंदौर</Link>
+              <Link to="/भोपाल">भोपाल</Link>
+              <Link to="/उज्जैन">उज्जैन</Link>
+              <Link to="/जबलपुर">जबलपुर</Link>
             </div>
           </div>
 
@@ -69,7 +69,7 @@ function NavBar() {
             <Link to="/अध्यात्म">अध्यात्म</Link>
           </span>
           <span className="col-span-1 hidden sm:block">
-            <Link to="/jarahatke">Jara Hatke</Link>
+            <Link to="/जरा-हटके">जरा-हटके</Link>
           </span>
           <span className="col-span-1 hidden sm:block">
             <Link to="/टेक्नोलॉजी">टेक्नोलॉजी</Link>
@@ -143,10 +143,10 @@ function NavBar() {
               className="w-full p-2 bg-white text-black border border-gray-300 rounded-md mt-2"
             >
               <option value="" ></option>
-              <option value="/indore">इंदौर</option>
-              <option value="/bhopal">भोपाल</option>
-              <option value="/ujjain">उज्जैन</option>
-              <option value="/jabalpur">जबलपुर</option>
+              <option value="/इंदौरe">इंदौर</option>
+              <option value="/भोपाल">भोपाल</option>
+              <option value="/उज्जैन">उज्जैन</option>
+              <option value="/जबलपुर">जबलपुर</option>
             </select></div>
               
               {/* <div className="dropdown-content bg-white text-black right-15">
@@ -179,11 +179,11 @@ function NavBar() {
               अध्यात्म
             </Link>
             <Link
-              to="/jarahatke"
+              to="/जरा-हटके"
               className="block p-2 text-gray-700 hover:text-blue-600"
               onClick={toggleMobileMenu}
             >
-              Jara Hatke
+              जरा-हटके
             </Link>
             <Link
               to="टेक्नोलॉजी"

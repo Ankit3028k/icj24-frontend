@@ -11,7 +11,7 @@ function TrendingNews() {
       .get("/news")
       .then((response) => {
         const filteredNews = response.data.filter(
-          (item) => item.category.name === "ट्रेंडिंग न्यूज़" && item.isFeatured===true
+          (item) => item.category.name === "ट्रेंडिंग" && item.isFeatured===true
         );
         setNews(filteredNews);
         setLoading(false);

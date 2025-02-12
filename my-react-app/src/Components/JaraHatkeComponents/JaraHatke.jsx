@@ -1,51 +1,47 @@
-import React, { useState } from "react";
-import JaraHatkePage from "../../pages/JaraHatkePage";
+import React, { useState, useEffect } from "react"; // Importing useEffect
+import axiosInstance from "../Admin/axiosConfig"; // Make sure axiosInstance is correctly imported
 
 function JaraHatke() {
-  const [news, setNews] = useState([
-    {
-      title: "News 1",
-      imageUrl:
-        "https://icj24.com/wp-content/uploads/2025/01/c670f414-e347-44cd-bf96-d8016cffeb4b.jpg",
-      heading: "The future of possible innovation for business company.",
-      date: "November 16, 2017",
-      url: "#",
-    },
-    {
-      title: "News 2",
-      imageUrl:
-        "https://icj24.com/wp-content/uploads/2025/01/08e1e5c2-e35f-47b9-b176-d8ad01285dc9.jpg",
-      heading: "The future of possible innovation for IT company.",
-      date: "November 16, 2017",
-      url: "#",
-    },
-    {
-      title: "News 3",
-      imageUrl:
-        "https://icj24.com/wp-content/uploads/2025/01/e2ab42c2-09dc-4d59-ab06-f57a65c70bf5.jpg",
-      heading: "The future of possible innovation for web development.",
-      date: "November 16, 2017",
-      url: "#",
-    },
-    {
-      title: "News 4",
-      imageUrl:
-        "https://icj24.com/wp-content/uploads/2025/01/d72f55ce-7eb4-4b02-ba90-8f147cdf23a2.jpg",
-      heading: "The future of possible innovation for Google.",
-      date: "November 16, 2017",
-      url: "#",
-    },
-    {
-      title: "News 5",
-      imageUrl:
-        "https://icj24.com/wp-content/uploads/2025/01/d72f55ce-7eb4-4b02-ba90-8f147cdf23a2.jpg",
-      heading: "The future of possible innovation for AI.",
-      date: "November 16, 2017",
-      url: "#",
-    },
-  ]);
+  const [news, setNews] = useState([]); // State for the news
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
 
-  const isEven = news.length % 2 === 0;
+  // Fetch news from the backend
+  useEffect(() => {
+    axiosInstance
+      .get("/news")  // Assuming you're using axiosInstance for API calls
+      .then((response) => {
+        const filteredNews = response.data.filter(
+          (item) => item.category.name === "c" && item.isFeatured === true
+        );
+        setNews(filteredNews); // Set the filtered news data to state
+        setLoading(false); // Set loading to false after data is fetched
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the news:", error);
+        setError("Failed to fetch news. Please try again later.");
+        setLoading(false); // Set loading to false if there’s an error
+      });
+  }, []); // Empty dependency array to run this effect only once
+
+  if (loading) {
+    return <div>Loading Jara Hatke News...</div>; // Loading state
+  }
+
+  if (error) {
+    return <div>{error}</div>; // Error state
+  }
+
+  if (news.length === 0) {
+    return <div>No Jara Hatke News Available</div>; // If no news is available
+  }
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return date.toLocaleDateString('en-IN', options); // 'en-IN' ensures the correct format
+  };
+
+  const isEven = news.length % 2 === 0; // Checks if the number of news items is even or odd
 
   return (
     <div className="m-2 px-4 sm:px-6 py-8 border border-gray-300">
@@ -53,8 +49,8 @@ function JaraHatke() {
       <div
         className={`grid gap-6 ${
           isEven
-            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-            : "grid-cols-1 md:grid-cols-2 lg:grid-cols-6"
+            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"  // Even case: 1, 2, or 4 columns
+            : "grid-cols-1 md:grid-cols-2 lg:grid-cols-6"  // Odd case: 1, 2, or 6 columns
         }`}
       >
         {news.map((newsItem, index) => (
@@ -71,8 +67,8 @@ function JaraHatke() {
             {/* Image */}
             <div className="relative w-full h-[250px] sm:h-[350px]">
               <img
-                src={newsItem.imageUrl}
-                alt={`Image for news: ${newsItem.heading}`}
+                src={newsItem.image}
+                alt={`Image for news: ${newsItem.title}`}
                 className="absolute inset-0 w-full h-full object-cover rounded-md"
               />
             </div>
@@ -81,10 +77,12 @@ function JaraHatke() {
             <div className="absolute inset-0 p-4 flex flex-col justify-end bg-gradient-to-t from-black via-transparent to-transparent">
               <a href={newsItem.url} className="block">
                 <h3 className="text-xl font-semibold text-white truncate">
-                  {newsItem.heading}
+                  {newsItem.title}
                 </h3>
               </a>
-              <p className="text-gray-200 mt-2">{newsItem.date}</p>
+              <p className="text-gray-200 mt-2">📅
+              {formatDate(news[0].datePosted)}
+              </p>
             </div>
           </div>
         ))}

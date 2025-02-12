@@ -13,7 +13,7 @@ const Bhopal = () => {
       .get("/news")  // Assuming you're using axios for API calls
       .then((response) => {
         const filteredNews = response.data.filter(
-          (item) => item.category.name === "मध्यप्रदेश न्यूज़" && item.isFeatured === true
+          (item) => item.category.name === "भोपाल" && item.isFeatured === true
         );
         setNews(filteredNews); // Set the filtered news data to state
         setLoading(false); // Set loading to false after data is fetched
@@ -32,6 +32,9 @@ const Bhopal = () => {
   if (error) {
     return <div>{error}</div>;
   }
+  if (news.length === 0) {
+    return <div>No Bhopal News Available</div>;
+  }
 
   return (
     <div className="max-w-screen-xl mx-auto p-5">
@@ -42,7 +45,7 @@ const Bhopal = () => {
         <div key={index} className="bg-white flex flex-col md:flex-row rounded-lg shadow-lg overflow-hidden mb-8">
           <div className="relative w-full md:w-1/3">
             <img
-              src={article.imageUrl}
+              src={article.image}
               alt={article.title}
               className="w-full h-48 sm:h-64 md:h-full object-cover"
             />
@@ -51,7 +54,7 @@ const Bhopal = () => {
             </div>
           </div>
           <div className="p-4 md:w-2/3">
-            <p className="text-gray-600 mb-4 text-sm sm:text-base">{article.description}</p>
+            <p className="text-gray-600 mb-4 text-sm sm:text-base">{article.content}</p>
             <a
               href={article.link}
               className="inline-block text-blue-600 font-semibold border-2 border-blue-600 py-2 px-4 sm:px-6 rounded-md transition-colors duration-300 hover:bg-blue-600 hover:text-white"

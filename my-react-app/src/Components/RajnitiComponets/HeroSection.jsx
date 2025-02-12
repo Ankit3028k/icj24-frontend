@@ -12,7 +12,7 @@ function Rajniti() {
       .get("/news")
       .then((response) => {
         const filteredNews = response.data.filter(
-          (item) => item.category.name === "राजनीति न्यूज़" && item.isFeatured===true
+          (item) => item.category.name === "राजनीति" && item.isFeatured===true
         );
         setNews(filteredNews);
         setLoading(false);  // Set loading to false after data is fetched

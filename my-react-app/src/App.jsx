@@ -11,12 +11,10 @@ import BhopalPage from "./pages/BhopalPage.jsx";
 import UjjainPage from "./pages/UjjainPage.jsx";
 import JabalpurPage from "./pages/JabalpurPage.jsx";
 import SpritualPages from "./pages/Spritual.jsx";
-
 import Login from "./Components/Auth/Login.jsx";
 import ProtectedRoute from "./Components/ProtectedRoute.jsx";
 import Editor from "./pages/Editor.jsx";
 import Analyst from "./pages/Analyst.jsx";
-
 import CrimePage from "./pages/CrimePage.jsx";
 import JaraHatkePage from "./pages/JaraHatkePage.jsx";
 import TechnologyPage from "./pages/TechnologyPage.jsx";
@@ -40,34 +38,31 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/मध्यप्रदेश" element={<MpNewsPage />} />
-
-        <Route path="/राजनीति"element={<RajnitiPage/>}/>
-        <Route path="/spritual"element={<SpritualPages/>}/>
-        <Route element={<ProtectedRoute requiredRole="Admin"/>}>
+        <Route path="/राजनीति" element={<RajnitiPage />} />
+        <Route path="/spritual" element={<SpritualPages />} />
+        <Route element={<ProtectedRoute requiredRole="Admin" />}>
           <Route path="/admin" element={<Admin />} />
-          </Route>
-          <Route element={<ProtectedRoute requiredRole="Editor"/>}>
+        </Route>
+        <Route element={<ProtectedRoute requiredRole="Editor" />}>
           <Route path="/editor" element={<Editor />} />
-          </Route>
-          <Route element={<ProtectedRoute requiredRole="Analyst"/>}>
+        </Route>
+        <Route element={<ProtectedRoute requiredRole="Analyst" />}>
           <Route path="/analyst" element={<Analyst />} />
           {/* Add protected routes for other pages */}
         </Route>
-       
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<h1>Not Found</h1>} />/
-
-        
         <Route path="/क्राइम" element={<CrimePage />} />
         <Route path="/अध्यात्म" element={<SpritualPages />} />
-        <Route path="/jaraHatke" element={<JaraHatkePage />} />
+        <Route path="/जरा-हटके" element={<JaraHatkePage />} />
         <Route path="/टेक्नोलॉजी" element={<TechnologyPage />} />
-        <Route path="/indore" element={<IndorePage />} />
-        <Route path="/bhopal" element={<BhopalPage />} />
-        <Route path="/ujjain" element={<UjjainPage />} />
-        <Route path="/jabalpur" element={<JabalpurPage />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/इंदौर" element={<IndorePage />} />
+        <Route path="/भोपाल" element={<BhopalPage />} />
+        <Route path="/उज्जैन" element={<UjjainPage />} />
+        <Route path="/जबलपुर" element={<JabalpurPage />} />
+      
 
+        {/* <Route path="/admin" element={<Admin />} /> */}
       </Routes>
     </BrowserRouter>
   );

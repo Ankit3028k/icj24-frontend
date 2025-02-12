@@ -12,7 +12,7 @@ function NewsSection() {
       try {
         const response = await axiosInstance.get('/news'); // Your backend URL endpoint for news
         // Filter news where category name is "मध्यप्रदेश न्यूज़"
-        const filteredNews = response.data.filter(item => item.category?.name === "मध्यप्रदेश न्यूज़" && item.isFeatured===true);
+        const filteredNews = response.data.filter(item => item.category?.name === "मध्यप्रदेश" && item.isFeatured===true);
         setNews(filteredNews);  // Set the filtered news data to state
       } catch (error) {
         console.error("Error fetching news:", error);

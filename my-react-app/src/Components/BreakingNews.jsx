@@ -19,7 +19,7 @@ const BreakingNews = () => {
         const data = response.data;
 
         // Filter news items for 'breaking news' category
-        const filteredNews = data.filter((newsItem) => newsItem.category.name === "breaking news" && newsItem.isFeatured===true);
+        const filteredNews = data.filter((newsItem) => newsItem.category.name === "ब्रेकिंग" && newsItem.isFeatured===true);
         setNewsItems(filteredNews);
         setLoading(false); // Set loading to false after news is fetched
       } catch (error) {
