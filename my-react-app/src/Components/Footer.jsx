@@ -17,6 +17,13 @@ function Footer() {
       .catch(error => console.error("Error fetching news:", error));
   }, []);
 
+  // Function to format the date as "11 Feb 2025"
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return date.toLocaleDateString('en-IN', options); // 'en-IN' ensures the correct format
+  };
+
   return (
     <div className="bg-gray-800 text-white py-8">
       <div className="container mx-auto px-4">
@@ -35,7 +42,7 @@ function Footer() {
               {trendingNews.length > 0 ? (
                 trendingNews.map((news, index) => (
                   <div key={index}>
-                    <h5 className="text-sm text-gray-400">{news.date}</h5>
+                    <h5 className="text-sm text-gray-400">{formatDate(news.datePosted)}</h5>
                     <p className="text-base">{news.title}</p>
                   </div>
                 ))
@@ -49,12 +56,11 @@ function Footer() {
             <h2 className="text-2xl font-bold mb-4">Most Viewed</h2>
             <div className="grid grid-cols-2 gap-4">
               {["मध्यप्रदेश", "राजनीति", "क्राइम", "अध्यात्म", "JaraHatke", "टेक्नोलॉजी"].map((buttonText, index) => (
-             <Link to={`/${buttonText}`}>   <button
-                  key={index}
-                  className="bg-transparent border-2 border-gray-600 hover:bg-red-600 hover:text-white text-white-600 px-4 py-2 rounded-md transition duration-200"
-                >
-                  {buttonText}
-                </button></Link>
+                <Link to={`/${buttonText}`} key={index}>
+                  <button className="bg-transparent border-2 border-gray-600 hover:bg-red-600 hover:text-white text-white-600 px-4 py-2 rounded-md transition duration-200">
+                    {buttonText}
+                  </button>
+                </Link>
               ))}
             </div>
           </section>
