@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axiosInstance from '../Admin/axiosConfig'; // Assuming you are importing axiosInstance
+import { Link } from "react-router-dom";
 
 const NewsGrid = () => {
   const [news, setNews] = useState([]); // State for news
@@ -54,9 +55,9 @@ const NewsGrid = () => {
             alt={news[0].title}
             className="w-full h-auto rounded-lg"
           />
-          <h2 className="text-2xl font-bold mt-2 border-b-2 border-gray-300 pb-2">
+          <Link to={`/full-news/${news[0].id}`} ><h2 className="text-2xl font-bold mt-2 border-b-2 border-gray-300 pb-2">
             {news[0].title}
-          </h2>
+          </h2></Link>
           <p className="text-gray-600">{news[0].content}</p>
           <p className="text-green-600 font-semibold">
             📅 {formatDate(news[0].datePosted)}
@@ -74,9 +75,9 @@ const NewsGrid = () => {
                 className="w-24 h-16 rounded-lg"
               />
               <div>
-                <h3 className="font-bold text-lg border-b border-gray-200 pb-1">
+              <Link to={`/full-news/${article.id}`} ><h3 className="font-bold text-lg border-b border-gray-200 pb-1">
                   {article.title}
-                </h3>
+                </h3></Link>
                 <p className="text-green-600 font-semibold">
                    📅 {formatDate(news[0].datePosted)}
                 </p>

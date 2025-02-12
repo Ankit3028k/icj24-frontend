@@ -66,12 +66,12 @@ const Technology = () => {
                 />
               </div>
               <div className="flex-1">
-                <h3 className="text-2xl font-semibold text-gray-800 mb-3 hover:text-blue-600">
+                 <h3 className="text-2xl font-semibold text-gray-800 mb-3 hover:text-blue-600">
                   {article.title}
                 </h3>
                 <p className="text-gray-600 mb-4">{article.content}</p>
                 <a
-                  href={article.link}
+                  href={`/full-news/${article.id}`}
                   className="text-blue-600 font-semibold hover:text-blue-800 transition duration-200"
                 >
                   Read More

@@ -12,7 +12,7 @@ function CrimeSection() {
       .get("/news")  // Assuming you're using axios for API calls
       .then((response) => {
         const filteredNews = response.data.filter(
-          (item) => item.category.name === "c" && item.isFeatured === true
+          (item) => item.category.name === "क्राइम" && item.isFeatured === true
         );
         setNews(filteredNews); // Set the filtered news data to state
         setLoading(false); // Set loading to false after data is fetched
@@ -77,7 +77,7 @@ function CrimeSection() {
 
             {/* Text Overlay */}
             <div className="absolute inset-0 p-4 flex flex-col justify-end bg-gradient-to-t from-black via-transparent to-transparent">
-              <a href={newsItem.url} className="block">
+            <a href={`/full-news/${newsItem.id}`} className="block">
                 <h3 className="text-xl font-semibold text-white truncate">
                   {newsItem.title}
                 </h3>

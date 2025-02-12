@@ -56,7 +56,7 @@ const Indore = () => {
           <div className="p-4 md:w-2/3">
             <p className="text-gray-600 mb-4 text-sm sm:text-base">{article.content}</p>
             <a
-              href={article.link}
+              href={`/full-news/${article.id}`}
               className="inline-block text-blue-600 font-semibold border-2 border-blue-600 py-2 px-4 sm:px-6 rounded-md transition-colors duration-300 hover:bg-blue-600 hover:text-white"
             >
               Read More
