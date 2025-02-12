@@ -12,7 +12,7 @@ function SportsNews() {
       .get("/news")
       .then((response) => {
         const filteredNews = response.data.filter(
-          (item) => item.category.name === "Sports News"
+          (item) => item.category.name === "Sports News" && item.isFeatured===true
         );
         setNews(filteredNews);
         setLoading(false); // Set loading to false after data is fetched
@@ -25,7 +25,7 @@ function SportsNews() {
   }, []);
 
   if (loading) {
-    return <div>Loading Trending News...</div>;
+    return <div>Loading Sports News...</div>;
   }
 
   if (error) {
@@ -33,7 +33,7 @@ function SportsNews() {
   }
 
   if (news.length === 0) {
-    return <div>No Trending News Available</div>;
+    return <div>No Sports News Available</div>;
   }
   const formatDate = (dateString) => {
     const date = new Date(dateString);

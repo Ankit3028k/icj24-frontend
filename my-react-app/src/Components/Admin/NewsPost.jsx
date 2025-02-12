@@ -9,6 +9,8 @@ const AdminNewsForm = ({ editNews, fetchNewses }) => {
         author: '',
         category: '',
         image: null,
+        isFeatured: false,  // Add isFeatured field
+        isDrafted: false,   // Add isDrafted field
     });
 
     const [categories, setCategories] = useState([]);
@@ -27,6 +29,8 @@ const AdminNewsForm = ({ editNews, fetchNewses }) => {
                         author: data.author,
                         category: data.category,
                         image: data.image,
+                        isFeatured: data.isFeatured,  // Set isFeatured from the response
+                        isDrafted: data.isDrafted,    // Set isDrafted from the response
                     });
                 } catch (error) {
                     console.error('Error fetching News details:', error);
@@ -66,33 +70,38 @@ const AdminNewsForm = ({ editNews, fetchNewses }) => {
             reader.readAsDataURL(file);
         }
     };
-// Utility to convert base64 image to Blob
-const dataURItoBlob = (dataURI) => {
-    const byteString = atob(dataURI.split(',')[1]);
-    const ab = new ArrayBuffer(byteString.length);
-    const ia = new Uint8Array(ab);
-    for (let i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-    }
-    return new Blob([ab], { type: 'image/jpeg' });
-};
+
+    // Utility to convert base64 image to Blob
+    const dataURItoBlob = (dataURI) => {
+        const byteString = atob(dataURI.split(',')[1]);
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        return new Blob([ab], { type: 'image/jpeg' });
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
+       
+
         const formData = new FormData();
         formData.append('title', formNews.title);
         formData.append('content', formNews.content);
         formData.append('richDescription', formNews.richDescription);
         formData.append('author', formNews.author);
         formData.append('category', formNews.category);
-        
+        formData.append('isFeatured', formNews.isFeatured);  // Append isFeatured
+        formData.append('isDrafted', formNews.isDrafted);    // Append isDrafted
+
         // If there's an image, append it as well
         if (imageFile) {
             const blob = dataURItoBlob(imageFile);  // Convert base64 to a Blob object
             formData.append('image', blob, 'image.jpg');
         }
-    
+
         try {
             if (editNews) {
                 await axiosInstance.put(`/news/${editNews}`, formData, {
@@ -107,14 +116,14 @@ const dataURItoBlob = (dataURI) => {
                     },
                 });
             }
-    
+
             fetchNewses();
             resetForm();
         } catch (error) {
             console.error('Error saving News:', error);
         }
     };
-    
+
     const resetForm = () => {
         setFormNews({
             title: '',
@@ -123,6 +132,8 @@ const dataURItoBlob = (dataURI) => {
             author: '',
             category: '',
             image: null,
+            isFeatured: false,
+            isDrafted: false,
         });
         setImageFile(null);
     };
@@ -188,6 +199,15 @@ const dataURItoBlob = (dataURI) => {
                 onChange={handleInputChange}
                 className="w-full p-2 border border-gray-300 rounded"
             />
+            <input
+    type="checkbox"
+    name="isFeatured"
+    checked={formNews.isFeatured}
+    onChange={(e) => setFormNews({ ...formNews, isFeatured: e.target.checked })}
+    className="p-2 border border-gray-300 rounded"
+/>
+<label className="ml-2">Is display</label>
+
 
             <div className="flex space-x-4">
                 <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-500">

@@ -9,6 +9,7 @@ import AdminCategoryList from '../Components/Admin/CategoriesList';
 import Register from '../Components/Auth/Register'; // Corrected import
 import VideoNews from '../Components/Admin/VideoAdminPost'; // Import VideoNews Component
 import VideoNewsList from '../Components/Admin/VideoNewsList';
+import DraftedNews from '../Components/Admin/DraftedNews';
 
 const AdminPage = () => {
   const [users, setUsers] = useState([]);
@@ -146,6 +147,14 @@ const AdminPage = () => {
                   Video News
                 </button>
               </li>
+              <li>
+                <button
+                  className={`nav-link block px-4 py-2 rounded-md text-gray-700 ${activeSection === 'draftedNews' ? 'bg-gray-300 font-semibold' : 'hover:bg-gray-200'}`}
+                  onClick={() => { setActiveSection('draftedNews'); setIsSidebarOpen(false); }}
+                >
+                  Drafted News
+                </button>
+              </li>
             </ul>
           </div>
         </div>
@@ -178,6 +187,12 @@ const AdminPage = () => {
             </>
           )}
         </div>
+          {activeSection === 'draftedNews' && (
+            <>
+            <DraftedNews/>
+            </>
+          )}
+        
       </div>
 
       {/* Logout Button */}

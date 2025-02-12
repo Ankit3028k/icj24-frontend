@@ -12,7 +12,7 @@ function Rajniti() {
       .get("/news")
       .then((response) => {
         const filteredNews = response.data.filter(
-          (item) => item.category.name === "राजनीति न्यूज़"
+          (item) => item.category.name === "राजनीति न्यूज़" && item.isFeatured===true
         );
         setNews(filteredNews);
         setLoading(false);  // Set loading to false after data is fetched
@@ -25,7 +25,7 @@ function Rajniti() {
   }, []);
 
   if (loading) {
-    return <div>Loading Trending News...</div>;
+    return <div>Loading Rajniti News...</div>;
   }
 
   if (error) {
@@ -33,7 +33,7 @@ function Rajniti() {
   }
 
   if (news.length === 0) {
-    return <div>No Trending News Available</div>;
+    return <div>No rajniti  News Available</div>;
   }
 
   const isEven = news.length % 2 === 0;
