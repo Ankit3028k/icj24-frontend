@@ -43,7 +43,7 @@ const BreakingNews = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center my-2 px-6 responsive-mx3">
+      <div  className="flex justify-center my-2 px-6 responsive-mx3">
         <div className="p-0 bg-red-600 inline-flex py-3 px-4 text-white">
           <span className="font-bold text-lg">BREAKING NEWS</span>
         </div>
@@ -56,7 +56,7 @@ const BreakingNews = () => {
 
   if (error) {
     return (
-      <div className="flex justify-center my-2 px-6 responsive-mx3">
+      <div  className="flex justify-center my-2 px-6 responsive-mx3">
         <div className="p-0 bg-red-600 inline-flex py-3 px-4 text-white">
           <span className="font-bold text-lg">BREAKING NEWS</span>
         </div>
@@ -68,9 +68,9 @@ const BreakingNews = () => {
   }
 
   return (
-    <div className="flex justify-center my-2 px-6 responsive-mx3">
+    <div id={newsItems[0].category.name} className="flex justify-center my-2 px-6 responsive-mx3">
       <div className="p-0 bg-red-600 inline-flex py-3 px-4 text-white">
-        <span className="font-bold text-lg">BREAKING NEWS</span>
+        <span className="font-bold text-lg">{newsItems[0].category.name} न्यूज़</span>
       </div>
       <div className="bg-gray-600 text-white py-3 px-4 flex items-center space-x-4 inline-flex w-10/12">
         {/* Display the current news item */}

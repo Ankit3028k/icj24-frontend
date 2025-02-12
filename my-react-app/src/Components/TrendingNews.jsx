@@ -37,7 +37,7 @@ function TrendingNews() {
 
   return (
     <div className="m-2 px-4 sm:px-6 py-8 border border-gray-300">
-      <h2 className="text-2xl sm:text-3xl font-bold mb-6">  {news.length > 0 && news[0].category.name}</h2>
+      <h2 id={news[0].category.name} className="text-2xl sm:text-3xl font-bold mb-6">  {news.length > 0 && news[0].category.name} न्यूज़</h2>
       <div
         className={`grid gap-4 ${
           news.length === 1

@@ -44,9 +44,9 @@ const NewsGrid = () => {
   };
 
   return (
-    <div className="m-7 p-4 border border-gray-300 rounded-lg shadow-md">
+    <div id={news[0].category.name} className="m-7 p-4 border border-gray-300 rounded-lg shadow-md">
       <h1 className="text-2xl font-bold text-gray-800 border-b-2 border-gray-400 pb-2 mb-4">
-        अध्यात्म न्यूज़
+        {news[0].category.name} न्यूज़
       </h1>
       <div className="grid gap-4 grid-cols-1 md:grid-cols-3 lg:grid-cols-3">
         <div className="md:col-span-2">

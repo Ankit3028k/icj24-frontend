@@ -49,8 +49,8 @@ function SportsNews() {
   };
 
   return (
-    <div className="m-6 p-6 border border-gray-300 max-w-full rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-4">खेल न्यूज़</h2>
+    <div id={news[0].category.name} className="m-6 p-6 border border-gray-300 max-w-full rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold mb-4">{news[0].category.name} न्यूज़</h2>
       <div className="h-1 w-16 bg-red-500 mb-6"></div>
 
       {/* Main News */}
