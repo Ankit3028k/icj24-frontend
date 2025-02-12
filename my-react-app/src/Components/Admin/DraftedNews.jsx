@@ -26,28 +26,30 @@ const DraftedNews = () => {
 
   const handleApprove = async (newsId) => {
     try {
-      // Update the isFeatured status of the specific news
+      // Update the isFeatured and isDrafted status of the specific news
       const updatedNewsList = newsList.map(news =>
-        news.id === newsId ? { ...news, isFeatured: true } : news
+        news.id === newsId ? { ...news, isFeatured: true, isDrafted: true } : news
       );
       setNewsList(updatedNewsList);
-
-      // Send a PATCH request to update the isFeatured status
+  
+      // Send a PATCH request to update the isFeatured and isDrafted status
       const response = await axiosInstance.patch(`/news/${newsId}`, {
-        isFeatured: true
+        isFeatured: true,
+        isDrafted: true, // Update this as well
       });
-
+  
       // Check for errors in the response
       if (response.status !== 200) {
         throw new Error('Failed to update news');
       }
-
+  
       const updatedNews = response.data;
       console.log('News updated:', updatedNews);
     } catch (error) {
       console.error('Error updating news:', error);
     }
   };
+  
 
   return (
     <div className="container mx-auto p-4">

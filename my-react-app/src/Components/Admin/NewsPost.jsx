@@ -85,8 +85,6 @@ const AdminNewsForm = ({ editNews, fetchNewses }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-       
-
         const formData = new FormData();
         formData.append('title', formNews.title);
         formData.append('content', formNews.content);
@@ -141,6 +139,15 @@ const AdminNewsForm = ({ editNews, fetchNewses }) => {
     const handleSwitchMode = () => {
         setIsEditing((prev) => !prev);
         resetForm(); // Reset the form when switching modes
+    };
+
+    const handleFeaturedChange = (e) => {
+        const { checked } = e.target;
+        setFormNews((prev) => ({
+            ...prev,
+            isFeatured: checked,
+            isDrafted: checked, // Set isDrafted to true when isFeatured is checked
+        }));
     };
 
     return (
@@ -199,15 +206,16 @@ const AdminNewsForm = ({ editNews, fetchNewses }) => {
                 onChange={handleInputChange}
                 className="w-full p-2 border border-gray-300 rounded"
             />
-            <input
-    type="checkbox"
-    name="isFeatured"
-    checked={formNews.isFeatured}
-    onChange={(e) => setFormNews({ ...formNews, isFeatured: e.target.checked })}
-    className="p-2 border border-gray-300 rounded"
-/>
-<label className="ml-2">Is display</label>
+           
 
+            <input
+                type="checkbox"
+                name="isFeatured"
+                checked={formNews.isFeatured}
+                onChange={handleFeaturedChange}
+                className="p-2 border border-gray-300 rounded"
+            />
+            <label className="ml-2">Is Featured</label>
 
             <div className="flex space-x-4">
                 <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-500">
