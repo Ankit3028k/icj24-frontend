@@ -78,7 +78,7 @@ const Slideshow = () => {
                 {slidesWorld[currentIndexWorld].category.name}
               </span>
               <a
-                href={slidesWorld[currentIndexWorld].url}
+                href={`/full-news/${slidesWorld[currentIndexWorld].id}`}
                 className="block mt-2 text-lg font-semibold"
               >
                 {slidesWorld[currentIndexWorld].title}
@@ -102,7 +102,7 @@ const Slideshow = () => {
                 {slidesSports[currentIndexSports].category.name}
               </span>
               <a
-                href={slidesSports[currentIndexSports].url}
+                href={`/full-news/${slidesSports[currentIndexSports].id}`}
                 className="block mt-2 text-lg font-semibold"
               >
                 {slidesSports[currentIndexSports].title}
@@ -127,7 +127,7 @@ const Slideshow = () => {
                   {slidesTech[currentIndexTech].category.name}
                 </span>
                 <a
-                  href={slidesTech[currentIndexTech].url}
+                  href={`/full-news/${slidesTech[currentIndexTech].id}`}
                   className="block mt-2 text-sm font-semibold"
                 >
                   {slidesTech[currentIndexTech].title}
@@ -150,7 +150,7 @@ const Slideshow = () => {
                   {slidesEntertainment[currentIndexEntertainment].category.name}
                 </span>
                 <a
-                  href={slidesEntertainment[currentIndexEntertainment].url}
+                  href={`/full-news/${slidesEntertainment[currentIndexEntertainment].id}`}
                   className="block mt-2 text-sm font-semibold"
                 >
                   {slidesEntertainment[currentIndexEntertainment].title}
