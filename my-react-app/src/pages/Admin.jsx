@@ -106,7 +106,7 @@ const AdminPage = () => {
         {/* Sidebar */}
         <div className={`sidebar ${isSidebarOpen ? 'block' : 'hidden'} md:block col-span-3 border-r border-gray-300 bg-white shadow-lg`}>
           <div className="p-4">
-            <img src="https://icj24.com/wp-content/uploads/2024/08/ICJ-LOGO-24-96x96.jpeg" alt="Logo" className="h-12 w-auto mx-auto" />
+            <img src="https://res.cloudinary.com/dtezcrxpw/image/upload/f_auto,q_auto/v1/icj24/mf9hhph8dvlapioyme2j" alt="Logo" className="h-12 w-auto mx-auto" />
             <ul className="flex flex-col space-y-1">
               <li>
                 <button
