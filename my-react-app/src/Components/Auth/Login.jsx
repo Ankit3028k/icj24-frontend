@@ -37,7 +37,7 @@ function LoginPage() {
       console.log(data.token);
   
       // Store JWT token and role in localStorage for further requests
-      localStorage.setItem('token', data.token);
+      localStorage.setItem('icj24',JSON.stringify(data));
       localStorage.setItem('role', data.role);  // Save role to localStorage
   
       // Check role and navigate
