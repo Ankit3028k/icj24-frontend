@@ -37,9 +37,9 @@ const Jabalpur = () => {
   }
 
   return (
-    <div className="max-w-screen-xl mx-auto p-5">
+    <div id={news[0].category.name} className="max-w-screen-xl mx-auto p-5">
       <h2 className="text-2xl font-bold mb-6 text-gray-900 border-b-2 border-gray-300 pb-4">
-        Jabalpur News
+        {news[0].category.name} न्यूज़
       </h2>
       {news.map((article, index) => (  // Use 'news' instead of 'articles'
         <div key={index} className="bg-white flex flex-col md:flex-row rounded-lg shadow-lg overflow-hidden mb-8">
