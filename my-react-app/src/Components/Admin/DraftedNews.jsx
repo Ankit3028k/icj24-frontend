@@ -63,9 +63,12 @@ const DraftedNews = () => {
               key={news.id}
               className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all"
             >
+              <img className='h-28' src={news.image} alt="news image" />
               <h2 className="text-2xl font-semibold mb-2">{news.title}</h2>
               <p className="text-gray-700 mb-4">{news.content}</p>
-              <p className="text-gray-700 mb-4">{news.category.name}</p>
+              <p className="text-gray-700 mb-4">{news.richDescription}</p>
+              <p className="text-gray-700 mb-4">Category:{news.category.name}</p>
+              <p className="text-gray-700 mb-4">Author:{news.author}</p>
               <button
                 onClick={() => handleApprove(news.id)}
                 className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-all"
