@@ -45,7 +45,7 @@ function App() {
         <Route element={<ProtectedRoute requiredRole="Admin" />}>
           <Route path="/admin" element={<Admin />} />
         </Route>
-        <Route element={<ProtectedRoute requiredRole="Editor" />}>
+        <Route element={<ProtectedRoute requiredRole={["Editor", "Author"]} />}>
           <Route path="/editor" element={<Editor />} />
         </Route>
         <Route element={<ProtectedRoute requiredRole="Analyst" />}>

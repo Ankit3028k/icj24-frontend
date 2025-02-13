@@ -48,7 +48,10 @@ function LoginPage() {
         navigate('/editor');
       } else if (role === 'Analyst') {
         navigate('/analyst');
-      } else {
+      }else if (role === 'Author') {
+        navigate('/editor');
+      }
+       else {
         setError('Unauthorized role.');
       }
     } catch (err) {
