@@ -30,7 +30,7 @@ function Footer() {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-8 sm:space-y-0">
           <div className="flex flex-col items-center sm:items-start">
             <img
-              src="https://icj24.com/wp-content/uploads/2024/08/ICJ24-Logo-.png"
+              src="https://res.cloudinary.com/dtezcrxpw/image/upload/f_auto,q_auto/v1/icj24/wqhqwlwn6lezj5imqbvf"
               alt="icj24 logo"
               className="h-12 mb-4"
             />
@@ -68,13 +68,13 @@ function Footer() {
 
         <div className="mt-8 flex justify-between items-center text-sm text-gray-500">
           {/* Copyright text */}
-          <p className="inline-flex">© 2025 ICJ24. All rights reserved.</p>
+          <p className="inline-flex">© 2025 Ankit Gangrade. All rights reserved.</p>
           
           {/* Social media icons */}
           <div className="flex space-x-6 pr-5">
-            <a href="https://www.facebook.com/icjtv24" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            {/* <a href="https://www.facebook.com/icjtv24" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <FaFacebook className="text-white hover:text-blue-500 transition duration-300 text-2xl" />
-            </a>
+            </a> */}
             <a href="https://twitter.com/icjtv24" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
               <FaTwitter className="text-white hover:text-blue-400 transition duration-300 text-2xl" />
             </a>
