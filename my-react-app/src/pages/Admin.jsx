@@ -71,6 +71,8 @@ const AdminPage = () => {
     try {
       await axiosInstance.post('/auth/logout');
       // Redirect or update UI after logout
+      localStorage.removeItem('icj24');
+      localStorage.removeItem('role');
       window.location.href = '/login'; // Redirect to login page after logout
     } catch (error) {
       console.error('Logout failed', error);
