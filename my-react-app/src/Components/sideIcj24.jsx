@@ -23,17 +23,14 @@ function SubscribeNews24() {
       <h2 className="text-2xl font-bold mb-6">SUBSCRIBE ICJ24</h2>
       <div className="h-1 w-20 bg-red-500 mb-8"></div>
       <form className="flex flex-col gap-6">
-        <input
-          type="email"
-          placeholder="Enter Your Email"
-          className="p-4 border border-gray-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-        />
-        <button
+       
+        {/* <button
           type="submit"
           className="bg-red-500 text-white py-4 rounded-lg text-lg font-semibold hover:bg-red-600 transition"
         >
           SUBSCRIBE
-        </button>
+        </button> */}
+        <a href="https://www.youtube.com/@icj24"  className="bg-red-500 text-white py-4 rounded-lg text-lg font-semibold hover:bg-red-600 transition text-center">SUBSCRIBE</a>
       </form>
 
       {/* Calendar Section */}
