@@ -29,7 +29,7 @@ const Slideshow = () => {
           featuredNews.filter((item) => item.category.name === "खेल")
         );
         setSlidesEntertainment(
-          featuredNews.filter((item) => item.category.name === "Entertenment")
+          featuredNews.filter((item) => item.category.name === "ajab gajab")
         );
       })
       .catch((error) => {
