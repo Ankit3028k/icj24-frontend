@@ -50,7 +50,7 @@ function FullNewsPage() {
       </div>
 
       <div className="text-lg text-gray-800 leading-relaxed space-y-6">
-        <p className="text-gray-600">{newsItem.title}</p>
+        {/* <p className="text-gray-600">{newsItem.title}</p> */}
         <p className="text-gray-600">{newsItem.content}</p>
         <p className="text-gray-600">{newsItem.richDescription}</p>
       </div>
