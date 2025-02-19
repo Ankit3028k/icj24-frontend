@@ -10,10 +10,21 @@ function TrendingNews() {
     axiosInstance
       .get("/news")
       .then((response) => {
+        // Filter news to include only "ट्रेंडिंग" category and featured news
         const filteredNews = response.data.filter(
-          (item) => item.category.name === "ट्रेंडिंग" && item.isFeatured===true
+          (item) => item.category.name === "ट्रेंडिंग" && item.isFeatured === true
         );
-        setNews(filteredNews);
+
+        // Sort the news by createdAt (most recent first) and then reverse for LIFO
+        const sortedNews = filteredNews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+        // Reverse the order to make it LIFO (most recent post appears first)
+        const reversedNews = sortedNews.reverse();
+
+        // Take only the 5 most recent news items
+        const latestNews = reversedNews.slice(0, 5);
+
+        setNews(latestNews);
         setLoading(false);
       })
       .catch((error) => {
@@ -37,7 +48,9 @@ function TrendingNews() {
 
   return (
     <div className="m-2 px-4 sm:px-6 py-8 border border-gray-300">
-      <h2 id={news[0].category.name} className="text-2xl sm:text-3xl font-bold mb-6">  {news.length > 0 && news[0].category.name} न्यूज़</h2>
+      <h2 id={news[0].category.name} className="text-2xl sm:text-3xl font-bold mb-6">
+        {news.length > 0 && news[0].category.name} न्यूज़
+      </h2>
       <div
         className={`grid gap-4 ${
           news.length === 1

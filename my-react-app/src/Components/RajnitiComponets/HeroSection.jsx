@@ -13,9 +13,16 @@ function Rajniti() {
       .get("/news")
       .then((response) => {
         const filteredNews = response.data.filter(
-          (item) => item.category.name === "राजनीति" && item.isFeatured===true
+          (item) => item.category.name === "राजनीति" && item.isFeatured === true
         );
-        setNews(filteredNews);
+
+        // Sort the news by createdAt (most recent first)
+        const sortedNews = filteredNews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+        // Take only the 5 most recent news items
+        const latestNews = sortedNews.slice(0, 5);
+
+        setNews(latestNews);
         setLoading(false);  // Set loading to false after data is fetched
       })
       .catch((error) => {
@@ -34,55 +41,48 @@ function Rajniti() {
   }
 
   if (news.length === 0) {
-    return <div>No rajniti  News Available</div>;
+    return <div>No Rajniti News Available</div>;
   }
 
   const isEven = news.length % 2 === 0;
-  let remainingNews = Math.floor( news.length-1);
-  const colSpanValue = isEven ? 3 : Math.floor(12 / remainingNews);
 
   return (
     <div id={news[0].category.name} className="m-2 px-4 py-8 border border-gray-300">
-  <h2 className="text-2xl font-bold mb-6 pl-3">
-    {news.length > 0 && news[0].category.name} न्यूज़
-  </h2>
-  {/* Grid layout adjusted for mobile view */}
-  <div className={`grid gap-4 ${isEven ? 'grid-cols-4' : 'grid-cols-12'} 
-        max-md:grid-cols-1`}>
-    {news.map((newsItem, index) => (
-      <div
-        className={`news-item bg-white p-4 shadow-lg border border-gray-300 
-          ${news.length % 2 !== 0
-            ? index === 0
-              ? 'col-span-12' // Large news item takes full width
-              : `lg:col-span-${colSpanValue} row-span-3` // Other items have dynamic span
-            : `lg:col-span-2`} 
-          max-md:col-span-1`} // Ensure each item spans 1 column on mobile
-        key={index}
-      >
-        <div className="relative flex justify-center items-center">
-          <img
-            src={newsItem.image}
-            alt={`News ${index + 1}`}
-            className="w-full object-cover rounded-md"
-          />
-          <Link to={`/full-news/${newsItem.id}`}
-            href={newsItem.url}
-            className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-4"
+      <h2 className="text-2xl font-bold mb-6 pl-3">
+        {news.length > 0 && news[0].category.name} न्यूज़
+      </h2>
+      {/* Grid layout adjusted for mobile view */}
+      <div className={`grid gap-4 ${isEven ? 'grid-cols-4' : 'grid-cols-12'} max-md:grid-cols-1`}>
+        {news.map((newsItem, index) => (
+          <div
+            className={`news-item bg-white p-4 shadow-lg border border-gray-300 
+              ${news.length % 2 !== 0
+              ? index === 0
+                ? 'col-span-12' // Large news item takes full width
+                : 'lg:col-span-6' // Other items have dynamic span
+              : 'lg:col-span-2'} 
+              max-md:col-span-1`} // Ensure each item spans 1 column on mobile
+            key={index}
           >
-            <h3 className="text-lg sm:text-xl font-semibold text-center truncate">
-              {newsItem.title}
-            </h3>
-          </Link>
-        </div>
-        <p className="text-gray-600 mt-2 text-center text-sm sm:text-base">
-          {newsItem.date}
-        </p>
+            <div className="relative flex justify-center items-center">
+              <img
+                src={newsItem.image}
+                alt={`News ${index + 1}`}
+                className="w-full object-cover rounded-md"
+              />
+              <Link to={`/full-news/${newsItem.id}`} className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-4">
+                <h3 className="text-lg sm:text-xl font-semibold text-center truncate">
+                  {newsItem.title}
+                </h3>
+              </Link>
+            </div>
+            <p className="text-gray-600 mt-2 text-center text-sm sm:text-base">
+              {newsItem.date}
+            </p>
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
-</div>
-
+    </div>
   );
 }
 
