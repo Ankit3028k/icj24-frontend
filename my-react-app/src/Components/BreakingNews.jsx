@@ -74,7 +74,7 @@ const BreakingNews = () => {
       </div>
       <div className="bg-gray-600 text-white py-3 px-4 flex items-center space-x-4 inline-flex w-10/12">
         {/* Display the current news item */}
-        <Link to={`/news/${newsItems[currentIndex]?.id}`}>
+        <Link to={`/full-news/${newsItems[currentIndex]?.id}`}>
   <div
     className="whitespace-nowrap overflow-hidden text-ellipsis animate-marquee"
     key={newsItems[currentIndex]?.id} // Key should be the unique ID

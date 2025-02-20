@@ -19,11 +19,11 @@ function Top() {
     <div className="bg-gray-800 text-white p-4 flex items-center justify-between flex-wrap">
       {/* Contact information */}
       <div className="flex space-x-8 mb-4 sm:mb-0">
-        <span className="text-sm flex items-center">
+        {/* <span className="text-sm flex items-center">
           <MdOutlinePhoneIphone className="mr-2" /> 123-456-7890
-        </span>
+        </span> */}
         <span className="text-sm flex items-center">
-          <BiLogoGmail className="mr-2" /> mail@domain.com
+          <BiLogoGmail className="mr-2" /> aashu.sri@gmail.com
         </span>
       </div>
 
