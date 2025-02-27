@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   const [trendingNews, setTrendingNews] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Fetch the news from the backend
@@ -12,9 +13,21 @@ function Footer() {
       .then(data => {
         // Filter news by category name "ट्रेंडिंग न्यूज़"
         const filteredNews = data.filter(news => news.category.name === "ट्रेंडिंग");
-        setTrendingNews(filteredNews);
+        
+        // Sort the news by createdAt (most recent first)
+        const sortedNews = filteredNews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        
+        // Take only the 5 most recent news items
+        const latestNews = sortedNews.slice(0, 5);
+        
+        // Update the trendingNews state
+        setTrendingNews(latestNews);
+        setLoading(false);
       })
-      .catch(error => console.error("Error fetching news:", error));
+      .catch(error => {
+        console.error("Error fetching news:", error);
+        setLoading(false);
+      });
   }, []);
 
   // Function to format the date as "11 Feb 2025"
@@ -22,6 +35,15 @@ function Footer() {
     const date = new Date(dateString);
     const options = { year: 'numeric', month: 'short', day: 'numeric' };
     return date.toLocaleDateString('en-IN', options); // 'en-IN' ensures the correct format
+  };
+
+  // Function to truncate text after 10 words
+  const truncateText = (text, wordLimit = 10) => {
+    const words = text.split(' ');
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(' ') + '...';
+    }
+    return text;
   };
 
   return (
@@ -39,11 +61,13 @@ function Footer() {
           <section className="flex flex-col items-center sm:items-start">
             <h2 className="text-xl font-bold mb-4">ट्रेंडिंग न्यूज़</h2>
             <div className="space-y-2">
-              {trendingNews.length > 0 ? (
+              {loading ? (
+                <p className="text-gray-400">Loading...</p>
+              ) : trendingNews.length > 0 ? (
                 trendingNews.map((news, index) => (
                   <div key={index}>
                     <h5 className="text-sm text-gray-400">{formatDate(news.datePosted)}</h5>
-                    <p className="text-base">{news.title}</p>
+                    <p className="text-base">{truncateText(news.title)}</p> {/* Truncating text */}
                   </div>
                 ))
               ) : (
@@ -69,12 +93,9 @@ function Footer() {
         <div className="mt-8 flex justify-between items-center text-sm text-gray-500">
           {/* Copyright text */}
           <p className="inline-flex">© 2025 Ankit Gangrade. All rights reserved.</p>
-          
+
           {/* Social media icons */}
           <div className="flex space-x-6 pr-5">
-            {/* <a href="https://www.facebook.com/icjtv24" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <FaFacebook className="text-white hover:text-blue-500 transition duration-300 text-2xl" />
-            </a> */}
             <a href="https://twitter.com/icjtv24" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
               <FaTwitter className="text-white hover:text-blue-400 transition duration-300 text-2xl" />
             </a>

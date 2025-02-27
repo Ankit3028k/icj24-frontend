@@ -40,9 +40,9 @@ const Technology = () => {
   return (
     <section className="bg-gray-100 py-16">
       <div className="container mx-auto mb-12">
-        <h2 className="text-2xl font-bold mb-6 text-gray-900 pb-4 pl-4">
-          टेक्नोलॉजी न्यूज़
-        </h2>
+      <a href={`/newsCategoryNews/${news[0].category.id}`} className="block">  <h2 id={news[0].category.name} className="text-2xl sm:text-3xl font-bold mb-6">
+        { news[0].category.name} न्यूज़
+      </h2></a>
       </div>
 
       <div className="space-y-12">

@@ -19,6 +19,7 @@ import CrimePage from "./pages/CrimePage.jsx";
 import JaraHatkePage from "./pages/JaraHatkePage.jsx";
 import TechnologyPage from "./pages/TechnologyPage.jsx";
 import FullNews from "./pages/FullNews.jsx";
+import CategoryFullNewsPage from "./pages/CategoryFullNewsPage.jsx";
 // import FullNewsPage from "./Components/FullNews.jsx";
 
 
@@ -38,6 +39,7 @@ function App() {
       {loading && <Preloader />}
 
       <Routes>
+        
         <Route path="/" element={<Home />} />
         <Route path="/मध्यप्रदेश" element={<MpNewsPage />} />
         <Route path="/राजनीति" element={<RajnitiPage />} />
@@ -64,6 +66,7 @@ function App() {
         <Route path="/जबलपुर" element={<JabalpurPage />} />
         
         <Route path="/full-news/:id" element={<FullNews/>}/>
+        <Route path="/newsCategoryNews/:categoryid" element={<CategoryFullNewsPage/>}/>
 
       </Routes>
     </BrowserRouter>

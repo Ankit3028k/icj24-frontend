@@ -48,9 +48,9 @@ function Rajniti() {
 
   return (
     <div id={news[0].category.name} className="m-2 px-4 py-8 border border-gray-300">
-      <h2 className="text-2xl font-bold mb-6 pl-3">
-        {news.length > 0 && news[0].category.name} न्यूज़
-      </h2>
+      <a href={`/newsCategoryNews/${news[0].category.id}`} className="block">  <h2 id={news[0].category.name} className="text-2xl sm:text-3xl font-bold mb-6">
+        { news[0].category.name} न्यूज़
+      </h2></a>
       {/* Grid layout adjusted for mobile view */}
       <div className={`grid gap-4 ${isEven ? 'grid-cols-4' : 'grid-cols-12'} max-md:grid-cols-1`}>
         {news.map((newsItem, index) => (
