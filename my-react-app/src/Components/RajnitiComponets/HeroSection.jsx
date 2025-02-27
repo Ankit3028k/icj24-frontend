@@ -12,8 +12,9 @@ function Rajniti() {
     axiosInstance
       .get("/news")
       .then((response) => {
+        // Filter news to include only "राजनीति" category and featured news
         const filteredNews = response.data.filter(
-          (item) => item.category.name === "राजनीति" && item.isFeatured === true
+          (item) => item.category.id =="67a89113088bf369ab70cca8 " && item.isFeatured === true
         );
 
         // Sort the news by createdAt (most recent first)
@@ -23,12 +24,11 @@ function Rajniti() {
         const latestNews = sortedNews.slice(0, 5);
 
         setNews(latestNews);
-        setLoading(false);  // Set loading to false after data is fetched
+        setLoading(false);
       })
-      .catch((error) => {
-        console.error("There was an error fetching the news:", error);
+      .catch((err) => {
         setError("Failed to fetch news. Please try again later.");
-        setLoading(false);  // Set loading to false if there’s an error
+        setLoading(false);
       });
   }, []);
 
@@ -48,19 +48,21 @@ function Rajniti() {
 
   return (
     <div id={news[0].category.name} className="m-2 px-4 py-8 border border-gray-300">
-      <a href={`/newsCategoryNews/${news[0].category.id}`} className="block">  <h2 id={news[0].category.name} className="text-2xl sm:text-3xl font-bold mb-6">
-        { news[0].category.name} न्यूज़
-      </h2></a>
+      <a href={`/newsCategoryNews/${news[0].category.id}`} className="block">  
+        <h2 id={news[0].category.name} className="text-2xl sm:text-3xl font-bold mb-6">
+          { news[0].category.name} न्यूज़
+        </h2>
+      </a>
       {/* Grid layout adjusted for mobile view */}
       <div className={`grid gap-4 ${isEven ? 'grid-cols-4' : 'grid-cols-12'} max-md:grid-cols-1`}>
         {news.map((newsItem, index) => (
           <div
             className={`news-item bg-white p-4 shadow-lg border border-gray-300 
               ${news.length % 2 !== 0
-              ? index === 0
-                ? 'col-span-12' // Large news item takes full width
-                : 'lg:col-span-6' // Other items have dynamic span
-              : 'lg:col-span-2'} 
+                ? index === 0
+                  ? 'col-span-12' // Large news item takes full width
+                  : 'lg:col-span-6' // Other items have dynamic span
+                : 'lg:col-span-2'} 
               max-md:col-span-1`} // Ensure each item spans 1 column on mobile
             key={index}
           >

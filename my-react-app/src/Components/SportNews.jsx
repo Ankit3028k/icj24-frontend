@@ -20,7 +20,7 @@ function SportsNews() {
         setLoading(false); // Set loading to false after data is fetched
       })
       .catch((error) => {
-        console.error("There was an error fetching the news:", error);
+        console.log("There was an error fetching the news:", error);
         setError("Failed to fetch news. Please try again later.");
         setLoading(false); // Set loading to false if there’s an error
       });

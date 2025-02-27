@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import axiosInstance from "./Admin/axiosConfig"; // Make sure axiosInstance is configured correctly
+import axiosInstance from "./Admin/axiosConfig"; // Ensure axiosInstance is correctly configured
+
+const TruncateText = ({ text, limit = 10 }) => {
+  const words = text.split(' ');
+  return words.length > limit ? words.slice(0, limit).join(' ') + '...' : text;
+};
 
 function NewsSection() {
-  // State to store news data
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch news from backend API when component mounts
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await axiosInstance.get('/news'); // Your backend URL endpoint for news
-        // Filter news where category name is "मध्यप्रदेश" and isFeatured is true
-        const filteredNews = response.data.filter(item => item.category?.name === "मध्यप्रदेश" && item.isFeatured === true);
-        // Sort the news by createdAt (most recent first)
-        const sortedNews = filteredNews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-        // Take only the 5 most recent news items
+        const response = await axiosInstance.get('/news');
+        const filteredNews = response.data.filter(
+          item => item.category?.name === "मध्यप्रदेश" && item.isFeatured === true
+        );
+           // Sort the news by createdAt (most recent first) and then reverse for LIFO
+           const sortedNews = filteredNews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+           // Reverse the order to make it LIFO (most recent post appears first)
+           const reversedNews = sortedNews.reverse();
         const latestNews = sortedNews.slice(0, 5);
 
-        setNews(latestNews); // Set the latest 5 news items
+        setNews(latestNews);
       } catch (error) {
         console.error("Error fetching news:", error);
       } finally {
@@ -27,31 +33,33 @@ function NewsSection() {
     };
 
     fetchNews();
-  }, []);  // Empty dependency array means this effect runs only once on mount
+  }, []);
 
   if (loading) {
-    return <div>Loading...</div>;  // Show a loading state while news is being fetched
+    return <div>Loading...</div>;
   }
-
-  // Function to truncate text after 10 words
-  const truncateText = (text, wordLimit = 10) => {
-    const words = text.split(' ');
-    if (words.length > wordLimit) {
-      return words.slice(0, wordLimit).join(' ') + '...';
-    }
-    return text;
-  };
+// Function to truncate text after 10 words
+const truncateText = (text, wordLimit = 10) => {
+  const words = text.split(' ');
+  if (words.length > wordLimit) {
+    return words.slice(0, wordLimit).join(' ') + '...';
+  }
+  return text;
+};
+  if (news.length === 0) {
+    return <div>No news available at the moment.</div>;
+  }
 
   return (
     <div className="m-4 px-4 py-8 bg-gray-100 rounded-2xl shadow-lg">
-      {/* Category Heading */}
-      <a href={`/newsCategoryNews/${news[0].category.id}`} className="block">  <h2 id={news[0].category.name} className="text-2xl sm:text-3xl font-bold mb-6">
-        { news[0].category.name} न्यूज़
-      </h2></a>
+      <a href={`/newsCategoryNews/${news[0].category.id}`} className="block">
+        <h2 id={news[0]?.category?.name} className="text-2xl sm:text-3xl font-bold mb-6">
+          {news[0]?.category?.name || "Default Category"} न्यूज़
+        </h2>
+      </a>
 
       <div className="grid gap-6 grid-cols-1 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-4">
-          {/* Main Big News */}
           {news.length > 0 && (
             <div className="relative bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
               <img
@@ -64,13 +72,7 @@ function NewsSection() {
                 <a
                   href={`/full-news/${news[0]._id}`}
                   className="text-2xl font-bold leading-tight hover:underline block truncate"
-                  style={{
-                    display: '-webkit-box',
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
-                    WebkitLineClamp: 2, // Limit title to 2 lines
-                    textOverflow: 'ellipsis',
-                  }}
+                  aria-label={`Read more about ${news[0].title}`}
                 >
                   {news[0].title}
                 </a>
@@ -79,7 +81,6 @@ function NewsSection() {
             </div>
           )}
 
-          {/* Second News (Image and Text Side by Side) */}
           {news.length > 1 && (
             <div className="flex bg-white rounded-lg shadow-md overflow-hidden">
               <div className="w-1/3 relative">
@@ -93,13 +94,7 @@ function NewsSection() {
                 <a
                   href={`/full-news/${news[1]._id}`}
                   className="text-lg font-semibold leading-tight hover:underline block truncate"
-                  style={{
-                    display: '-webkit-box',
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
-                    WebkitLineClamp: 2, // Limit title to 2 lines
-                    textOverflow: 'ellipsis',
-                  }}
+                  aria-label={`Read more about ${news[1].title}`}
                 >
                   {news[1].title}
                 </a>
@@ -109,38 +104,28 @@ function NewsSection() {
           )}
         </div>
 
-        {/* Three Small News on Right Side */}
         <div className="grid gap-4">
-          {news.slice(2).map((item, index) => (
+          {news.slice(2).map((item) => (
             <div
-              key={index}
+              key={item._id}
               className="flex bg-white rounded-lg shadow-md overflow-hidden"
-              style={{ height: '146px' }}  // Set fixed height for the small news section
+              style={{ height: '146px' }}
             >
-              {/* Image with full coverage */}
               <div className="w-32 h-32 relative">
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover"  // Ensure image covers the full height and width
+                  className="w-full h-full object-cover"
                 />
               </div>
               <div className="p-4 flex-1">
-                {/* Title with truncation */}
                 <a
                   href={`/full-news/${item._id}`}
                   className="text-sm font-semibold text-gray-800 hover:underline block"
-                  style={{
-                    display: '-webkit-box',
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
-                    WebkitLineClamp: 4,  // Limit to 2 lines and truncate
-                    textOverflow: 'ellipsis',
-                  }}
+                  aria-label={`Read more about ${item.title}`}
                 >
-                  {item.title}
+                  <TruncateText text={item.title} limit={12} />
                 </a>
-                {/* Author text */}
                 <p className="text-xs text-gray-500 mt-2">{item.author}</p>
               </div>
             </div>

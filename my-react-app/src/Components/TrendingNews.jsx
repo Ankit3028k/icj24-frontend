@@ -48,7 +48,7 @@ function TrendingNews() {
 
   return (
     <div className="m-2 px-4 sm:px-6 py-8 border border-gray-300">
-    <a href={`/newsCategoryNews/${news[0].category.id}`} className="block">  <h2 id={news[0].category.name} className="text-2xl sm:text-3xl font-bold mb-6">
+    <a href={`/newsCategoryNews/${news[0].category.name}`} className="block">  <h2 id={news[0].category.name} className="text-2xl sm:text-3xl font-bold mb-6">
         { news[0].category.name} न्यूज़
       </h2></a>
       <div

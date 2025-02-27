@@ -39,7 +39,6 @@ function App() {
       {loading && <Preloader />}
 
       <Routes>
-        
         <Route path="/" element={<Home />} />
         <Route path="/मध्यप्रदेश" element={<MpNewsPage />} />
         <Route path="/राजनीति" element={<RajnitiPage />} />

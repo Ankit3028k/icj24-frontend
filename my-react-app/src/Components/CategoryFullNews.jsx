@@ -27,9 +27,11 @@ function CategoryFullNews() {
           console.log("No featured news found for this category.");
         }
 
-        // Sort the news by createdAt (most recent first)
-        const sortedNews = filteredNews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+          // Sort the news by createdAt (most recent first) and then reverse for LIFO
+          const sortedNews = filteredNews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
+          // Reverse the order to make it LIFO (most recent post appears first)
+          const reversedNews = sortedNews.reverse();
         // Set the filtered and sorted news
         setNews(sortedNews);
         setLoading(false);
