@@ -74,7 +74,7 @@ function FeaturedVideos() {
                   allowFullScreen
                 ></iframe>
               </div>
-              <a href="#">
+              <a href={newsVideoItem.video}>
                 <h3 className="text-lg font-semibold mt-2">{newsVideoItem.title}</h3>
               </a>
             </div>
