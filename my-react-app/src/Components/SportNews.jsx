@@ -14,9 +14,9 @@ function SportsNews() {
       .get("/news")
       .then((response) => {
         const filteredNews = response.data.filter(
-          (item) => item.isFeatured === true
+          (item) => item.category.name === "खेल" && item.isFeatured === true
         );
-        setNews( featuredNews.filter((item) => item.category.name === "खेल"));
+        setNews(filteredNews);
         setLoading(false); // Set loading to false after data is fetched
       })
       .catch((error) => {
