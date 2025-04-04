@@ -4,18 +4,26 @@ import { Link } from 'react-router-dom';
 
 function Rajniti() {
   const [news, setNews] = useState([]);
-  const [loading, setLoading] = useState(true);  // Declare loading state
-  const [error, setError] = useState(null);  // Declare error state
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Fetch news from the backend (example URL)
-  useEffect(() => {
-    axiosInstance
-      .get("/news")
-      .then((response) => {
+  // Fetch news from the backend with retry logic
+  const fetchNews = async () => {
+    try {
+      const response = await axiosInstance.get("/news");
+      
+      // Log the response data to check what we are receiving
+      console.log('API Response:', response.data);
+
+      // Check if data exists and filter news properly
+      if (response.data && Array.isArray(response.data)) {
         // Filter news to include only "राजनीति" category and featured news
         const filteredNews = response.data.filter(
-          (item) => item.category.name === "जरा-हटके" && item.isFeatured === true
+          (item) => item.category?.name === "जरा-हटके" && item.isFeatured === true
         );
+
+        // Log filtered news to verify
+        console.log('Filtered News:', filteredNews);
 
         // Sort the news by createdAt (most recent first)
         const sortedNews = filteredNews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
@@ -24,12 +32,20 @@ function Rajniti() {
         const latestNews = sortedNews.slice(0, 5);
 
         setNews(latestNews);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError("Failed to fetch news. Please try again later.");
-        setLoading(false);
-      });
+      } else {
+        throw new Error('No valid data received from the server');
+      }
+      
+      setLoading(false);
+    } catch (err) {
+      console.error('Error fetching news:', err);
+      setError("Failed to fetch news. Please try again later.");
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchNews();  // Initial news fetch
   }, []);
 
   if (loading) {
@@ -47,10 +63,10 @@ function Rajniti() {
   const isEven = news.length % 2 === 0;
 
   return (
-    <div id={news[0].category.name} className="m-2 px-4 py-8 border border-gray-300">
-      <a href={`/newsCategoryNews/${news[0].category.id}`} className="block">  
-        <h2 id={news[0].category.name} className="text-2xl sm:text-3xl font-bold mb-6">
-          { news[0].category.name} न्यूज़
+    <div id={news[0].category?.name} className="m-2 px-4 py-8 border border-gray-300">
+      <a href={`/newsCategoryNews/${news[0].category?.id}`} className="block">  
+        <h2 id={news[0].category?.name} className="text-2xl sm:text-3xl font-bold mb-6">
+          { news[0].category?.name} न्यूज़
         </h2>
       </a>
       {/* Grid layout adjusted for mobile view */}
