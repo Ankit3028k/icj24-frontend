@@ -37,14 +37,7 @@ function Rajniti() {
   }
 
   if (error) {
-    return (
-      <div>
-        <p>{error}</p>
-        <button onClick={fetchNews} className="mt-4 p-2 bg-blue-500 text-white rounded">
-          Retry
-        </button>
-      </div>
-    );
+    return <div>{error}</div>;
   }
 
   if (news.length === 0) {
