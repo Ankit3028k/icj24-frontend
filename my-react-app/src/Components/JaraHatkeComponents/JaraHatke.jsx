@@ -14,7 +14,13 @@ function JaraHatke() {
         const filteredNews = response.data.filter(
           (item) => item.category.name === "जरा-हटके" && item.isFeatured === true
         );
-        setNews(filteredNews); // Set the filtered news data to state
+         // Sort the news by createdAt (most recent first)
+         const sortedNews = filteredNews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+         // Take only the 5 most recent news items
+         const latestNews = sortedNews.slice(0, 5);
+ 
+         setNews(latestNews);
         setLoading(false); // Set loading to false after data is fetched
       })
       .catch((error) => {

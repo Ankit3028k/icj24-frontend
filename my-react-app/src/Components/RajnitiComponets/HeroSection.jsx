@@ -1,61 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import axiosInstance from '../Admin/axiosConfig';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import axiosInstance from "../Admin/axiosConfig";
+import { Link } from "react-router-dom";
 
 function Rajniti() {
   const [news, setNews] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true); // Declare loading state
+  const [error, setError] = useState(null); // Declare error state
 
-  // Fetch news from the backend with retry logic
-  const fetchNews = async () => {
-    try {
-      const response = await axiosInstance.get("/news");
-      
-      // Log the response data to check what we are receiving
-      console.log('API Response:', response.data);
-
-      // Check if data exists and filter news properly
-      if (response.data && Array.isArray(response.data)) {
-        // Filter news to include only "राजनीति" category and featured news
+  // Fetch news from the backend (example URL)
+  useEffect(() => {
+    axiosInstance
+      .get("/news") // Assuming you're using axiosInstance for API calls
+      .then((response) => {
         const filteredNews = response.data.filter(
-          (item) => item.category?.name === "जरा-हटके" && item.isFeatured === true
+          (item) =>
+            item.category.name === "जरा-हटके" && item.isFeatured === true
         );
-
-        // Log filtered news to verify
-        console.log('Filtered News:', filteredNews);
-
         // Sort the news by createdAt (most recent first)
-        const sortedNews = filteredNews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        const sortedNews = filteredNews.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
 
         // Take only the 5 most recent news items
         const latestNews = sortedNews.slice(0, 5);
 
         setNews(latestNews);
-      } else {
-        throw new Error('No valid data received from the server');
-      }
-      
-      setLoading(false);
-    } catch (err) {
-      console.error('Error fetching news:', err);
-      setError("Failed to fetch news. Please try again later.");
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchNews();  // Initial news fetch
-  }, []);
+        setLoading(false); // Set loading to false after data is fetched
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the news:", error);
+        setError("Failed to fetch news. Please try again later.");
+        setLoading(false); // Set loading to false if there’s an error
+      });
+  }, []); // Empty dependency array to run this effect only once
 
   if (loading) {
-    return <div>Loading Rajniti News...</div>;
+    return <div>Loading Jara Hatke News...</div>; // Loading state
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div>{error}</div>; // Error state
   }
-
   if (news.length === 0) {
     return <div>No Rajniti News Available</div>;
   }
@@ -63,22 +48,34 @@ function Rajniti() {
   const isEven = news.length % 2 === 0;
 
   return (
-    <div id={news[0].category?.name} className="m-2 px-4 py-8 border border-gray-300">
-      <a href={`/newsCategoryNews/${news[0].category?.id}`} className="block">  
-        <h2 id={news[0].category?.name} className="text-2xl sm:text-3xl font-bold mb-6">
-          { news[0].category?.name} न्यूज़
+    <div
+      id={news[0].category.name}
+      className="m-2 px-4 py-8 border border-gray-300"
+    >
+      <a href={`/newsCategoryNews/${news[0].category.id}`} className="block">
+        <h2
+          id={news[0].category.name}
+          className="text-2xl sm:text-3xl font-bold mb-6"
+        >
+          {news[0].category.name} न्यूज़
         </h2>
       </a>
       {/* Grid layout adjusted for mobile view */}
-      <div className={`grid gap-4 ${isEven ? 'grid-cols-4' : 'grid-cols-12'} max-md:grid-cols-1`}>
+      <div
+        className={`grid gap-4 ${
+          isEven ? "grid-cols-4" : "grid-cols-12"
+        } max-md:grid-cols-1`}
+      >
         {news.map((newsItem, index) => (
           <div
             className={`news-item bg-white p-4 shadow-lg border border-gray-300 
-              ${news.length % 2 !== 0
-                ? index === 0
-                  ? 'col-span-12' // Large news item takes full width
-                  : 'lg:col-span-6' // Other items have dynamic span
-                : 'lg:col-span-2'} 
+              ${
+                news.length % 2 !== 0
+                  ? index === 0
+                    ? "col-span-12" // Large news item takes full width
+                    : "lg:col-span-6" // Other items have dynamic span
+                  : "lg:col-span-2"
+              } 
               max-md:col-span-1`} // Ensure each item spans 1 column on mobile
             key={index}
           >
@@ -88,7 +85,10 @@ function Rajniti() {
                 alt={`News ${index + 1}`}
                 className="w-full object-cover rounded-md"
               />
-              <Link to={`/full-news/${newsItem.id}`} className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-4">
+              <Link
+                to={`/full-news/${newsItem.id}`}
+                className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-4"
+              >
                 <h3 className="text-lg sm:text-xl font-semibold text-center truncate">
                   {newsItem.title}
                 </h3>
