@@ -9,7 +9,6 @@ const TruncateText = ({ text, limit = 10 }) => {
 function NewsSection() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // Added error state
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -18,37 +17,35 @@ function NewsSection() {
         const filteredNews = response.data.filter(
           item => item.category?.name === "मध्यप्रदेश" && item.isFeatured === true
         );
+           // Sort the news by createdAt (most recent first) and then reverse for LIFO
+           const sortedNews = filteredNews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-        // Sort the news by createdAt (most recent first)
-        const sortedNews = filteredNews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
-        // Get the top 5 latest news
+           // Reverse the order to make it LIFO (most recent post appears first)
+           const reversedNews = sortedNews.reverse();
         const latestNews = sortedNews.slice(0, 5);
 
         setNews(latestNews);
       } catch (error) {
         console.error("Error fetching news:", error);
-        setError("Failed to load news. Please try again later."); // Set error message
       } finally {
         setLoading(false);
       }
     };
 
-    fetchNews(); // Initial fetch
-
-    const intervalId = setInterval(fetchNews, 300000); // Fetch every 5 minutes (300000 ms)
-
-    return () => clearInterval(intervalId); // Cleanup on unmount
+    fetchNews();
   }, []);
 
   if (loading) {
     return <div>Loading...</div>;
   }
-
-  if (error) {
-    return <div>{error}</div>; // Display error message
+// Function to truncate text after 10 words
+const truncateText = (text, wordLimit = 10) => {
+  const words = text.split(' ');
+  if (words.length > wordLimit) {
+    return words.slice(0, wordLimit).join(' ') + '...';
   }
-
+  return text;
+};
   if (news.length === 0) {
     return <div>No news available at the moment.</div>;
   }
@@ -66,7 +63,7 @@ function NewsSection() {
           {news.length > 0 && (
             <div className="relative bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
               <img
-                src={news[0].image || '/path/to/default/image.jpg'} // Fallback image
+                src={news[0].image}
                 alt={news[0].title}
                 className="w-full h-96 object-cover"
               />
@@ -88,7 +85,7 @@ function NewsSection() {
             <div className="flex bg-white rounded-lg shadow-md overflow-hidden">
               <div className="w-1/3 relative">
                 <img
-                  src={news[1].image || '/path/to/default/image.jpg'} // Fallback image
+                  src={news[1].image}
                   alt={news[1].title}
                   className="w-full h-full object-cover"
                 />
@@ -116,7 +113,7 @@ function NewsSection() {
             >
               <div className="w-32 h-32 relative">
                 <img
-                  src={item.image || '/path/to/default/image.jpg'} // Fallback image
+                  src={item.image}
                   alt={item.title}
                   className="w-full h-full object-cover"
                 />
