@@ -14,7 +14,8 @@ function Rajniti() {
       .then((response) => {
         // Filter news to include only "राजनीति" category and featured news
         const filteredNews = response.data.filter(
-          (item) => item.category.id =="67a89113088bf369ab70cca8 " && item.isFeatured === true
+          // (item) => item.category.id =="67a89113088bf369ab70cca8 " && item.isFeatured === true
+          (item) => item.category.id =="67ac8383ef73b4d7026fe232 " && item.isFeatured === true
         );
 
         // Sort the news by createdAt (most recent first)
