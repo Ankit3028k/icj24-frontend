@@ -3,21 +3,23 @@ import axiosRetry from 'axios-retry';
 
 const axiosInstance = axios.create({
     baseURL: 'https://icj24-backend.onrender.com/api',
-    timeout: 5000,
+    timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
     }
 });
 
-// Retry mechanism add karo
+// Retry mechanism (improved)
 axiosRetry(axiosInstance, {
-    retries: 5, // Maximum 5 baar retry karega
-    retryDelay: (retryCount) => {
-        return retryCount * 2000; // Har baar retry mein 2s ka delay badhta jayega
-    },
+    retries: 5, // 2-3 retries are usually enough
+    retryDelay: axiosRetry.exponentialDelay, // built-in exponential delay (1s, 2s, 4s)
     retryCondition: (error) => {
-        // Sirf timeout ya network error par retry kare
-        return error.code === 'ECONNABORTED' || error.message.includes('Network Error');
+        // Retry on timeout, network error, and 5xx errors
+        return (
+            axiosRetry.isNetworkOrIdempotentRequestError(error) ||
+            error.code === 'ECONNABORTED' ||
+            (error.response && error.response.status >= 500)
+        );
     }
 });
 
